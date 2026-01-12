@@ -24,7 +24,6 @@ func main() {
 	// 创建客户端，配置拦截器
 	client, err := wecom.New(
 		config.WithCorpID(corpID),
-		config.WithCorpSecret(corpSecret),
 		config.WithDebug(true),
 
 		// 请求前拦截器：添加自定义 Header
@@ -102,7 +101,6 @@ func main() {
 	fmt.Println("\n=== 示例3：请求限流拦截器 ===")
 	rateLimitedClient, err := wecom.New(
 		config.WithCorpID(corpID),
-		config.WithCorpSecret(corpSecret),
 		config.WithRequestInterceptor(rateLimitInterceptor()),
 	)
 	if err != nil {

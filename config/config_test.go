@@ -24,14 +24,12 @@ func TestNew(t *testing.T) {
 	t.Run("with options", func(t *testing.T) {
 		cfg := New(
 			WithCorpID("test_corp_id"),
-			WithCorpSecret("test_secret"),
 			WithTimeout(60*time.Second),
 			WithRetry(5),
 			WithBackoff(2*time.Second, 60*time.Second),
 		)
 
 		assert.Equal(t, "test_corp_id", cfg.CorpID)
-		assert.Equal(t, "test_secret", cfg.CorpSecret)
 		assert.Equal(t, 60*time.Second, cfg.Timeout)
 		assert.Equal(t, 5, cfg.MaxRetries)
 		assert.Equal(t, 2*time.Second, cfg.InitialBackoff)
@@ -49,7 +47,6 @@ func TestConfig_Validate(t *testing.T) {
 			name: "valid config",
 			cfg: &Config{
 				CorpID:     "test_corp_id",
-				CorpSecret: "test_secret",
 				Timeout:    30 * time.Second,
 				MaxRetries: 3,
 			},
@@ -58,7 +55,6 @@ func TestConfig_Validate(t *testing.T) {
 		{
 			name: "missing corp id",
 			cfg: &Config{
-				CorpSecret: "test_secret",
 				Timeout:    30 * time.Second,
 				MaxRetries: 3,
 			},
@@ -77,7 +73,6 @@ func TestConfig_Validate(t *testing.T) {
 			name: "invalid timeout",
 			cfg: &Config{
 				CorpID:     "test_corp_id",
-				CorpSecret: "test_secret",
 				Timeout:    0,
 				MaxRetries: 3,
 			},
@@ -87,7 +82,6 @@ func TestConfig_Validate(t *testing.T) {
 			name: "invalid max retries",
 			cfg: &Config{
 				CorpID:     "test_corp_id",
-				CorpSecret: "test_secret",
 				Timeout:    30 * time.Second,
 				MaxRetries: -1,
 			},
@@ -111,11 +105,6 @@ func TestConfig_Validate(t *testing.T) {
 func TestWithCorpID(t *testing.T) {
 	cfg := New(WithCorpID("test_id"))
 	assert.Equal(t, "test_id", cfg.CorpID)
-}
-
-func TestWithCorpSecret(t *testing.T) {
-	cfg := New(WithCorpSecret("test_secret"))
-	assert.Equal(t, "test_secret", cfg.CorpSecret)
 }
 
 func TestWithBaseURL(t *testing.T) {

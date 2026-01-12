@@ -14,7 +14,6 @@ func main() {
 	// 创建企业微信客户端
 	client, err := wecom.New(
 		config.WithCorpID("your_corp_id"),
-		config.WithCorpSecret("your_corp_secret"),
 	)
 	if err != nil {
 		log.Fatalf("创建客户端失败: %v", err)

@@ -92,7 +92,8 @@ type Client struct {
 	// debug 是否打印请求和响应详情
 	debug bool
 	// decoder 自定义解码器，如果设置则在 DoAndUnmarshal 中使用
-	decoder Decoder
+	decoder   Decoder
+	withToken bool
 }
 
 // New 创建HTTP客户端
@@ -119,6 +120,11 @@ func (c *Client) SetDebug(debug bool) *Client {
 // SetDecoder 设置自定义解码器
 func (c *Client) SetDecoder(dec Decoder) *Client {
 	c.decoder = dec
+	return c
+}
+
+func (c *Client) SetWithToken(withToken bool) *Client {
+	c.withToken = withToken
 	return c
 }
 

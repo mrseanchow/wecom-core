@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/shuaidd/wecom-core/internal/client"
 	"github.com/shuaidd/wecom-core/pkg/cache"
 	"github.com/shuaidd/wecom-core/pkg/interceptor"
 	"github.com/shuaidd/wecom-core/pkg/logger"
@@ -16,13 +17,6 @@ type Option func(*Config)
 func WithCorpID(corpID string) Option {
 	return func(c *Config) {
 		c.CorpID = corpID
-	}
-}
-
-// WithCorpSecret 设置应用凭证密钥
-func WithCorpSecret(secret string) Option {
-	return func(c *Config) {
-		c.CorpSecret = secret
 	}
 }
 
@@ -132,5 +126,17 @@ func WithResponseInterceptor(interceptors ...interceptor.ResponseInterceptor) Op
 func WithAfterResponseInterceptor(interceptors ...interceptor.AfterResponseInterceptor) Option {
 	return func(c *Config) {
 		c.AfterResponseInterceptors = append(c.AfterResponseInterceptors, interceptors...)
+	}
+}
+
+func WithDecoder(decoder client.Decoder) Option {
+	return func(c *Config) {
+		c.Decoder = decoder
+	}
+}
+
+func WithToken(with bool) Option {
+	return func(c *Config) {
+		c.WithToken = with
 	}
 }

@@ -14,7 +14,7 @@ func main() {
 	ctx := context.Background()
 
 	// 替换为真实的 CorpID 与 CorpSecret
-	client, err := wecom.New(config.WithCorpID("YOUR_CORP_ID"), config.WithCorpSecret("YOUR_CORP_SECRET"), config.WithDebug(true))
+	client, err := wecom.New(config.WithCorpID("YOUR_CORP_ID"), config.WithDebug(true))
 	if err != nil {
 		log.Fatalf("create client error: %v", err)
 	}

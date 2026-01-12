@@ -24,7 +24,6 @@ func main() {
 	// 创建客户端
 	client, err := wecom.New(
 		config.WithCorpID(corpID),
-		config.WithCorpSecret(corpSecret),
 		config.WithDebug(true),
 	)
 	if err != nil {

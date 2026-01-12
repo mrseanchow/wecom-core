@@ -14,7 +14,6 @@ import (
 func main() {
 	client, err := wecom.New(
 		config.WithCorpID("your_corp_id"),
-		config.WithCorpSecret("your_corp_secret"),
 		config.WithLogger(logger.NewStdLogger()),
 	)
 	if err != nil {

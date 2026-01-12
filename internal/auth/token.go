@@ -31,8 +31,6 @@ type TokenResponse struct {
 type TokenManager struct {
 	// corpID 企业ID
 	corpID string
-	// corpSecret 应用凭证密钥（向后兼容单应用模式）
-	corpSecret string
 	// agents 多应用配置，key为应用名称或ID
 	agents map[string]*AgentInfo
 	// baseURL API基础URL
@@ -51,20 +49,20 @@ type TokenManager struct {
 
 // AgentInfo 应用信息
 type AgentInfo struct {
+	corpID  string
 	AgentID int64
 	Secret  string
 	Name    string
 }
 
 // NewTokenManager 创建Token管理器
-func NewTokenManager(corpID, corpSecret, baseURL string, c cache.Cache, log logger.Logger) *TokenManager {
+func NewTokenManager(corpID, baseURL string, c cache.Cache, log logger.Logger) *TokenManager {
 	if c == nil {
 		c = NewMemoryCache()
 	}
 
 	return &TokenManager{
 		corpID:              corpID,
-		corpSecret:          corpSecret,
 		baseURL:             baseURL,
 		cache:               c,
 		logger:              log,
@@ -76,8 +74,9 @@ func NewTokenManager(corpID, corpSecret, baseURL string, c cache.Cache, log logg
 }
 
 // RegisterAgent 注册应用
-func (tm *TokenManager) RegisterAgent(agentKey string, agentID int64, secret string) {
+func (tm *TokenManager) RegisterAgent(agentKey string, corpID string, agentID int64, secret string) {
 	tm.agents[agentKey] = &AgentInfo{
+		corpID:  corpID,
 		AgentID: agentID,
 		Secret:  secret,
 		Name:    agentKey,
@@ -211,10 +210,6 @@ func (tm *TokenManager) RefreshTokenByAgent(ctx context.Context, agentKey string
 func (tm *TokenManager) getAgentSecret(agentKey string) string {
 	// 如果 agentKey 为空，使用默认应用
 	if agentKey == "" {
-		// 优先使用 corpSecret（向后兼容）
-		if tm.corpSecret != "" {
-			return tm.corpSecret
-		}
 		// 如果只有一个应用，使用该应用
 		if len(tm.agents) == 1 {
 			for _, agent := range tm.agents {

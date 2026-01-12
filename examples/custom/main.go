@@ -17,7 +17,6 @@ func main() {
 	// 创建企业微信客户端
 	client, err := wecom.New(
 		config.WithCorpID("your_corp_id"),
-		config.WithCorpSecret("your_corp_secret"),
 		config.WithDebug(true),
 		config.WithLogger(logger.NewStdLogger()),
 	)

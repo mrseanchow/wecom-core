@@ -123,7 +123,6 @@ func New(opts ...config.Option) (*Client, error) {
 	// 3. 创建 Token 管理器
 	tokenManager := auth.NewTokenManager(
 		cfg.CorpID,
-		cfg.CorpSecret,
 		cfg.BaseURL,
 		cfg.Cache,
 		cfg.Logger,
@@ -132,7 +131,11 @@ func New(opts ...config.Option) (*Client, error) {
 	// 4. 注册多应用配置到 TokenManager
 	if len(cfg.Agents) > 0 {
 		for key, agentCfg := range cfg.Agents {
-			tokenManager.RegisterAgent(key, agentCfg.AgentID, agentCfg.Secret)
+			corpId := agentCfg.CorpID
+			if corpId == "" {
+				corpId = cfg.CorpID
+			}
+			tokenManager.RegisterAgent(key, corpId, agentCfg.AgentID, agentCfg.Secret)
 		}
 	}
 
@@ -160,6 +163,8 @@ func New(opts ...config.Option) (*Client, error) {
 	if cfg.Decoder != nil {
 		httpClient.SetDecoder(cfg.Decoder)
 	}
+
+	httpClient.SetWithToken(cfg.WithToken)
 
 	// 7. 注册拦截器
 	for _, interceptor := range cfg.RequestInterceptors {
