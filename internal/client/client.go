@@ -72,6 +72,9 @@ func getAgentKey(ctx context.Context) string {
 	return ""
 }
 
+// Decoder 自定义解码函数，用于将响应 body 解码为目标对象
+type Decoder func(data []byte, v any) error
+
 // Client HTTP客户端
 type Client struct {
 	// httpClient 底层HTTP客户端
@@ -88,6 +91,8 @@ type Client struct {
 	interceptors *Interceptors
 	// debug 是否打印请求和响应详情
 	debug bool
+	// decoder 自定义解码器，如果设置则在 DoAndUnmarshal 中使用
+	decoder Decoder
 }
 
 // New 创建HTTP客户端
@@ -108,6 +113,12 @@ func New(baseURL string, timeout time.Duration, log logger.Logger, tm *auth.Toke
 // SetDebug 设置是否打印请求和响应详情
 func (c *Client) SetDebug(debug bool) *Client {
 	c.debug = debug
+	return c
+}
+
+// SetDecoder 设置自定义解码器
+func (c *Client) SetDecoder(dec Decoder) *Client {
+	c.decoder = dec
 	return c
 }
 
@@ -266,8 +277,15 @@ func DoAndUnmarshal[T any](c *Client, ctx context.Context, req *Request) (*T, er
 	}
 
 	var result T
-	if err := resp.Unmarshal(&result); err != nil {
-		return nil, err
+	// 使用自定义解码器（如果已配置），否则使用默认的 Response.Unmarshal
+	if c != nil && c.decoder != nil {
+		if err := c.decoder(resp.Body, &result); err != nil {
+			return nil, fmt.Errorf("failed to decode response body with custom decoder: %w", err)
+		}
+	} else {
+		if err := resp.Unmarshal(&result); err != nil {
+			return nil, err
+		}
 	}
 
 	return &result, nil
