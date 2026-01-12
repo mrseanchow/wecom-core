@@ -9,6 +9,7 @@ import (
 	"github.com/shuaidd/wecom-core/internal/retry"
 	"github.com/shuaidd/wecom-core/pkg/interceptor"
 	"github.com/shuaidd/wecom-core/services/agent"
+	"github.com/shuaidd/wecom-core/services/approval"
 	"github.com/shuaidd/wecom-core/services/calendar"
 	"github.com/shuaidd/wecom-core/services/checkin"
 	"github.com/shuaidd/wecom-core/services/contact"
@@ -29,7 +30,6 @@ import (
 	"github.com/shuaidd/wecom-core/services/webinar"
 	"github.com/shuaidd/wecom-core/services/wedoc"
 	"github.com/shuaidd/wecom-core/services/wedrive"
-	"github.com/shuaidd/wecom-core/services/approval"
 	"github.com/shuaidd/wecom-core/types/common"
 )
 
@@ -155,6 +155,10 @@ func New(opts ...config.Option) (*Client, error) {
 
 	if cfg.Debug {
 		httpClient.SetDebug(true)
+	}
+	// 设置自定义解码器（如果配置了）
+	if cfg.Decoder != nil {
+		httpClient.SetDecoder(cfg.Decoder)
 	}
 
 	// 7. 注册拦截器

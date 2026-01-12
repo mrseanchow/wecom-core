@@ -3,6 +3,7 @@ package config
 import (
 	"time"
 
+	"github.com/shuaidd/wecom-core/internal/client"
 	"github.com/shuaidd/wecom-core/pkg/cache"
 	"github.com/shuaidd/wecom-core/pkg/interceptor"
 	"github.com/shuaidd/wecom-core/pkg/logger"
@@ -64,6 +65,9 @@ type Config struct {
 
 	// AfterResponseInterceptors 响应后拦截器列表（解析后）
 	AfterResponseInterceptors []interceptor.AfterResponseInterceptor
+
+	// Decoder 自定义解码器（优先于默认解析）
+	Decoder client.Decoder
 
 	// 是否开启debug模式
 	Debug bool
