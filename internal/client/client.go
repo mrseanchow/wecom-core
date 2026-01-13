@@ -155,14 +155,16 @@ func (c *Client) Do(ctx context.Context, req *Request) (*Response, error) {
 		// 1. 从 context 获取应用标识
 		agentKey := getAgentKey(ctx)
 
-		// 2. 获取 access_token（根据应用标识）
-		token, err := c.tokenManager.GetTokenByAgent(ctx, agentKey)
-		if err != nil {
-			return fmt.Errorf("failed to get access token: %w", err)
-		}
+		if c.withToken {
+			// 2. 获取 access_token（根据应用标识）
+			token, err := c.tokenManager.GetTokenByAgent(ctx, agentKey)
+			if err != nil {
+				return fmt.Errorf("failed to get access token: %w", err)
+			}
 
-		// 3. 添加 token 到请求
-		req.AddQuery("access_token", token)
+			// 3. 添加 token 到请求
+			req.AddQuery("access_token", token)
+		}
 
 		// 4. 构建 HTTP 请求
 		httpReq, err := req.BuildHTTPRequest(ctx, c.baseURL)
@@ -344,8 +346,14 @@ func PostMultipartAndUnmarshalWithQuery[T any](c *Client, ctx context.Context, p
 	}
 
 	var result T
-	if err := resp.Unmarshal(&result); err != nil {
-		return nil, err
+	if c != nil && c.decoder != nil {
+		if err := c.decoder(resp.Body, &result); err != nil {
+			return nil, fmt.Errorf("failed to decode response body with custom decoder: %w", err)
+		}
+	} else {
+		if err := resp.Unmarshal(&result); err != nil {
+			return nil, err
+		}
 	}
 
 	return &result, nil

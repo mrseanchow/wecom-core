@@ -92,12 +92,13 @@ func main1() {
 	fmt.Printf("decoded result: %+v\n", out)
 }
 
-func main() {
+func buildCli() (*wecom.Client, error) {
 	cli, err := wecom.New(
 		config.WithBaseURL("https://fzapi.shinyway.com"),
 		config.WithAgent("boss-customer", 1, "ss", "boss客户"),
 		config.WithCache(&NoCache{}),
 		config.WithToken(false),
+		config.WithTimeout(120*time.Second),
 		config.WithDecoder(func(data []byte, v any) error {
 			var env struct {
 				Status string          `json:"status"`
@@ -134,9 +135,30 @@ func main() {
 	)
 	if err != nil {
 		fmt.Println("create wecom client error:", err)
-		return
+		return nil, err
 	}
 
+	return cli, nil
+}
+
+func main() {
+	getUser()
+	upload()
+}
+
+func getUser() {
+	cli, _ := buildCli()
+	ctx := wecom.WithAgentName(context.Background(), "boss-customer")
+	user, err := cli.Contact.GetUser(ctx, "20170410022717")
+	if err != nil {
+		fmt.Println("get user error:", err)
+		return
+	}
+	fmt.Printf("user: %+v\n", user)
+}
+
+func upload() {
+	cli, _ := buildCli()
 	// 读取文件到内存
 	data, err := os.ReadFile("1.png")
 	if err != nil {
