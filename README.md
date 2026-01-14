@@ -64,7 +64,8 @@ func main() {
 client, err := wecom.New(
     // 必填：企业ID和应用密钥
     config.WithCorpID("your_corp_id"),
-    config.WithCorpSecret("your_corp_secret"),
+    config.WithAgent("customer", 100001, "agent_secret_1", "客户管理应用"),
+	config.WithAgent("study-assistant", 100002, "agent_secret_2", "学习助手"),
 
     // 可选：自定义日志
     config.WithLogger(logger.NewStdLogger()),
