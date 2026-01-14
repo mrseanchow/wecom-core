@@ -10,7 +10,7 @@ var (
 	ErrMissingCorpID = errors.New("corpID is required")
 
 	// ErrMissingCorpSecret 缺少应用凭证密钥
-	ErrMissingCorpSecret = errors.New("corpSecret or agents configuration is required")
+	ErrMissingCorpSecret = errors.New("agents configuration is required")
 
 	// ErrInvalidTimeout 无效的超时时间
 	ErrInvalidTimeout = errors.New("timeout must be greater than 0")

@@ -100,15 +100,22 @@ func New(opts ...Option) *Config {
 
 // Validate 验证配置
 func (c *Config) Validate() error {
+	// CorpID 是必须项
+	if c.CorpID == "" {
+		return ErrMissingCorpID
+	}
 
+	// 支持两种模式：
+	// 1. 单应用模式：使用顶层 CorpSecret（当 Agents 为空时必须提供）
+	// 2. 多应用模式：通过 Agents 提供每个应用的 Secret
 	if len(c.Agents) == 0 {
-		return &ErrInvalidAgentConfig{AgentKey: "", Reason: "agents is required"}
+		return ErrMissingCorpSecret
 	}
 
 	// 如果配置了多个应用，验证每个应用的配置
 	if len(c.Agents) > 0 {
 		for key, agent := range c.Agents {
-
+			// 当启用自动附带 token 时，需保证每个应用都有必要配置
 			if c.WithToken && c.CorpID == "" && agent.CorpID == "" {
 				return &ErrInvalidAgentConfig{AgentKey: key, Reason: "corpID is required"}
 			}

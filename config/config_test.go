@@ -49,6 +49,12 @@ func TestConfig_Validate(t *testing.T) {
 				CorpID:     "test_corp_id",
 				Timeout:    30 * time.Second,
 				MaxRetries: 3,
+				Agents: map[string]*AgentConfig{
+					"test_agent": {
+						AgentID: 123,
+						Secret:  "test_agent_secret",
+					},
+				},
 			},
 			wantErr: nil,
 		},
@@ -75,14 +81,26 @@ func TestConfig_Validate(t *testing.T) {
 				CorpID:     "test_corp_id",
 				Timeout:    0,
 				MaxRetries: 3,
+				Agents: map[string]*AgentConfig{
+					"test_agent": {
+						AgentID: 123,
+						Secret:  "test_agent_secret",
+					},
+				},
 			},
 			wantErr: ErrInvalidTimeout,
 		},
 		{
 			name: "invalid max retries",
 			cfg: &Config{
-				CorpID:     "test_corp_id",
-				Timeout:    30 * time.Second,
+				CorpID:  "test_corp_id",
+				Timeout: 30 * time.Second,
+				Agents: map[string]*AgentConfig{
+					"test_agent": {
+						AgentID: 123,
+						Secret:  "test_agent_secret",
+					},
+				},
 				MaxRetries: -1,
 			},
 			wantErr: ErrInvalidMaxRetries,
