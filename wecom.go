@@ -20,10 +20,13 @@ import (
 	"github.com/shuaidd/wecom-core/services/hr"
 	"github.com/shuaidd/wecom-core/services/invoice"
 	"github.com/shuaidd/wecom-core/services/ip"
+	"github.com/shuaidd/wecom-core/services/journal"
 	"github.com/shuaidd/wecom-core/services/kf"
 	"github.com/shuaidd/wecom-core/services/media"
 	"github.com/shuaidd/wecom-core/services/meeting"
+	"github.com/shuaidd/wecom-core/services/meetingroom"
 	"github.com/shuaidd/wecom-core/services/message"
+	"github.com/shuaidd/wecom-core/services/miniapppay"
 	"github.com/shuaidd/wecom-core/services/oauth"
 	"github.com/shuaidd/wecom-core/services/qrcode"
 	"github.com/shuaidd/wecom-core/services/reserve_meeting"
@@ -99,6 +102,8 @@ type Client struct {
 	Wedrive *wedrive.Service
 	// Meeting 会议服务
 	Meeting *meeting.Service
+	// MeetingRoom 会议室管理服务
+	MeetingRoom *meetingroom.Service
 	// ReserveMeeting 预约会议高级管理服务
 	ReserveMeeting *reserve_meeting.Service
 	// Webinar 网络研讨会服务
@@ -109,6 +114,10 @@ type Client struct {
 	ExternalPay *externalpay.Service
 	// HR 花名册服务
 	HR *hr.Service
+	// MiniAppPay 小程序支付服务
+	MiniAppPay *miniapppay.Service
+	// Journal 汇报服务
+	Journal *journal.Service
 
 	// 内部组件(不对外暴露)
 	config       *config.Config
@@ -207,11 +216,14 @@ func New(opts ...config.Option) (*Client, error) {
 		Wedoc:           wedoc.New(httpClient),
 		Wedrive:         wedrive.New(httpClient),
 		Meeting:         meeting.NewService(httpClient),
+		MeetingRoom:     meetingroom.NewService(httpClient),
 		ReserveMeeting:  reserve_meeting.NewService(httpClient),
 		Webinar:         webinar.NewService(httpClient),
 		Approval:        approval.New(httpClient),
 		ExternalPay:     externalpay.NewService(httpClient),
 		HR:              hr.NewService(httpClient),
+		MiniAppPay:      miniapppay.NewService(httpClient),
+		Journal:         journal.NewService(httpClient),
 	}
 
 	return c, nil

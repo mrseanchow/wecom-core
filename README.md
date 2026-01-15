@@ -2947,6 +2947,208 @@ if resp.NextCursor != "" {
 
 注意：查询时间跨度不能超过30天，查询区间是左闭右开的，记录会按时间从大到小排序。
 
+### 会议室管理
+
+企业微信会议室管理服务，支持会议室的增删改查和预定管理等功能。
+
+#### 添加会议室
+
+```go
+// 添加会议室
+addResp, err := client.MeetingRoom.Add(ctx, &meetingroom.AddMeetingRoomRequest{
+    Name:     "18F-会议室",
+    Capacity: 10,
+    City:     "深圳",
+    Building: "腾讯大厦",
+    Floor:    "18F",
+    Equipment: []int{1, 2, 3}, // 1-电视 2-电话 3-投影
+    Coordinate: &meetingroom.Coordinate{
+        Latitude:  "22.540503",
+        Longitude: "113.934528",
+    },
+    Range: &meetingroom.Range{
+        UserList:       []string{"zhangsan", "lisi"},
+        DepartmentList: []int64{1},
+    },
+})
+if err != nil {
+    log.Fatalf("添加会议室失败: %v", err)
+}
+fmt.Printf("会议室添加成功: MeetingRoomID=%d\n", addResp.MeetingRoomID)
+```
+
+#### 查询会议室
+
+```go
+// 查询会议室列表
+listResp, err := client.MeetingRoom.List(ctx, &meetingroom.ListMeetingRoomsRequest{
+    City:      "深圳",
+    Building:  "腾讯大厦",
+    Floor:     "18F",
+    Equipment: []int{1, 2, 3},
+})
+if err != nil {
+    log.Fatalf("查询会议室失败: %v", err)
+}
+
+for _, room := range listResp.MeetingRoomList {
+    fmt.Printf("会议室ID: %d, 名称: %s, 容量: %d, 是否需要审批: %d\n",
+        room.MeetingRoomID, room.Name, room.Capacity, room.NeedApproval)
+}
+```
+
+#### 编辑会议室
+
+```go
+// 编辑会议室
+err = client.MeetingRoom.Edit(ctx, &meetingroom.EditMeetingRoomRequest{
+    MeetingRoomID: 1,
+    Name:          "18F-会议室",
+    Capacity:      20,
+    City:          "深圳",
+    Building:      "腾讯大厦",
+    Floor:         "18F",
+    Equipment:     []int{1, 2, 3, 4},
+    Coordinate: &meetingroom.Coordinate{
+        Latitude:  "22.540503",
+        Longitude: "113.934528",
+    },
+    Range: &meetingroom.Range{
+        UserList:       []string{"zhangsan", "lisi"},
+        DepartmentList: []int64{1},
+    },
+})
+if err != nil {
+    log.Fatalf("编辑会议室失败: %v", err)
+}
+fmt.Println("会议室已更新")
+```
+
+#### 删除会议室
+
+```go
+// 删除会议室
+err = client.MeetingRoom.Delete(ctx, 1)
+if err != nil {
+    log.Fatalf("删除会议室失败: %v", err)
+}
+fmt.Println("会议室已删除")
+```
+
+#### 查询会议室预定信息
+
+```go
+// 查询会议室的预定信息
+bookingResp, err := client.MeetingRoom.GetBookingInfo(ctx, &meetingroom.GetBookingInfoRequest{
+    MeetingRoomID: 1,
+    StartTime:     1593532800,
+    EndTime:       1593619200,
+    City:          "深圳",
+    Building:      "腾讯大厦",
+    Floor:         "18F",
+})
+if err != nil {
+    log.Fatalf("查询预定信息失败: %v", err)
+}
+
+for _, booking := range bookingResp.BookingList {
+    fmt.Printf("会议室ID: %d\n", booking.MeetingRoomID)
+    for _, schedule := range booking.Schedule {
+        fmt.Printf("  预定ID: %s, 日程ID: %s, 预定人: %s, 状态: %d\n",
+            schedule.BookingID, schedule.ScheduleID, schedule.Booker, schedule.Status)
+        fmt.Printf("  开始时间: %d, 结束时间: %d\n", schedule.StartTime, schedule.EndTime)
+    }
+}
+```
+
+#### 预定会议室
+
+```go
+// 预定会议室
+bookResp, err := client.MeetingRoom.Book(ctx, &meetingroom.BookMeetingRoomRequest{
+    MeetingRoomID: 1,
+    Subject:       "周会",
+    StartTime:     1593532800,
+    EndTime:       1593619200,
+    Booker:        "zhangsan",
+    Attendees:     []string{"lisi", "wangwu"},
+})
+if err != nil {
+    log.Fatalf("预定会议室失败: %v", err)
+}
+fmt.Printf("会议室预定成功: BookingID=%s, ScheduleID=%s\n",
+    bookResp.BookingID, bookResp.ScheduleID)
+```
+
+#### 通过日程预定会议室
+
+```go
+// 通过日程预定会议室
+scheduleResp, err := client.MeetingRoom.BookBySchedule(ctx, &meetingroom.BookByScheduleRequest{
+    MeetingRoomID: 1,
+    ScheduleID:    "1c7e7226edae66468bc48e9859812402",
+    Booker:        "rocky",
+})
+if err != nil {
+    log.Fatalf("通过日程预定会议室失败: %v", err)
+}
+fmt.Printf("预定成功: BookingID=%s\n", scheduleResp.BookingID)
+if len(scheduleResp.ConflictDate) > 0 {
+    fmt.Printf("冲突日期: %v\n", scheduleResp.ConflictDate)
+}
+```
+
+#### 通过会议预定会议室
+
+```go
+// 通过会议预定会议室
+meetingResp, err := client.MeetingRoom.BookByMeeting(ctx, &meetingroom.BookByMeetingRequest{
+    MeetingRoomID: 1,
+    MeetingID:     "hy7e7226edae66468bc48e9859812402",
+    Booker:        "rocky",
+})
+if err != nil {
+    log.Fatalf("通过会议预定会议室失败: %v", err)
+}
+fmt.Printf("预定成功: BookingID=%s\n", meetingResp.BookingID)
+if len(meetingResp.ConflictDate) > 0 {
+    fmt.Printf("冲突日期: %v\n", meetingResp.ConflictDate)
+}
+```
+
+#### 取消预定会议室
+
+```go
+// 取消预定会议室
+err = client.MeetingRoom.CancelBook(ctx, &meetingroom.CancelBookRequest{
+    BookingID:    "bk42b34949gsaseb6e027c123cbafAAA",
+    KeepSchedule: 1, // 保留日程
+    CancelDate:   1672502400, // 仅取消当天的预定
+})
+if err != nil {
+    log.Fatalf("取消预定失败: %v", err)
+}
+fmt.Println("预定已取消")
+```
+
+#### 根据预定ID查询预定详情
+
+```go
+// 根据预定ID查询预定详情
+infoResp, err := client.MeetingRoom.GetBookInfo(ctx, &meetingroom.GetBookInfoRequest{
+    MeetingRoomID: 1,
+    BookingID:     "bkebsada6e027c123cbafAAA",
+})
+if err != nil {
+    log.Fatalf("查询预定详情失败: %v", err)
+}
+fmt.Printf("会议室ID: %d\n", infoResp.MeetingRoomID)
+fmt.Printf("预定ID: %s, 主预定ID: %s, 日程ID: %s\n",
+    infoResp.Schedule.BookingID, infoResp.Schedule.MasterBookingID, infoResp.Schedule.ScheduleID)
+fmt.Printf("预定人: %s, 状态: %d\n", infoResp.Schedule.Booker, infoResp.Schedule.Status)
+fmt.Printf("开始时间: %d, 结束时间: %d\n", infoResp.Schedule.StartTime, infoResp.Schedule.EndTime)
+```
+
 ### 会中控制管理
 
 企业微信会中控制管理服务，支持对进行中的会议进行实时控制，包括成员管理、会议设置、投票管理等功能。
