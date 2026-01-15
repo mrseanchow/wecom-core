@@ -16,6 +16,8 @@ import (
 	"github.com/shuaidd/wecom-core/services/corpgroup"
 	"github.com/shuaidd/wecom-core/services/email"
 	"github.com/shuaidd/wecom-core/services/externalcontact"
+	"github.com/shuaidd/wecom-core/services/externalpay"
+	"github.com/shuaidd/wecom-core/services/hr"
 	"github.com/shuaidd/wecom-core/services/invoice"
 	"github.com/shuaidd/wecom-core/services/ip"
 	"github.com/shuaidd/wecom-core/services/kf"
@@ -103,6 +105,10 @@ type Client struct {
 	Webinar *webinar.Service
 	// Approval 审批服务
 	Approval *approval.Service
+	// ExternalPay 对外收款服务
+	ExternalPay *externalpay.Service
+	// HR 花名册服务
+	HR *hr.Service
 
 	// 内部组件(不对外暴露)
 	config       *config.Config
@@ -204,6 +210,8 @@ func New(opts ...config.Option) (*Client, error) {
 		ReserveMeeting:  reserve_meeting.NewService(httpClient),
 		Webinar:         webinar.NewService(httpClient),
 		Approval:        approval.New(httpClient),
+		ExternalPay:     externalpay.NewService(httpClient),
+		HR:              hr.NewService(httpClient),
 	}
 
 	return c, nil
