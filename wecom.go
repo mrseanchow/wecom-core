@@ -2,6 +2,8 @@ package wecom
 
 import (
 	"context"
+	"errors"
+	"sync"
 
 	"github.com/shuaidd/wecom-core/config"
 	"github.com/shuaidd/wecom-core/internal/auth"
@@ -329,4 +331,67 @@ func CustomGetAndUnmarshal[T any](c *Client, ctx context.Context, path string, q
 //	fmt.Println(result.Result)
 func CustomPostAndUnmarshal[T any](c *Client, ctx context.Context, path string, body any) (*T, error) {
 	return client.PostAndUnmarshal[T](c.httpClient, ctx, path, body)
+}
+
+// ---- 全局单例管理 ----
+
+var (
+	// ErrAlreadyInitialized 当尝试重复初始化全局客户端时返回
+	ErrAlreadyInitialized = errors.New("wecom: already initialized")
+
+	// ErrNotInitialized 当全局客户端尚未初始化时返回
+	ErrNotInitialized = errors.New("wecom: not initialized")
+
+	defaultClientMu sync.RWMutex
+	defaultClient   *Client
+)
+
+// Init 初始化全局单例客户端。首次调用会创建并设置默认客户端，重复调用会返回 ErrAlreadyInitialized。
+// 参数与 wecom.New 一致。
+func Init(opts ...config.Option) error {
+	c, err := New(opts...)
+	if err != nil {
+		return err
+	}
+	defaultClientMu.Lock()
+	defer defaultClientMu.Unlock()
+	if defaultClient != nil {
+		return ErrAlreadyInitialized
+	}
+	defaultClient = c
+	return nil
+}
+
+// MustInit 初始化全局单例客户端，初始化失败会 panic。
+func MustInit(opts ...config.Option) {
+	if err := Init(opts...); err != nil {
+		panic(err)
+	}
+}
+
+// SetDefault 手动设置全局默认客户端（会覆盖已存在的默认客户端）。
+func SetDefault(c *Client) {
+	defaultClientMu.Lock()
+	defaultClient = c
+	defaultClientMu.Unlock()
+}
+
+// Default 返回全局默认客户端，若尚未初始化则返回 ErrNotInitialized。
+func Default() (*Client, error) {
+	defaultClientMu.RLock()
+	c := defaultClient
+	defaultClientMu.RUnlock()
+	if c == nil {
+		return nil, ErrNotInitialized
+	}
+	return c, nil
+}
+
+// MustDefault 返回全局默认客户端，若尚未初始化则 panic。
+func MustDefault() *Client {
+	c, err := Default()
+	if err != nil {
+		panic(err)
+	}
+	return c
 }
