@@ -35,7 +35,7 @@ func TestSendImageMessage(t *testing.T) {
 		MsgType: "image",
 		AgentID: 1000060,
 		Image: &message.MediaMessage{
-			MediaID: "3IN8NQFtxcnNLUQDV99RB0dHAp9009miO14W5qBb4B88lRHte5nscyuG3Umab1z1u",
+			MediaID: "3GpqnD4o8ztI754ejNTtCPQRfjOgU19pmlJGZN_2wvfVJlGEATht_F2G4yD3Lk3ZI3PODYj99GiAipn2v-EgFhQ",
 		},
 	})
 	fmt.Printf("响应：%+v 错误：%+v", resp, err)
