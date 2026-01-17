@@ -12,21 +12,8 @@ import (
 // CreateMenu 创建菜单
 func (s *Service) CreateMenu(ctx context.Context, req *agent.CreateMenuRequest) error {
 	// 构建请求，需要在query参数中传递agentid，在body中传递菜单内容
-	r := client.NewRequest(client.MethodPost, "/cgi-bin/menu/create")
-	r.AddQuery("agentid", fmt.Sprintf("%d", req.AgentID))
-	r.SetBody(req)
-
-	resp, err := s.client.Do(ctx, r)
-	if err != nil {
-		return err
-	}
-
-	var result agent.CreateMenuResponse
-	if err := resp.Unmarshal(&result); err != nil {
-		return err
-	}
-
-	return nil
+	_, err := client.PostAndUnmarshal[agent.CreateMenuResponse](s.client, ctx, fmt.Sprintf("/cgi-bin/menu/create?agentid=%d", req.AgentID), req)
+	return err
 }
 
 // GetMenu 获取菜单
