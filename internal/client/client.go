@@ -48,6 +48,16 @@ func WithAgentName(ctx context.Context, agentName string) context.Context {
 	return context.WithValue(ctx, agentNameKey, agentName)
 }
 
+func GetAgentName(ctx context.Context) string {
+	if ctx == nil {
+		return ""
+	}
+	if agentName, ok := ctx.Value(agentNameKey).(string); ok {
+		return agentName
+	}
+	return ""
+}
+
 // WithAgentID 将应用ID添加到 context
 func WithAgentID(ctx context.Context, agentID int64) context.Context {
 	return context.WithValue(ctx, agentIDKey, agentID)
@@ -209,6 +219,14 @@ func (c *Client) Do(ctx context.Context, req *Request) (*Response, error) {
 			return fmt.Errorf("response interceptor failed: %w", err)
 		}
 
+		if httpResp.StatusCode != http.StatusOK {
+			duration := time.Since(startTime)
+			c.logger.Error("Request failed", withTraceID(ctx,
+				logger.F("status_code", httpResp.StatusCode),
+				logger.F("duration", duration))...)
+			return fmt.Errorf("http request failed: %s", httpResp.Status)
+		}
+
 		// 7. 解析响应
 		resp, err = ParseResponse(httpResp)
 		duration := time.Since(startTime)
@@ -219,22 +237,30 @@ func (c *Client) Do(ctx context.Context, req *Request) (*Response, error) {
 		}
 
 		if err != nil {
-			c.logger.Error("Request failed", withTraceID(ctx,
-				logger.F("url", httpReq.URL.String()),
-				logger.F("errcode", resp.ErrCode),
-				logger.F("errmsg", resp.ErrMsg),
-				logger.F("duration", duration))...)
-
-			// 8. Token 失效，刷新后重试
-			if errors.IsTokenExpired(err) {
-				c.logger.Warn("Token expired, refreshing", withTraceID(ctx,
+			if resp != nil {
+				c.logger.Error("Request failed", withTraceID(ctx,
+					logger.F("url", httpReq.URL.String()),
 					logger.F("errcode", resp.ErrCode),
-					logger.F("agent_key", agentKey))...)
-				if refreshErr := c.tokenManager.RefreshTokenByAgent(ctx, agentKey); refreshErr != nil {
-					c.logger.Error("Failed to refresh token", withTraceID(ctx,
-						logger.F("error", refreshErr),
+					logger.F("errmsg", resp.ErrMsg),
+					logger.F("duration", duration))...)
+
+				// 8. Token 失效，刷新后重试
+				if errors.IsTokenExpired(err) {
+					c.logger.Warn("Token expired, refreshing", withTraceID(ctx,
+						logger.F("errcode", resp.ErrCode),
 						logger.F("agent_key", agentKey))...)
+					if refreshErr := c.tokenManager.RefreshTokenByAgent(ctx, agentKey); refreshErr != nil {
+						c.logger.Error("Failed to refresh token", withTraceID(ctx,
+							logger.F("error", refreshErr),
+							logger.F("agent_key", agentKey))...)
+					}
 				}
+
+			} else {
+				c.logger.Error("Request failed", withTraceID(ctx,
+					logger.F("url", httpReq.URL.String()),
+					logger.F("error", err),
+					logger.F("duration", duration))...)
 			}
 
 			return err
@@ -494,6 +520,9 @@ func (c *Client) logRequestDetails(ctx context.Context, httpReq *http.Request, b
 
 // logResponseDetails 打印响应详情
 func (c *Client) logResponseDetails(ctx context.Context, statusCode int, resp *Response) {
+	if resp == nil {
+		return
+	}
 	c.logger.Info("<== Response Details", withTraceID(ctx,
 		logger.F("status_code", statusCode),
 		logger.F("errcode", resp.ErrCode),

@@ -242,6 +242,11 @@ func WithAgentName(ctx context.Context, agentName string) context.Context {
 	return client.WithAgentName(ctx, agentName)
 }
 
+// GetAgentName 从 context 获取应用名称
+func GetAgentName(ctx context.Context) string {
+	return client.GetAgentName(ctx)
+}
+
 // WithAgentID 将应用ID添加到 context
 // 使用此函数可以在调用API时指定使用哪个应用的凭证
 func WithAgentID(ctx context.Context, agentID int64) context.Context {

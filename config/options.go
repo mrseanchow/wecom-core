@@ -21,39 +21,38 @@ func WithCorpID(corpID string) Option {
 }
 
 // WithAgent 添加单个应用配置
-func WithAgent(agentName string, agentID int64, secret string, agentDesc ...string) Option {
+func WithAgent(agentName string, agentID int64, secret string, agentDesc string) Option {
 	return func(c *Config) {
-		if c.Agents == nil {
-			c.Agents = make(map[string]*AgentConfig)
-		}
 		agent := &AgentConfig{
 			AgentID:   agentID,
 			Secret:    secret,
 			AgentName: agentName,
+			AgentDesc: agentDesc,
 		}
-		if len(agentDesc) > 0 {
-			agent.AgentDesc = agentDesc[0]
-		}
-		// 同时支持通过名称和ID查找
-		c.Agents[agentName] = agent
-		c.Agents[fmt.Sprintf("%d", agentID)] = agent
+
+		registerAgent(c, agent)
+	}
+}
+
+func registerAgent(c *Config, agent *AgentConfig) {
+	if c.Agents == nil {
+		c.Agents = make(map[string]*AgentConfig)
+	}
+
+	// 同时支持通过名称和ID查找
+	if agent.AgentName != "" {
+		c.Agents[agent.AgentName] = agent
+	}
+	if agent.AgentID > 0 {
+		c.Agents[fmt.Sprintf("%d", agent.AgentID)] = agent
 	}
 }
 
 // WithAgents 批量添加应用配置
 func WithAgents(agents ...*AgentConfig) Option {
 	return func(c *Config) {
-		if c.Agents == nil {
-			c.Agents = make(map[string]*AgentConfig)
-		}
 		for _, agent := range agents {
-			// 同时支持通过名称和ID查找
-			if agent.AgentName != "" {
-				c.Agents[agent.AgentName] = agent
-			}
-			if agent.AgentID > 0 {
-				c.Agents[fmt.Sprintf("%d", agent.AgentID)] = agent
-			}
+			registerAgent(c, agent)
 		}
 	}
 }

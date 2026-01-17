@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"testing"
+	"time"
 
 	"github.com/shuaidd/wecom-core"
 	"github.com/shuaidd/wecom-core/types/externalcontact"
@@ -101,8 +102,8 @@ func TestEditCorpTag(t *testing.T) {
 		return
 	}
 	err = cli.ExternalContact.EditCorpTag(context.Background(), &externalcontact.EditCorpTagRequest{
-		ID:    "etCRbQBwAAkyCwtvE_mvNKd0X-irpL-w",
-		Name:  "修改后的标签组",
+		ID:    "etCRbQBwAA0XJOlXaxbA8FbkYd-9aH8w",
+		Name:  "修改后的标签",
 		Order: 1,
 	})
 	fmt.Printf("错误：%+v", err)
@@ -114,10 +115,10 @@ func TestDeleteCorpTag(t *testing.T) {
 		return
 	}
 	err = cli.ExternalContact.DeleteCorpTag(context.Background(), &externalcontact.DeleteCorpTagRequest{
-		TagID:   []string{"etCRbQBwAAkyCwtvE_mvNKd0X-irpL-w"},
+		TagID:   []string{"etCRbQBwAA0XJOlXaxbA8FbkYd-9aH8w"},
 		GroupID: []string{},
 	})
-	fmt.Printf("错误：%+v", err)
+	fmt.Printf("错误：%+v ", err)
 }
 
 func TestMarkTag(t *testing.T) {
@@ -209,7 +210,7 @@ func TestGetGroupChat(t *testing.T) {
 		return
 	}
 	resp, err := cli.ExternalContact.GetGroupChat(context.Background(), &externalcontact.GetGroupChatRequest{
-		ChatID:   "wrOgKjCwAAxJnNqT8qM8qM8qM8qM8qM8qM8qM8qM8qM8qM8qM8qM8qM8qM8qM8qM",
+		ChatID:   "wrCRbQBwAAoFDTwM9TY8_tZpG8SJvS1Q",
 		NeedName: 1,
 	})
 	fmt.Printf("响应：%+v 错误：%+v", resp, err)
@@ -421,9 +422,13 @@ func TestGetGroupChatStatistic(t *testing.T) {
 	if err != nil {
 		return
 	}
+
+	now := time.Now()
+	start := now.AddDate(0, 0, -10)
+	end := now.AddDate(0, 0, -1)
 	resp, err := cli.ExternalContact.GetGroupChatStatistic(context.Background(), &externalcontact.GroupChatStatisticRequest{
-		DayBeginTime: 1704067200,
-		DayEndTime:   1704153600,
+		DayBeginTime: start.Unix(),
+		DayEndTime:   end.Unix(),
 		OwnerFilter: &externalcontact.OwnerFilter{
 			UserIDList: []string{"20170410022717"},
 		},
@@ -440,9 +445,12 @@ func TestGetGroupChatStatisticGroupByDay(t *testing.T) {
 	if err != nil {
 		return
 	}
+	now := time.Now()
+	start := now.AddDate(0, 0, -10)
+	end := now.AddDate(0, 0, -1)
 	resp, err := cli.ExternalContact.GetGroupChatStatisticGroupByDay(context.Background(), &externalcontact.GroupChatStatisticGroupByDayRequest{
-		DayBeginTime: 1704067200,
-		DayEndTime:   1704153600,
+		DayBeginTime: start.Unix(),
+		DayEndTime:   end.Unix(),
 		OwnerFilter: &externalcontact.OwnerFilter{
 			UserIDList: []string{"20170410022717"},
 		},
@@ -455,10 +463,13 @@ func TestGetUserBehaviorData(t *testing.T) {
 	if err != nil {
 		return
 	}
+	now := time.Now()
+	start := now.AddDate(0, 0, -10)
+	end := now.AddDate(0, 0, -1)
 	resp, err := cli.ExternalContact.GetUserBehaviorData(context.Background(), &externalcontact.GetUserBehaviorDataRequest{
 		UserID:    []string{"20170410022717"},
-		StartTime: 1704067200,
-		EndTime:   1704153600,
+		StartTime: start.Unix(),
+		EndTime:   end.Unix(),
 	})
 	fmt.Printf("响应：%+v 错误：%+v", resp, err)
 }
@@ -486,7 +497,7 @@ func TestGetMomentTaskResult(t *testing.T) {
 	if err != nil {
 		return
 	}
-	resp, err := cli.ExternalContact.GetMomentTaskResult(context.Background(), "job_id")
+	resp, err := cli.ExternalContact.GetMomentTaskResult(context.Background(), "Aafg57d58owKfSV7xIBImOMOPkoDSiFKIsoQhmK4i5lXadcQnIR6DRmZs5CPLiLD")
 	fmt.Printf("响应：%+v 错误：%+v", resp, err)
 }
 
@@ -495,9 +506,13 @@ func TestGetMomentList(t *testing.T) {
 	if err != nil {
 		return
 	}
+	now := time.Now()
+	start := now.AddDate(0, 0, -10)
+	end := now.AddDate(0, 0, -1)
 	resp, err := cli.ExternalContact.GetMomentList(context.Background(), &externalcontact.GetMomentListRequest{
-		StartTime: 1704067200,
-		EndTime:   1704153600,
+		Creator:   "20170410022717",
+		StartTime: start.Unix(),
+		EndTime:   end.Unix(),
 		Cursor:    "",
 		Limit:     100,
 	})
@@ -510,7 +525,7 @@ func TestGetMomentTask(t *testing.T) {
 		return
 	}
 	resp, err := cli.ExternalContact.GetMomentTask(context.Background(), &externalcontact.GetMomentTaskRequest{
-		MomentID: "moment_id",
+		MomentID: "mom1CRbQBwAA3GOeyKBGl2aLK8h30lZOIg",
 		Cursor:   "",
 		Limit:    100,
 	})
@@ -523,7 +538,7 @@ func TestGetMomentCustomerList(t *testing.T) {
 		return
 	}
 	resp, err := cli.ExternalContact.GetMomentCustomerList(context.Background(), &externalcontact.GetMomentCustomerListRequest{
-		MomentID: "moment_id",
+		MomentID: "mom1CRbQBwAA3GOeyKBGl2aLK8h30lZOIg",
 		UserID:   "20170410022717",
 		Cursor:   "",
 		Limit:    100,
@@ -537,7 +552,7 @@ func TestGetMomentSendResult(t *testing.T) {
 		return
 	}
 	resp, err := cli.ExternalContact.GetMomentSendResult(context.Background(), &externalcontact.GetMomentSendResultRequest{
-		MomentID: "moment_id",
+		MomentID: "mom1CRbQBwAAx6Zdyq-56Tqzts1fg0ZWzg",
 		UserID:   "20170410022717",
 		Cursor:   "",
 		Limit:    100,
@@ -551,7 +566,7 @@ func TestGetMomentComments(t *testing.T) {
 		return
 	}
 	resp, err := cli.ExternalContact.GetMomentComments(context.Background(), &externalcontact.GetMomentCommentsRequest{
-		MomentID: "moment_id",
+		MomentID: "mom1CRbQBwAAx6Zdyq-56Tqzts1fg0ZWzg",
 		UserID:   "20170410022717",
 	})
 	fmt.Printf("响应：%+v 错误：%+v", resp, err)

@@ -77,9 +77,13 @@ func init() {
 			return result
 		}),
 		config.WithRequestInterceptor(func(ctx context.Context, req *http.Request, body any) error {
+			agentName := wecom.GetAgentName(ctx)
+			if agentName == "" {
+				agentName = "boss-customer"
+			}
 			req.Header.Add("Auth-Type", "access-token")
 			req.Header.Add("access-token", accessToken)
-			req.Header.Add("agent-name", "boss-customer")
+			req.Header.Add("agent-name", agentName)
 			return nil
 		}),
 	)

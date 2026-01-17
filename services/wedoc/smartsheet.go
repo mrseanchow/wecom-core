@@ -36,9 +36,9 @@ const (
 
 	// 编组管理
 	addFieldGroupURL    = "/cgi-bin/wedoc/smartsheet/add_field_group"
-	getFieldGroupURL    = "/cgi-bin/wedoc/smartsheet/get_field_group"
+	getFieldGroupURL    = "/cgi-bin/wedoc/smartsheet/get_field_groups"
 	updateFieldGroupURL = "/cgi-bin/wedoc/smartsheet/update_field_group"
-	deleteFieldGroupURL = "/cgi-bin/wedoc/smartsheet/delete_field_group"
+	deleteFieldGroupURL = "/cgi-bin/wedoc/smartsheet/delete_field_groups"
 )
 
 // ==================== 记录管理 ====================
