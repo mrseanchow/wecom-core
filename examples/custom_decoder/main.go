@@ -94,7 +94,7 @@ func main1() {
 
 func buildCli() (*wecom.Client, error) {
 	cli, err := wecom.New(
-		config.WithBaseURL("https://fzapi.shinyway.com"),
+		config.WithBaseURL(""),
 		config.WithAgent("boss-customer", 1, "ss", "boss客户"),
 		config.WithCache(&NoCache{}),
 		config.WithToken(false),
@@ -128,7 +128,7 @@ func buildCli() (*wecom.Client, error) {
 		}),
 		config.WithRequestInterceptor(func(ctx context.Context, req *http.Request, body any) error {
 			req.Header.Add("Auth-Type", "access-token")
-			req.Header.Add("access-token", "eyJhbGciOiJIUzI1NiJ9.eyJvbGRVbml0SWQiOiIyMDIyMDMyMjA2NjY2MiIsInVuaXROYW1lIjoi56CU5Y-R6YOoIiwibG9naW5fdGltZSI6IjIwMjYtMDEtMTIgMjE6MzE6MzIiLCJjb21wYW55TmFtZSI6IuaWsOmAmuWbvemZhSIsImlkIjoiMTIwcm4iLCJvbGRJZCI6IjIwMTcwNDEwMDIyNzE3IiwiYWNjb3VudCI6IkREU0hVQUkiLCJsb2dpbl90aW1lc3RhbXAiOjE3NjgyMjQ2OTIyNTEsIm9sZENvbXBhbnlJZCI6Inh0Z2oiLCJ1c2VybmFtZSI6IuW4heWGrOWGrCIsInVhTUQ1IjoiNjg0ZmFjM2Q4ZTU5NTg0NTY0MGU1MDdhOTEyMmJkNTUifQ.MqMa1pA76_nG5axYfrdJfw6XJkuznAEXKuwoWpdobiI")
+			req.Header.Add("access-token", "xx")
 			req.Header.Add("agent-name", "boss-customer")
 			return nil
 		}),

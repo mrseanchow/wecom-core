@@ -20,11 +20,11 @@ func (s *Service) ListExternalContact(ctx context.Context, userID string) (*exte
 // GetExternalContact 获取客户详情
 // 企业可通过此接口，根据外部联系人的userid，拉取客户详情
 // 文档: https://developer.work.weixin.qq.com/document/path/92114
-func (s *Service) GetExternalContact(ctx context.Context, externalUserID string, cursor ...string) (*externalcontact.GetExternalContactResponse, error) {
+func (s *Service) GetExternalContact(ctx context.Context, externalUserID string, cursor string) (*externalcontact.GetExternalContactResponse, error) {
 	params := url.Values{}
 	params.Set("external_userid", externalUserID)
-	if len(cursor) > 0 && cursor[0] != "" {
-		params.Set("cursor", cursor[0])
+	if cursor != "" {
+		params.Set("cursor", cursor)
 	}
 	return client.GetAndUnmarshal[externalcontact.GetExternalContactResponse](s.client, ctx, "/cgi-bin/externalcontact/get", params)
 }

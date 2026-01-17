@@ -5,9 +5,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"os"
 	"strconv"
 	"time"
 
+	"github.com/joho/godotenv"
 	"github.com/shuaidd/wecom-core"
 	"github.com/shuaidd/wecom-core/config"
 	"github.com/shuaidd/wecom-core/pkg/logger"
@@ -31,10 +33,19 @@ func (n *NoCache) Delete(ctx context.Context, key string) error {
 }
 
 func init() {
+	godotenv.Load()
+
+	baseURL := os.Getenv("WECOM_BASE_URL")
+	accessToken := os.Getenv("WECOM_ACCESS_TOKEN")
+
+	if baseURL == "" || accessToken == "" {
+		panic("baseURL or accessToken is empty")
+	}
+
 	wecom.MustInit(
-		config.WithBaseURL("https://fzapi.shinyway.com"),
+		config.WithBaseURL(baseURL),
 		config.WithCorpID("sss"),
-		config.WithAgent("boss-customer", 1, "ss", "boss客户"),
+		config.WithAgent("boss-customer", 1, "xx", "boss客户"),
 		config.WithCache(&NoCache{}),
 		config.WithToken(false),
 		config.WithTimeout(120*time.Second),
@@ -48,9 +59,9 @@ func init() {
 				return fmt.Errorf("unmarshal envelope: %w", err)
 			}
 			if env.Status != "1" {
+				fmt.Printf("接口调用失败 errcode: %s errmsg: %s", env.Status, env.Msg)
 				return fmt.Errorf("api error: status: %s msg: %s", env.Status, env.Msg)
 			}
-			// 如果服务器直接返回业务对象（没有 data 包装），回退到直接解码整个 body
 			if len(env.Data) == 0 {
 				return json.Unmarshal(data, v)
 			}
@@ -67,7 +78,7 @@ func init() {
 		}),
 		config.WithRequestInterceptor(func(ctx context.Context, req *http.Request, body any) error {
 			req.Header.Add("Auth-Type", "access-token")
-			req.Header.Add("access-token", "eyJhbGciOiJIUzI1NiJ9.eyJvbGRVbml0SWQiOiIyMDIyMDMyMjA2NjY2MiIsInVuaXROYW1lIjoi56CU5Y-R6YOoIiwibG9naW5fdGltZSI6IjIwMjYtMDEtMTYgMjE6MzU6NTYiLCJjb21wYW55TmFtZSI6IuaWsOmAmuWbvemZhSIsImlkIjoiMTIwcm4iLCJ1c2VyTG9naW5LZXkiOiJnYXRld2F5OnVzZXI6bG9naW46djM6MjAxNzA0MTAwMjI3MTc6MTc2ODU3MDU1NjI5OCIsIm9sZElkIjoiMjAxNzA0MTAwMjI3MTciLCJhY2NvdW50IjoiRERTSFVBSSIsImxvZ2luX3RpbWVzdGFtcCI6MTc2ODU3MDU1NjI5OCwib2xkQ29tcGFueUlkIjoieHRnaiIsInVzZXJuYW1lIjoi5biF5Yas5YasIiwidWFNRDUiOiI4OWRiNzI5Y2ZjZGMxMjkxMTFmMDE3YjBlN2FjMzI0YSJ9.83MRSSyVIhXR-l1PbSZ6alleHEMWmtf6W30_kFtwp3w")
+			req.Header.Add("access-token", accessToken)
 			req.Header.Add("agent-name", "boss-customer")
 			return nil
 		}),
