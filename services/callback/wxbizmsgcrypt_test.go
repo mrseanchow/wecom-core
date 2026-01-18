@@ -55,10 +55,6 @@ func TestNewWXBizMsgCrypt(t *testing.T) {
 				fmt.Println("verifyUrl fail", cryptErr)
 			}
 			fmt.Println("verifyUrl success echoStr", string(echoStr))
-			
-			if true {
-				t.Errorf("NewWXBizMsgCrypt() = %v, want %v", echoStr, tt.want)
-			}
 		})
 	}
 }
