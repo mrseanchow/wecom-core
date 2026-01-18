@@ -26,6 +26,12 @@ type AgentConfig struct {
 
 	// AgentDesc 应用描述(可选)
 	AgentDesc string
+
+	//回调通知解码的token
+	Token string
+
+	// EncodingAESKey 回调通知解码的AES密钥
+	EncodingAESKey string
 }
 
 // Config 企业微信SDK配置

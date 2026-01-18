@@ -30,6 +30,7 @@ func main() {
 				Secret:    "agent_secret_1",
 				AgentName: "customer",
 				AgentDesc: "客户管理应用",
+				Token: "2",
 			},
 			&wecom.AgentConfig{
 				AgentID:   100002,

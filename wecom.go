@@ -3,6 +3,7 @@ package wecom
 import (
 	"context"
 	"errors"
+	"fmt"
 	"sync"
 
 	"github.com/shuaidd/wecom-core/config"
@@ -399,4 +400,18 @@ func MustDefault() *Client {
 		panic(err)
 	}
 	return c
+}
+
+func (c *Client) GetAgentByID(ctx context.Context, agentID int64) (*AgentConfig, error) {
+	if a, ok := c.config.Agents[fmt.Sprintf("%d", agentID)]; ok {
+		return a, nil
+	}
+	return nil, fmt.Errorf("agent %d not found", agentID)
+}
+
+func (c *Client) GetAgentByName(ctx context.Context, agentName string) (*AgentConfig, error) {
+	if a, ok := c.config.Agents[agentName]; ok {
+		return a, nil
+	}
+	return nil, fmt.Errorf("agent %s not found", agentName)
 }

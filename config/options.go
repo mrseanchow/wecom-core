@@ -34,6 +34,21 @@ func WithAgent(agentName string, agentID int64, secret string, agentDesc string)
 	}
 }
 
+func WithAgentAndAesToken(agentName string, agentID int64, secret string, agentDesc string, token string, encodingAESKey string) Option {
+	return func(c *Config) {
+		agent := &AgentConfig{
+			AgentID:        agentID,
+			Secret:         secret,
+			AgentName:      agentName,
+			AgentDesc:      agentDesc,
+			Token:          token,
+			EncodingAESKey: encodingAESKey,
+		}
+
+		registerAgent(c, agent)
+	}
+}
+
 func registerAgent(c *Config, agent *AgentConfig) {
 	if c.Agents == nil {
 		c.Agents = make(map[string]*AgentConfig)
