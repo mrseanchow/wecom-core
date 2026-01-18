@@ -176,6 +176,10 @@ func (c *Client) Do(ctx context.Context, req *Request) (*Response, error) {
 			req.AddQuery("access_token", token)
 		}
 
+		if c.debug {
+			req.AddQuery("debug", "1")
+		}
+
 		// 4. 构建 HTTP 请求
 		httpReq, err := req.BuildHTTPRequest(ctx, c.baseURL)
 		if err != nil {
