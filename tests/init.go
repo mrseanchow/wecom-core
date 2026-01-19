@@ -20,11 +20,12 @@ type NoCache struct {
 }
 
 func (n *NoCache) Get(ctx context.Context, key string) (string, time.Time, error) {
-	expireAt, _ := time.Parse("2006-01-02 15:04:05", "2027-01-01 00:00:00")
-	return "ww", expireAt, nil
+	expireAt, _ := time.Parse("2006-01-02 15:04:05", "2026-01-19 14:42:52")
+	return "RUFbN2gMw878NbFT2utpcrSvqI0QyJBqR5umxXNGnsGYd9RVviBvYoZf95KTqFngWBfYsl6ig-6iKDdyE1-07bOhYfBg2CuomAyzU71AlUoumloNQU4D6AEYEjODQxJI6S7rLzTfyZxhgSq705_ydrrHzJzzgHZqhSP0cS6El9nZ1qKyjNw3dsNVNoGvj_iUj5eCIhhm60udqkXludgniw", expireAt, nil
 }
 
 func (n *NoCache) Set(ctx context.Context, key string, token string, expireAt time.Time) error {
+	fmt.Println(key, token, expireAt)
 	return nil
 }
 
@@ -32,8 +33,7 @@ func (n *NoCache) Delete(ctx context.Context, key string) error {
 	return nil
 }
 
-func init() {
-	godotenv.Load()
+func initByProxy() {
 
 	baseURL := os.Getenv("WECOM_BASE_URL")
 	accessToken := os.Getenv("WECOM_ACCESS_TOKEN")
@@ -87,5 +87,32 @@ func init() {
 			return nil
 		}),
 	)
-	fmt.Println("初始化完成")
+	fmt.Println("使用代理服务访问企微-初始化完成")
+}
+
+func initByDirect() {
+	corpID := os.Getenv("CORP_ID")
+	addressBookSecret := os.Getenv("ADDRESS_BOOK_SECRET")
+	bossZSSecret := os.Getenv("BOSS_ZS_SECRET")
+
+	wecom.MustInit(
+		config.WithCorpID(corpID),
+		config.WithAgent("bosszs", 1000050, bossZSSecret, "boss助手"),
+		config.WithAgent("addressBook", 1, addressBookSecret, "通讯录助手"),
+		config.WithCache(&NoCache{}),
+		config.WithToken(true),
+		config.WithLogger(logger.NewStdLogger()),
+		config.WithTimeout(20*time.Second),
+	)
+	fmt.Println("使用直联访问企微-初始化完成")
+}
+
+func init() {
+	godotenv.Load()
+	proxy := os.Getenv("proxy") == "true"
+	if proxy {
+		initByProxy()
+	} else {
+		initByDirect()
+	}
 }

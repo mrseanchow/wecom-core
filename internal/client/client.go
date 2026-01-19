@@ -340,6 +340,15 @@ func PostAndUnmarshal[T any](c *Client, ctx context.Context, path string, body a
 	return DoAndUnmarshal[T](c, ctx, req)
 }
 
+// PostAndUnmarshalWithQuery 发送POST请求并自动解析响应
+func PostAndUnmarshalWithQuery[T any](c *Client, ctx context.Context, path string, query url.Values, body any) (*T, error) {
+	req := NewRequest(MethodPost, path).SetBody(body)
+	if query != nil {
+		req.Query = query
+	}
+	return DoAndUnmarshal[T](c, ctx, req)
+}
+
 // PostMultipart 发送multipart/form-data POST请求
 func (c *Client) PostMultipart(ctx context.Context, path string, query url.Values, body []byte, contentType string) (*Response, error) {
 	req := NewMultipartRequest(path, body, contentType)
