@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"net/url"
 	"sync"
 
 	"github.com/shuaidd/wecom-core/config"
@@ -335,8 +336,8 @@ func CustomGetAndUnmarshal[T any](c *Client, ctx context.Context, path string, q
 //	    return err
 //	}
 //	fmt.Println(result.Result)
-func CustomPostAndUnmarshal[T any](c *Client, ctx context.Context, path string, body any) (*T, error) {
-	return client.PostAndUnmarshal[T](c.httpClient, ctx, path, body)
+func CustomPostAndUnmarshal[T any](c *Client, ctx context.Context, path string, body any, query url.Values) (*T, error) {
+	return client.PostAndUnmarshalWithQuery[T](c.httpClient, ctx, path, query, body)
 }
 
 // ---- 全局单例管理 ----

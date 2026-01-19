@@ -100,7 +100,6 @@ func initByDirect() {
 		config.WithAgent("bosszs", 1000050, bossZSSecret, "boss助手"),
 		config.WithAgent("addressBook", 1, addressBookSecret, "通讯录助手"),
 		config.WithCache(&NoCache{}),
-		config.WithToken(true),
 		config.WithLogger(logger.NewStdLogger()),
 		config.WithTimeout(20*time.Second),
 	)
