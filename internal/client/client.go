@@ -346,7 +346,7 @@ func PostAndUnmarshal[T common.Errcode](c *Client, ctx context.Context, path str
 }
 
 // PostAndUnmarshalWithQuery 发送POST请求并自动解析响应
-func PostAndUnmarshalWithQuery[T any](c *Client, ctx context.Context, path string, query url.Values, body any) (*T, error) {
+func PostAndUnmarshalWithQuery[T common.Errcode](c *Client, ctx context.Context, path string, query url.Values, body any) (*T, error) {
 	req := NewRequest(MethodPost, path).SetBody(body)
 	if query != nil {
 		req.Query = query
