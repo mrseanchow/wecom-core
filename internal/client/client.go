@@ -13,6 +13,7 @@ import (
 	"github.com/shuaidd/wecom-core/internal/errors"
 	"github.com/shuaidd/wecom-core/internal/retry"
 	"github.com/shuaidd/wecom-core/pkg/logger"
+	"github.com/shuaidd/wecom-core/types/common"
 )
 
 // contextKey 用于在 context 中存储值的类型
@@ -308,7 +309,7 @@ func (c *Client) Post(ctx context.Context, path string, body any) (*Response, er
 }
 
 // DoAndUnmarshal 执行请求并自动解析响应到指定类型
-func DoAndUnmarshal[T any](c *Client, ctx context.Context, req *Request) (*T, error) {
+func DoAndUnmarshal[T common.Errcode](c *Client, ctx context.Context, req *Request) (*T, error) {
 	resp, err := c.Do(ctx, req)
 	if err != nil {
 		return nil, err
@@ -330,7 +331,7 @@ func DoAndUnmarshal[T any](c *Client, ctx context.Context, req *Request) (*T, er
 }
 
 // GetAndUnmarshal 发送GET请求并自动解析响应
-func GetAndUnmarshal[T any](c *Client, ctx context.Context, path string, query url.Values) (*T, error) {
+func GetAndUnmarshal[T common.Errcode](c *Client, ctx context.Context, path string, query url.Values) (*T, error) {
 	req := NewRequest(MethodGet, path)
 	if query != nil {
 		req.Query = query
@@ -339,7 +340,7 @@ func GetAndUnmarshal[T any](c *Client, ctx context.Context, path string, query u
 }
 
 // PostAndUnmarshal 发送POST请求并自动解析响应
-func PostAndUnmarshal[T any](c *Client, ctx context.Context, path string, body any) (*T, error) {
+func PostAndUnmarshal[T common.Errcode](c *Client, ctx context.Context, path string, body any) (*T, error) {
 	req := NewRequest(MethodPost, path).SetBody(body)
 	return DoAndUnmarshal[T](c, ctx, req)
 }
@@ -354,7 +355,7 @@ func (c *Client) PostMultipart(ctx context.Context, path string, query url.Value
 }
 
 // PostMultipartAndUnmarshal 发送multipart/form-data POST请求并自动解析响应
-func PostMultipartAndUnmarshal[T any](c *Client, ctx context.Context, path string, body []byte, contentType string) (*T, error) {
+func PostMultipartAndUnmarshal[T common.Errcode](c *Client, ctx context.Context, path string, body []byte, contentType string) (*T, error) {
 	resp, err := c.PostMultipart(ctx, path, nil, body, contentType)
 	if err != nil {
 		return nil, err
@@ -369,7 +370,7 @@ func PostMultipartAndUnmarshal[T any](c *Client, ctx context.Context, path strin
 }
 
 // PostMultipartAndUnmarshalWithQuery 发送带查询参数的multipart/form-data POST请求并自动解析响应
-func PostMultipartAndUnmarshalWithQuery[T any](c *Client, ctx context.Context, path string, query url.Values, body []byte, contentType string) (*T, error) {
+func PostMultipartAndUnmarshalWithQuery[T common.Errcode](c *Client, ctx context.Context, path string, query url.Values, body []byte, contentType string) (*T, error) {
 	resp, err := c.PostMultipart(ctx, path, query, body, contentType)
 	if err != nil {
 		return nil, err

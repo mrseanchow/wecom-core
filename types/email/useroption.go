@@ -1,5 +1,7 @@
 package email
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // UserOptionItem 用户功能属性项
 type UserOptionItem struct {
 	Type  int32  `json:"type"`  // 功能设置属性类型 1: 强制启用安全登录 2: IMAP/SMTP服务 3: POP/SMTP服务 4: 是否启用安全登录
@@ -19,9 +21,8 @@ type GetUserOptionRequest struct {
 
 // GetUserOptionResponse 获取用户功能属性响应
 type GetUserOptionResponse struct {
-	ErrCode int32      `json:"errcode"`
-	ErrMsg  string     `json:"errmsg"`
-	Option  UserOption `json:"option"` // 用户功能属性
+	common.Response
+	Option UserOption `json:"option"` // 用户功能属性
 }
 
 // UpdateUserOptionRequest 更改用户功能属性请求
@@ -32,6 +33,5 @@ type UpdateUserOptionRequest struct {
 
 // UpdateUserOptionResponse 更改用户功能属性响应
 type UpdateUserOptionResponse struct {
-	ErrCode int32  `json:"errcode"`
-	ErrMsg  string `json:"errmsg"`
+	common.Response
 }

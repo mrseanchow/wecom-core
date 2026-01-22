@@ -1,5 +1,7 @@
 package invoice
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // ReimburseStatus 发票报销状态
 type ReimburseStatus string
 
@@ -94,6 +96,7 @@ type InvoiceUserInfo struct {
 
 // GetInvoiceInfoResponse 查询电子发票响应
 type GetInvoiceInfoResponse struct {
+	common.Response
 	// CardID 发票id
 	CardID string `json:"card_id"`
 	// BeginTime 发票的有效期起始时间
@@ -140,6 +143,7 @@ type InvoiceInfo struct {
 
 // GetInvoiceInfoBatchResponse 批量查询电子发票响应
 type GetInvoiceInfoBatchResponse struct {
+	common.Response
 	// ItemList 发票信息列表
 	ItemList []InvoiceInfo `json:"item_list"`
 }

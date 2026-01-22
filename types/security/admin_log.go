@@ -1,5 +1,7 @@
 package security
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // ListAdminOperLogRequest 获取管理端操作日志请求
 type ListAdminOperLogRequest struct {
 	StartTime int64  `json:"start_time"`          // 开始时间
@@ -12,8 +14,7 @@ type ListAdminOperLogRequest struct {
 
 // ListAdminOperLogResponse 获取管理端操作日志响应
 type ListAdminOperLogResponse struct {
-	ErrCode    int               `json:"errcode"`
-	ErrMsg     string            `json:"errmsg"`
+	common.Response
 	HasMore    bool              `json:"has_more"`    // 是否还有下一页
 	NextCursor string            `json:"next_cursor"` // 下一页的分页游标
 	RecordList []AdminOperRecord `json:"record_list"` // 记录列表

@@ -300,16 +300,20 @@ func (c *Client) CustomPost(ctx context.Context, path string, body any) (*client
 //
 // 示例：
 //
+//	type CustomRequest struct {
+//	    Field string `json:"field"`
+//	}
 //	type CustomResponse struct {
 //	    client.CommonResponse
-//	    Data string `json:"data"`
+//	    Result string `json:"result"`
 //	}
-//	result, err := client.CustomGetAndUnmarshal[CustomResponse](ctx, "/cgi-bin/custom/api", map[string]string{"param": "value"})
+//	req := CustomRequest{Field: "value"}
+//	result, err := client.CustomGetAndUnmarshal[CustomResponse](c, ctx, "/cgi-bin/custom/api", req)
 //	if err != nil {
 //	    return err
 //	}
 //	fmt.Println(result.Data)
-func CustomGetAndUnmarshal[T any](c *Client, ctx context.Context, path string, query map[string]string) (*T, error) {
+func CustomGetAndUnmarshal[T common.Errcode](c *Client, ctx context.Context, path string, query map[string]string) (*T, error) {
 	q := make(map[string][]string)
 	for k, v := range query {
 		q[k] = []string{v}
@@ -335,7 +339,7 @@ func CustomGetAndUnmarshal[T any](c *Client, ctx context.Context, path string, q
 //	    return err
 //	}
 //	fmt.Println(result.Result)
-func CustomPostAndUnmarshal[T any](c *Client, ctx context.Context, path string, body any) (*T, error) {
+func CustomPostAndUnmarshal[T common.Errcode](c *Client, ctx context.Context, path string, body any) (*T, error) {
 	return client.PostAndUnmarshal[T](c.httpClient, ctx, path, body)
 }
 

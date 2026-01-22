@@ -1,5 +1,7 @@
 package externalcontact
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // GroupChatStatisticRequest 获取群聊数据统计请求（按群主聚合）
 type GroupChatStatisticRequest struct {
 	DayBeginTime int64        `json:"day_begin_time"`
@@ -31,6 +33,7 @@ type GroupChatStatisticItem struct {
 
 // GroupChatStatisticResponse 获取群聊数据统计响应（按群主聚合）
 type GroupChatStatisticResponse struct {
+	common.Response
 	Total      int                      `json:"total"`
 	NextOffset int                      `json:"next_offset"`
 	Items      []GroupChatStatisticItem `json:"items"`
@@ -51,6 +54,7 @@ type GroupChatStatisticGroupByDayItem struct {
 
 // GroupChatStatisticGroupByDayResponse 获取群聊数据统计响应（按自然日聚合）
 type GroupChatStatisticGroupByDayResponse struct {
+	common.Response
 	Items []GroupChatStatisticGroupByDayItem `json:"items"`
 }
 
@@ -76,5 +80,6 @@ type BehaviorData struct {
 
 // GetUserBehaviorDataResponse 获取联系客户统计数据响应
 type GetUserBehaviorDataResponse struct {
+	common.Response
 	BehaviorData []BehaviorData `json:"behavior_data"`
 }

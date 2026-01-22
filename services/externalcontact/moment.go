@@ -5,6 +5,7 @@ import (
 	"net/url"
 
 	"github.com/shuaidd/wecom-core/internal/client"
+	"github.com/shuaidd/wecom-core/types/common"
 	"github.com/shuaidd/wecom-core/types/externalcontact"
 )
 
@@ -63,8 +64,7 @@ func (s *Service) GetMomentComments(ctx context.Context, req *externalcontact.Ge
 // 企业和第三方应用可调用此接口，停止尚未发送的企业朋友圈发送任务
 // 文档: https://developer.work.weixin.qq.com/document/path/97612
 func (s *Service) CancelMomentTask(ctx context.Context, req *externalcontact.CancelMomentTaskRequest) error {
-	type response struct{}
-	_, err := client.PostAndUnmarshal[response](s.client, ctx, "/cgi-bin/externalcontact/cancel_moment_task", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/cancel_moment_task", req)
 	return err
 }
 
@@ -100,8 +100,7 @@ func (s *Service) CreateMomentStrategy(ctx context.Context, req *externalcontact
 // 企业可通过此接口编辑规则组的基本信息和修改客户朋友圈规则组管理范围
 // 文档: https://developer.work.weixin.qq.com/document/path/94890
 func (s *Service) EditMomentStrategy(ctx context.Context, req *externalcontact.EditMomentStrategyRequest) error {
-	type response struct{}
-	_, err := client.PostAndUnmarshal[response](s.client, ctx, "/cgi-bin/externalcontact/moment_strategy/edit", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/moment_strategy/edit", req)
 	return err
 }
 
@@ -109,7 +108,6 @@ func (s *Service) EditMomentStrategy(ctx context.Context, req *externalcontact.E
 // 企业可通过此接口删除某个客户朋友圈规则组
 // 文档: https://developer.work.weixin.qq.com/document/path/94890
 func (s *Service) DeleteMomentStrategy(ctx context.Context, req *externalcontact.DeleteMomentStrategyRequest) error {
-	type response struct{}
-	_, err := client.PostAndUnmarshal[response](s.client, ctx, "/cgi-bin/externalcontact/moment_strategy/del", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/moment_strategy/del", req)
 	return err
 }

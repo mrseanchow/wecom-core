@@ -1,5 +1,7 @@
 package wedoc
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // ==================== 获取表格行列信息 ====================
 
 // GetSheetPropertiesRequest 获取表格行列信息请求
@@ -9,6 +11,7 @@ type GetSheetPropertiesRequest struct {
 
 // GetSheetPropertiesResponse 获取表格行列信息响应
 type GetSheetPropertiesResponse struct {
+	common.Response
 	Properties []Properties `json:"properties"` // 工作表属性
 }
 
@@ -31,6 +34,7 @@ type GetSheetRangeDataRequest struct {
 
 // GetSheetRangeDataResponse 获取表格数据响应
 type GetSheetRangeDataResponse struct {
+	common.Response
 	Data *GetSheetRangeDataResult `json:"data"` // 返回数据
 }
 
@@ -103,6 +107,7 @@ type BatchUpdateSpreadsheetRequest struct {
 
 // BatchUpdateSpreadsheetResponse 批量编辑表格内容响应
 type BatchUpdateSpreadsheetResponse struct {
+	common.Response
 	Data *BatchUpdateSpreadsheetData `json:"data"` // 返回数据
 }
 

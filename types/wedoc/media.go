@@ -1,5 +1,7 @@
 package wedoc
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // ==================== 上传文档图片 ====================
 
 // ImageUploadRequest 上传文档图片请求
@@ -10,6 +12,7 @@ type ImageUploadRequest struct {
 
 // ImageUploadResponse 上传文档图片响应
 type ImageUploadResponse struct {
+	common.Response
 	URL    string `json:"url"`    // 图片的url
 	Height int64  `json:"height"` // 图片的高
 	Width  int64  `json:"width"`  // 图片的宽

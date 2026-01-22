@@ -1,5 +1,7 @@
 package externalcontact
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // OwnerFilter 群主过滤
 type OwnerFilter struct {
 	UserIDList []string `json:"userid_list,omitempty"`
@@ -21,6 +23,7 @@ type GroupChatItem struct {
 
 // ListGroupChatResponse 获取客户群列表响应
 type ListGroupChatResponse struct {
+	common.Response
 	GroupChatList []GroupChatItem `json:"group_chat_list"`
 	NextCursor    string          `json:"next_cursor,omitempty"`
 }
@@ -67,6 +70,7 @@ type GroupChat struct {
 
 // GetGroupChatResponse 获取客户群详情响应
 type GetGroupChatResponse struct {
+	common.Response
 	GroupChat GroupChat `json:"group_chat"`
 }
 
@@ -77,6 +81,7 @@ type OpenGIDToChatIDRequest struct {
 
 // OpenGIDToChatIDResponse 客户群opengid转换响应
 type OpenGIDToChatIDResponse struct {
+	common.Response
 	ChatID string `json:"chat_id"`
 }
 
@@ -95,5 +100,6 @@ type FailedChat struct {
 
 // TransferGroupChatResponse 分配离职成员的客户群响应
 type TransferGroupChatResponse struct {
+	common.Response
 	FailedChatList []FailedChat `json:"failed_chat_list,omitempty"`
 }

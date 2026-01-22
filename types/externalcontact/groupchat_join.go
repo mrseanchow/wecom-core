@@ -1,5 +1,7 @@
 package externalcontact
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // AddJoinWayRequest 配置客户群进群方式请求
 type AddJoinWayRequest struct {
 	Scene          int      `json:"scene"`
@@ -14,6 +16,7 @@ type AddJoinWayRequest struct {
 
 // AddJoinWayResponse 配置客户群进群方式响应
 type AddJoinWayResponse struct {
+	common.Response
 	ConfigID string `json:"config_id"`
 }
 
@@ -38,6 +41,7 @@ type JoinWay struct {
 
 // GetJoinWayResponse 获取客户群进群方式配置响应
 type GetJoinWayResponse struct {
+	common.Response
 	JoinWay JoinWay `json:"join_way"`
 }
 

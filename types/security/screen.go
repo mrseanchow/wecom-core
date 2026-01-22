@@ -1,5 +1,7 @@
 package security
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // GetScreenOperRecordRequest 获取截屏/录屏操作记录请求
 type GetScreenOperRecordRequest struct {
 	StartTime        int64    `json:"start_time"`                   // 开始时间
@@ -13,8 +15,7 @@ type GetScreenOperRecordRequest struct {
 
 // GetScreenOperRecordResponse 获取截屏/录屏操作记录响应
 type GetScreenOperRecordResponse struct {
-	ErrCode    int                `json:"errcode"`
-	ErrMsg     string             `json:"errmsg"`
+	common.Response
 	HasMore    bool               `json:"has_more"`    // 是否还有更多数据
 	NextCursor string             `json:"next_cursor"` // 下一次调用将该值填到cursor字段
 	RecordList []ScreenOperRecord `json:"record_list"` // 记录列表

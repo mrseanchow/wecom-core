@@ -1,5 +1,7 @@
 package externalcontact
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // StrategyPrivilege 规则组权限配置
 type StrategyPrivilege struct {
 	ViewCustomerList        bool `json:"view_customer_list"`
@@ -55,6 +57,7 @@ type StrategyItem struct {
 
 // ListStrategyResponse 获取规则组列表响应
 type ListStrategyResponse struct {
+	common.Response
 	Strategy   []StrategyItem `json:"strategy"`
 	NextCursor string         `json:"next_cursor,omitempty"`
 }
@@ -66,6 +69,7 @@ type GetStrategyRequest struct {
 
 // GetStrategyResponse 获取规则组详情响应
 type GetStrategyResponse struct {
+	common.Response
 	Strategy Strategy `json:"strategy"`
 }
 
@@ -78,6 +82,7 @@ type GetStrategyRangeRequest struct {
 
 // GetStrategyRangeResponse 获取规则组管理范围响应
 type GetStrategyRangeResponse struct {
+	common.Response
 	Range      []StrategyRange `json:"range"`
 	NextCursor string          `json:"next_cursor,omitempty"`
 }
@@ -93,6 +98,7 @@ type CreateStrategyRequest struct {
 
 // CreateStrategyResponse 创建规则组响应
 type CreateStrategyResponse struct {
+	common.Response
 	StrategyID int `json:"strategy_id"`
 }
 

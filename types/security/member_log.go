@@ -1,5 +1,7 @@
 package security
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // ListMemberOperLogRequest 获取成员操作记录请求
 type ListMemberOperLogRequest struct {
 	StartTime int64  `json:"start_time"`          // 开始时间
@@ -12,8 +14,7 @@ type ListMemberOperLogRequest struct {
 
 // ListMemberOperLogResponse 获取成员操作记录响应
 type ListMemberOperLogResponse struct {
-	ErrCode    int                `json:"errcode"`
-	ErrMsg     string             `json:"errmsg"`
+	common.Response
 	HasMore    bool               `json:"has_more"`    // 是否还有下一页
 	NextCursor string             `json:"next_cursor"` // 下一页的分页游标
 	RecordList []MemberOperRecord `json:"record_list"` // 记录列表

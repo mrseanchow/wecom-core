@@ -1,5 +1,7 @@
 package externalcontact
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // ApplicableRange 敏感词适用范围
 type ApplicableRange struct {
 	UserList       []string `json:"user_list,omitempty"`
@@ -28,11 +30,13 @@ type AddInterceptRuleRequest struct {
 
 // AddInterceptRuleResponse 新建敏感词规则响应
 type AddInterceptRuleResponse struct {
+	common.Response
 	RuleID string `json:"rule_id"`
 }
 
 // GetInterceptRuleListResponse 获取敏感词规则列表响应
 type GetInterceptRuleListResponse struct {
+	common.Response
 	RuleList []struct {
 		RuleID     string `json:"rule_id"`
 		RuleName   string `json:"rule_name"`
@@ -47,6 +51,7 @@ type GetInterceptRuleRequest struct {
 
 // GetInterceptRuleResponse 获取敏感词规则详情响应
 type GetInterceptRuleResponse struct {
+	common.Response
 	Rule InterceptRule `json:"rule"`
 }
 

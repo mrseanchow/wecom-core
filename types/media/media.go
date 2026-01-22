@@ -1,5 +1,7 @@
 package media
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // MediaType 媒体文件类型
 type MediaType string
 
@@ -16,12 +18,14 @@ const (
 
 // UploadImageResponse 上传图片响应
 type UploadImageResponse struct {
+	common.Response
 	// URL 图片URL,永久有效
 	URL string `json:"url"`
 }
 
 // UploadMediaResponse 上传临时素材响应
 type UploadMediaResponse struct {
+	common.Response
 	// Type 媒体文件类型
 	Type string `json:"type"`
 	// MediaID 媒体文件上传后获取的唯一标识,3天内有效
@@ -46,6 +50,7 @@ type UploadByURLRequest struct {
 
 // UploadByURLResponse 异步上传临时素材响应
 type UploadByURLResponse struct {
+	common.Response
 	// JobID 任务id。可通过此jobid查询结果
 	JobID string `json:"jobid"`
 }
@@ -82,6 +87,7 @@ type UploadTaskDetail struct {
 
 // GetUploadByURLResultResponse 查询异步任务结果响应
 type GetUploadByURLResultResponse struct {
+	common.Response
 	// Status 任务状态。1-处理中，2-完成，3-异常失败
 	Status UploadTaskStatus `json:"status"`
 	// Detail 结果明细

@@ -1,5 +1,7 @@
 package externalcontact
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // Conclusions 结束语定义
 type Conclusions struct {
 	Text        *ConclusionText        `json:"text,omitempty"`
@@ -56,6 +58,7 @@ type AddContactWayRequest struct {
 
 // AddContactWayResponse 配置客户联系「联系我」方式响应
 type AddContactWayResponse struct {
+	common.Response
 	ConfigID string `json:"config_id"`
 	QRCode   string `json:"qr_code,omitempty"`
 }
@@ -87,6 +90,7 @@ type ContactWay struct {
 
 // GetContactWayResponse 获取企业已配置的「联系我」方式响应
 type GetContactWayResponse struct {
+	common.Response
 	ContactWay ContactWay `json:"contact_way"`
 }
 
@@ -105,6 +109,7 @@ type ContactWayItem struct {
 
 // ListContactWayResponse 获取企业已配置的「联系我」列表响应
 type ListContactWayResponse struct {
+	common.Response
 	ContactWay []ContactWayItem `json:"contact_way"`
 	NextCursor string           `json:"next_cursor,omitempty"`
 }

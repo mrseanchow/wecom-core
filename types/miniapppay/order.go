@@ -1,5 +1,7 @@
 package miniapppay
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // CreateOrderRequest 小程序下单请求
 type CreateOrderRequest struct {
 	AppID       string       `json:"appid"`
@@ -25,6 +27,7 @@ type OrderDetail struct {
 
 // CreateOrderResponse 小程序下单响应
 type CreateOrderResponse struct {
+	common.Response
 	PrepayID string `json:"prepay_id"`
 }
 
@@ -36,6 +39,7 @@ type GetOrderRequest struct {
 
 // GetOrderResponse 查询订单响应
 type GetOrderResponse struct {
+	common.Response
 	MchID           string             `json:"mchid"`
 	OutTradeNo      string             `json:"out_trade_no"`
 	TradeType       string             `json:"trade_type,omitempty"`

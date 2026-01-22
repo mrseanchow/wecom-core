@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/shuaidd/wecom-core/internal/client"
+	"github.com/shuaidd/wecom-core/types/common"
 	"github.com/shuaidd/wecom-core/types/externalcontact"
 )
 
@@ -32,8 +33,7 @@ func (s *Service) GetProductAlbumList(ctx context.Context, req *externalcontact.
 // 企业和第三方应用可以通过此接口修改商品信息
 // 文档: https://developer.work.weixin.qq.com/document/path/95096
 func (s *Service) UpdateProductAlbum(ctx context.Context, req *externalcontact.UpdateProductAlbumRequest) error {
-	type response struct{}
-	_, err := client.PostAndUnmarshal[response](s.client, ctx, "/cgi-bin/externalcontact/update_product_album", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/update_product_album", req)
 	return err
 }
 
@@ -41,7 +41,6 @@ func (s *Service) UpdateProductAlbum(ctx context.Context, req *externalcontact.U
 // 企业和第三方应用可以通过此接口删除商品信息
 // 文档: https://developer.work.weixin.qq.com/document/path/95096
 func (s *Service) DeleteProductAlbum(ctx context.Context, req *externalcontact.DeleteProductAlbumRequest) error {
-	type response struct{}
-	_, err := client.PostAndUnmarshal[response](s.client, ctx, "/cgi-bin/externalcontact/delete_product_album", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/delete_product_album", req)
 	return err
 }

@@ -1,5 +1,7 @@
 package miniapppay
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // GetSignRequest 获取支付签名请求
 type GetSignRequest struct {
 	AppID     string `json:"appid"`
@@ -11,5 +13,6 @@ type GetSignRequest struct {
 
 // GetSignResponse 获取支付签名响应
 type GetSignResponse struct {
+	common.Response
 	PaySign string `json:"pay_sign"`
 }

@@ -1,5 +1,7 @@
 package wedoc
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // ==================== 记录相关类型 ====================
 
 // AddRecordsRequest 添加记录请求
@@ -12,8 +14,7 @@ type AddRecordsRequest struct {
 
 // AddRecordsResponse 添加记录响应
 type AddRecordsResponse struct {
-	ErrCode int            `json:"errcode"`
-	ErrMsg  string         `json:"errmsg"`
+	common.Response
 	Records []CommonRecord `json:"records"`
 }
 
@@ -46,8 +47,7 @@ type GetRecordsRequest struct {
 
 // GetRecordsResponse 查询记录响应
 type GetRecordsResponse struct {
-	ErrCode int      `json:"errcode"`
-	ErrMsg  string   `json:"errmsg"`
+	common.Response
 	Total   uint32   `json:"total"`
 	HasMore bool     `json:"has_more"`
 	Next    uint32   `json:"next"`
@@ -81,8 +81,7 @@ type UpdateRecordsRequest struct {
 
 // UpdateRecordsResponse 更新记录响应
 type UpdateRecordsResponse struct {
-	ErrCode int            `json:"errcode"`
-	ErrMsg  string         `json:"errmsg"`
+	common.Response
 	Records []CommonRecord `json:"records"`
 }
 
@@ -110,9 +109,8 @@ type AddFieldsRequest struct {
 
 // AddFieldsResponse 添加字段响应
 type AddFieldsResponse struct {
-	ErrCode int     `json:"errcode"`
-	ErrMsg  string  `json:"errmsg"`
-	Fields  []Field `json:"fields"`
+	common.Response
+	Fields []Field `json:"fields"`
 }
 
 // AddField 添加字段
@@ -295,10 +293,9 @@ type GetFieldsRequest struct {
 
 // GetFieldsResponse 查询字段响应
 type GetFieldsResponse struct {
-	ErrCode int     `json:"errcode"`
-	ErrMsg  string  `json:"errmsg"`
-	Total   int     `json:"total"`
-	Fields  []Field `json:"fields"`
+	common.Response
+	Total  int     `json:"total"`
+	Fields []Field `json:"fields"`
 }
 
 // UpdateFieldsRequest 更新字段请求
@@ -310,9 +307,8 @@ type UpdateFieldsRequest struct {
 
 // UpdateFieldsResponse 更新字段响应
 type UpdateFieldsResponse struct {
-	ErrCode int     `json:"errcode"`
-	ErrMsg  string  `json:"errmsg"`
-	Fields  []Field `json:"fields"`
+	common.Response
+	Fields []Field `json:"fields"`
 }
 
 // UpdateField 更新字段
@@ -359,9 +355,8 @@ type AddViewRequest struct {
 
 // AddViewResponse 添加视图响应
 type AddViewResponse struct {
-	ErrCode int    `json:"errcode"`
-	ErrMsg  string `json:"errmsg"`
-	View    *View  `json:"view"`
+	common.Response
+	View *View `json:"view"`
 }
 
 // View 视图
@@ -474,8 +469,7 @@ type GetViewsRequest struct {
 
 // GetViewsResponse 查询视图响应
 type GetViewsResponse struct {
-	ErrCode int    `json:"errcode"`
-	ErrMsg  string `json:"errmsg"`
+	common.Response
 	Total   uint32 `json:"total"`
 	HasMore bool   `json:"has_more"`
 	Next    uint32 `json:"next"`
@@ -493,9 +487,8 @@ type UpdateViewRequest struct {
 
 // UpdateViewResponse 更新视图响应
 type UpdateViewResponse struct {
-	ErrCode int    `json:"errcode"`
-	ErrMsg  string `json:"errmsg"`
-	View    *View  `json:"view"`
+	common.Response
+	View *View `json:"view"`
 }
 
 // DeleteViewRequest 删除视图请求
@@ -515,8 +508,7 @@ type AddSheetRequest struct {
 
 // AddSheetResponse 添加子表响应
 type AddSheetResponse struct {
-	ErrCode    int            `json:"errcode"`
-	ErrMsg     string         `json:"errmsg"`
+	common.Response
 	Properties *SheetProperty `json:"properties"`
 }
 
@@ -536,8 +528,7 @@ type GetSheetRequest struct {
 
 // GetSheetResponse 查询子表响应
 type GetSheetResponse struct {
-	ErrCode   int         `json:"errcode"`
-	ErrMsg    string      `json:"errmsg"`
+	common.Response
 	SheetList []SheetInfo `json:"sheet_list"`
 }
 
@@ -558,8 +549,7 @@ type UpdateSheetRequest struct {
 
 // UpdateSheetResponse 更新子表响应
 type UpdateSheetResponse struct {
-	ErrCode    int            `json:"errcode"`
-	ErrMsg     string         `json:"errmsg"`
+	common.Response
 	Properties *SheetProperty `json:"properties"`
 }
 
@@ -581,8 +571,7 @@ type AddFieldGroupRequest struct {
 
 // AddFieldGroupResponse 添加编组响应
 type AddFieldGroupResponse struct {
-	ErrCode    int         `json:"errcode"`
-	ErrMsg     string      `json:"errmsg"`
+	common.Response
 	FieldGroup *FieldGroup `json:"field_group"`
 }
 
@@ -608,8 +597,7 @@ type GetFieldGroupRequest struct {
 
 // GetFieldGroupResponse 获取编组响应
 type GetFieldGroupResponse struct {
-	ErrCode     int          `json:"errcode"`
-	ErrMsg      string       `json:"errmsg"`
+	common.Response
 	Total       int          `json:"total"`
 	FieldGroups []FieldGroup `json:"field_groups"`
 }
@@ -625,8 +613,7 @@ type UpdateFieldGroupRequest struct {
 
 // UpdateFieldGroupResponse 更新编组响应
 type UpdateFieldGroupResponse struct {
-	ErrCode    int         `json:"errcode"`
-	ErrMsg     string      `json:"errmsg"`
+	common.Response
 	FieldGroup *FieldGroup `json:"field_group"`
 }
 
@@ -648,6 +635,7 @@ type GetSheetPrivRequest struct {
 
 // GetSheetPrivResponse 查询智能表格子表权限响应
 type GetSheetPrivResponse struct {
+	common.Response
 	RuleList []SheetPrivRule `json:"rule_list"` // 权限列表
 }
 
@@ -719,6 +707,7 @@ type CreateRuleRequest struct {
 
 // CreateRuleResponse 新增智能表格指定成员额外权限响应
 type CreateRuleResponse struct {
+	common.Response
 	RuleID uint32 `json:"rule_id"` // 成员权限规则id
 }
 

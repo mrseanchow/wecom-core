@@ -1,5 +1,7 @@
 package security
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // ImportTrustDeviceRequest 导入可信企业设备请求
 type ImportTrustDeviceRequest struct {
 	DeviceList []DeviceInfo `json:"device_list"` // 设备列表，每次最多导入100条
@@ -18,9 +20,8 @@ type DeviceInfo struct {
 
 // ImportTrustDeviceResponse 导入可信企业设备响应
 type ImportTrustDeviceResponse struct {
-	ErrCode int                  `json:"errcode"`
-	ErrMsg  string               `json:"errmsg"`
-	Result  []ImportDeviceResult `json:"result"` // 导入结果列表
+	common.Response
+	Result []ImportDeviceResult `json:"result"` // 导入结果列表
 }
 
 // ImportDeviceResult 导入设备结果
@@ -40,8 +41,7 @@ type ListTrustDeviceRequest struct {
 
 // ListTrustDeviceResponse 获取设备信息响应
 type ListTrustDeviceResponse struct {
-	ErrCode    int           `json:"errcode"`
-	ErrMsg     string        `json:"errmsg"`
+	common.Response
 	DeviceList []TrustDevice `json:"device_list"` // 设备列表
 	NextCursor string        `json:"next_cursor"` // 分页游标
 }
@@ -73,8 +73,7 @@ type GetDeviceByUserRequest struct {
 
 // GetDeviceByUserResponse 获取成员使用设备响应
 type GetDeviceByUserResponse struct {
-	ErrCode    int           `json:"errcode"`
-	ErrMsg     string        `json:"errmsg"`
+	common.Response
 	DeviceList []TrustDevice `json:"device_list"` // 设备列表
 }
 
@@ -86,8 +85,7 @@ type DeleteTrustDeviceRequest struct {
 
 // DeleteTrustDeviceResponse 删除设备信息响应
 type DeleteTrustDeviceResponse struct {
-	ErrCode int    `json:"errcode"`
-	ErrMsg  string `json:"errmsg"`
+	common.Response
 }
 
 // ApproveTrustDeviceRequest 确认为可信设备请求
@@ -97,8 +95,7 @@ type ApproveTrustDeviceRequest struct {
 
 // ApproveTrustDeviceResponse 确认为可信设备响应
 type ApproveTrustDeviceResponse struct {
-	ErrCode     int      `json:"errcode"`
-	ErrMsg      string   `json:"errmsg"`
+	common.Response
 	SuccessList []string `json:"success_list"` // 确认成功设备code列表
 	FailList    []string `json:"fail_list"`    // 确认失败设备code列表
 }
@@ -110,8 +107,7 @@ type RejectTrustDeviceRequest struct {
 
 // RejectTrustDeviceResponse 驳回可信设备申请响应
 type RejectTrustDeviceResponse struct {
-	ErrCode     int      `json:"errcode"`
-	ErrMsg      string   `json:"errmsg"`
+	common.Response
 	SuccessList []string `json:"success_list"` // 驳回成功设备code列表
 	FailList    []string `json:"fail_list"`    // 驳回失败设备code列表
 }

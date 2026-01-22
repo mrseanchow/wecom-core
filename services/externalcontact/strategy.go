@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/shuaidd/wecom-core/internal/client"
+	"github.com/shuaidd/wecom-core/types/common"
 	"github.com/shuaidd/wecom-core/types/externalcontact"
 )
 
@@ -42,8 +43,7 @@ func (s *Service) CreateStrategy(ctx context.Context, req *externalcontact.Creat
 // 企业可通过此接口编辑规则组的基本信息和修改客户规则组管理范围
 // 文档: https://developer.work.weixin.qq.com/document/path/94883
 func (s *Service) EditStrategy(ctx context.Context, req *externalcontact.EditStrategyRequest) error {
-	type response struct{}
-	_, err := client.PostAndUnmarshal[response](s.client, ctx, "/cgi-bin/externalcontact/customer_strategy/edit", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/customer_strategy/edit", req)
 	return err
 }
 
@@ -54,7 +54,6 @@ func (s *Service) DeleteStrategy(ctx context.Context, strategyID int) error {
 	req := &externalcontact.DeleteStrategyRequest{
 		StrategyID: strategyID,
 	}
-	type response struct{}
-	_, err := client.PostAndUnmarshal[response](s.client, ctx, "/cgi-bin/externalcontact/customer_strategy/del", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/customer_strategy/del", req)
 	return err
 }

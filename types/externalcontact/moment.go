@@ -1,5 +1,7 @@
 package externalcontact
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // MomentText 朋友圈文本内容
 type MomentText struct {
 	Content string `json:"content,omitempty"`
@@ -64,6 +66,7 @@ type AddMomentTaskRequest struct {
 
 // AddMomentTaskResponse 创建发表任务响应
 type AddMomentTaskResponse struct {
+	common.Response
 	JobID string `json:"jobid"`
 }
 
@@ -89,6 +92,7 @@ type MomentTaskResult struct {
 
 // GetMomentTaskResultResponse 获取任务创建结果响应
 type GetMomentTaskResultResponse struct {
+	common.Response
 	Status int               `json:"status"`
 	Type   string            `json:"type"`
 	Result *MomentTaskResult `json:"result,omitempty"`
@@ -120,6 +124,7 @@ type MomentItem struct {
 
 // GetMomentListResponse 获取企业全部的发表列表响应
 type GetMomentListResponse struct {
+	common.Response
 	NextCursor string       `json:"next_cursor,omitempty"`
 	MomentList []MomentItem `json:"moment_list"`
 }
@@ -139,6 +144,7 @@ type MomentTask struct {
 
 // GetMomentTaskResponse 获取客户朋友圈企业发表的列表响应
 type GetMomentTaskResponse struct {
+	common.Response
 	NextCursor string       `json:"next_cursor,omitempty"`
 	TaskList   []MomentTask `json:"task_list"`
 }
@@ -159,6 +165,7 @@ type MomentCustomer struct {
 
 // GetMomentCustomerListResponse 获取客户朋友圈发表时选择的可见范围响应
 type GetMomentCustomerListResponse struct {
+	common.Response
 	NextCursor   string           `json:"next_cursor,omitempty"`
 	CustomerList []MomentCustomer `json:"customer_list"`
 }
@@ -178,6 +185,7 @@ type MomentSendCustomer struct {
 
 // GetMomentSendResultResponse 获取客户朋友圈发表后的可见客户列表响应
 type GetMomentSendResultResponse struct {
+	common.Response
 	NextCursor   string               `json:"next_cursor,omitempty"`
 	CustomerList []MomentSendCustomer `json:"customer_list"`
 }
@@ -197,6 +205,7 @@ type MomentComment struct {
 
 // GetMomentCommentsResponse 获取客户朋友圈的互动数据响应
 type GetMomentCommentsResponse struct {
+	common.Response
 	CommentList []MomentComment `json:"comment_list"`
 	LikeList    []MomentComment `json:"like_list"`
 }
@@ -236,6 +245,7 @@ type MomentStrategyItem struct {
 
 // ListMomentStrategyResponse 获取规则组列表响应
 type ListMomentStrategyResponse struct {
+	common.Response
 	Strategy   []MomentStrategyItem `json:"strategy"`
 	NextCursor string               `json:"next_cursor,omitempty"`
 }
@@ -247,6 +257,7 @@ type GetMomentStrategyRequest struct {
 
 // GetMomentStrategyResponse 获取规则组详情响应
 type GetMomentStrategyResponse struct {
+	common.Response
 	Strategy MomentStrategy `json:"strategy"`
 }
 
@@ -266,6 +277,7 @@ type MomentStrategyRange struct {
 
 // GetMomentStrategyRangeResponse 获取规则组管理范围响应
 type GetMomentStrategyRangeResponse struct {
+	common.Response
 	Range      []MomentStrategyRange `json:"range"`
 	NextCursor string                `json:"next_cursor,omitempty"`
 }
@@ -281,6 +293,7 @@ type CreateMomentStrategyRequest struct {
 
 // CreateMomentStrategyResponse 创建新的规则组响应
 type CreateMomentStrategyResponse struct {
+	common.Response
 	StrategyID int `json:"strategy_id"`
 }
 

@@ -1,5 +1,7 @@
 package externalcontact
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // AcquisitionLink 获客链接信息
 type AcquisitionLink struct {
 	LinkID     string `json:"link_id,omitempty"`     // 获客链接ID
@@ -30,6 +32,7 @@ type ListAcquisitionLinkRequest struct {
 
 // ListAcquisitionLinkResponse 获取获客链接列表响应
 type ListAcquisitionLinkResponse struct {
+	common.Response
 	LinkIDList []string `json:"link_id_list"` // 获客链接ID列表
 	NextCursor string   `json:"next_cursor"`  // 分页游标
 }
@@ -41,6 +44,7 @@ type GetAcquisitionLinkRequest struct {
 
 // GetAcquisitionLinkResponse 获取获客链接详情响应
 type GetAcquisitionLinkResponse struct {
+	common.Response
 	Link           AcquisitionLink  `json:"link"`                      // 获客链接信息
 	Range          AcquisitionRange `json:"range"`                     // 使用范围
 	PriorityOption *PriorityOption  `json:"priority_option,omitempty"` // 优先分配选项
@@ -57,6 +61,7 @@ type CreateAcquisitionLinkRequest struct {
 
 // CreateAcquisitionLinkResponse 创建获客链接响应
 type CreateAcquisitionLinkResponse struct {
+	common.Response
 	Link AcquisitionLink `json:"link"` // 创建的获客链接信息
 }
 
@@ -83,6 +88,7 @@ type QuotaInfo struct {
 
 // GetAcquisitionQuotaResponse 查询剩余使用量响应
 type GetAcquisitionQuotaResponse struct {
+	common.Response
 	Total     int         `json:"total"`      // 历史累计使用量
 	Balance   int         `json:"balance"`    // 剩余使用量
 	QuotaList []QuotaInfo `json:"quota_list"` // 额度列表
@@ -97,6 +103,7 @@ type GetAcquisitionStatisticRequest struct {
 
 // GetAcquisitionStatisticResponse 查询链接使用详情响应
 type GetAcquisitionStatisticResponse struct {
+	common.Response
 	ClickLinkCustomerCnt int `json:"click_link_customer_cnt"` // 点击链接客户数
 	NewCustomerCnt       int `json:"new_customer_cnt"`        // 新增客户数
 }
@@ -115,6 +122,7 @@ type GetAcquisitionChatInfoRequest struct {
 
 // GetAcquisitionChatInfoResponse 获取成员多次收消息详情响应
 type GetAcquisitionChatInfoResponse struct {
+	common.Response
 	UserID         string   `json:"userid"`          // 成员的userid
 	ExternalUserID string   `json:"external_userid"` // 客户ID
 	ChatInfo       ChatInfo `json:"chat_info"`       // 会话信息
@@ -137,6 +145,7 @@ type ListAcquisitionCustomerRequest struct {
 
 // ListAcquisitionCustomerResponse 获取获客客户列表响应
 type ListAcquisitionCustomerResponse struct {
+	common.Response
 	CustomerList []AcquisitionCustomer `json:"customer_list"` // 客户列表
 	NextCursor   string                `json:"next_cursor"`   // 分页游标
 }

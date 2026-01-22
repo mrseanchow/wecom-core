@@ -1,5 +1,7 @@
 package miniapppay
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // GetBillRequest 交易账单申请请求
 type GetBillRequest struct {
 	BillDate string `json:"bill_date"`
@@ -10,6 +12,7 @@ type GetBillRequest struct {
 
 // GetBillResponse 交易账单申请响应
 type GetBillResponse struct {
+	common.Response
 	DownloadURL string `json:"download_url"`
 	HashType    string `json:"hash_type"`
 	HashValue   string `json:"hash_value"`

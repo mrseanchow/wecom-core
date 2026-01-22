@@ -1,5 +1,7 @@
 package agent
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // WorkbenchTemplateType 工作台模板类型
 type WorkbenchTemplateType string
 
@@ -71,8 +73,7 @@ type SetWorkbenchTemplateRequest struct {
 
 // SetWorkbenchTemplateResponse 设置应用在工作台展示的模板响应
 type SetWorkbenchTemplateResponse struct {
-	ErrCode int    `json:"errcode"`
-	ErrMsg  string `json:"errmsg"`
+	common.Response
 }
 
 // GetWorkbenchTemplateRequest 获取应用在工作台展示的模板请求
@@ -82,8 +83,7 @@ type GetWorkbenchTemplateRequest struct {
 
 // GetWorkbenchTemplateResponse 获取应用在工作台展示的模板响应
 type GetWorkbenchTemplateResponse struct {
-	ErrCode         int                   `json:"errcode"`
-	ErrMsg          string                `json:"errmsg"`
+	common.Response
 	Type            WorkbenchTemplateType `json:"type"`                        // 模板类型
 	Keydata         *KeydataTemplate      `json:"keydata,omitempty"`           // 关键数据型模板数据
 	Image           *ImageTemplate        `json:"image,omitempty"`             // 图片型模板数据
@@ -105,8 +105,7 @@ type SetWorkbenchDataRequest struct {
 
 // SetWorkbenchDataResponse 设置应用在用户工作台展示的数据响应
 type SetWorkbenchDataResponse struct {
-	ErrCode int    `json:"errcode"`
-	ErrMsg  string `json:"errmsg"`
+	common.Response
 }
 
 // WorkbenchUserData 用户工作台数据
@@ -127,8 +126,7 @@ type BatchSetWorkbenchDataRequest struct {
 
 // BatchSetWorkbenchDataResponse 批量设置应用在用户工作台展示的数据响应
 type BatchSetWorkbenchDataResponse struct {
-	ErrCode int    `json:"errcode"`
-	ErrMsg  string `json:"errmsg"`
+	common.Response
 }
 
 // GetWorkbenchDataRequest 获取应用在用户工作台展示的数据请求
@@ -139,7 +137,6 @@ type GetWorkbenchDataRequest struct {
 
 // GetWorkbenchDataResponse 获取应用在用户工作台展示的数据响应
 type GetWorkbenchDataResponse struct {
-	ErrCode int                `json:"errcode"`
-	ErrMsg  string             `json:"errmsg"`
-	Data    *WorkbenchUserData `json:"data"` // 用户设置的数据
+	common.Response
+	Data *WorkbenchUserData `json:"data"` // 用户设置的数据
 }

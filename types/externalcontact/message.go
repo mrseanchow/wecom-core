@@ -1,5 +1,7 @@
 package externalcontact
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // TextContent 文本消息内容
 type TextContent struct {
 	Content string `json:"content,omitempty"`
@@ -71,6 +73,7 @@ type AddMsgTemplateRequest struct {
 
 // AddMsgTemplateResponse 创建企业群发响应
 type AddMsgTemplateResponse struct {
+	common.Response
 	FailList []string `json:"fail_list,omitempty"`
 	MsgID    string   `json:"msgid"`
 }
@@ -98,6 +101,7 @@ type GroupMsg struct {
 
 // GetGroupMsgListV2Response 获取群发记录列表响应
 type GetGroupMsgListV2Response struct {
+	common.Response
 	NextCursor   string     `json:"next_cursor,omitempty"`
 	GroupMsgList []GroupMsg `json:"group_msg_list"`
 }
@@ -118,6 +122,7 @@ type GroupMsgTask struct {
 
 // GetGroupMsgTaskResponse 获取群发成员发送任务列表响应
 type GetGroupMsgTaskResponse struct {
+	common.Response
 	NextCursor string         `json:"next_cursor,omitempty"`
 	TaskList   []GroupMsgTask `json:"task_list"`
 }
@@ -141,6 +146,7 @@ type GroupMsgSendResult struct {
 
 // GetGroupMsgSendResultResponse 获取企业群发成员执行结果响应
 type GetGroupMsgSendResultResponse struct {
+	common.Response
 	NextCursor string               `json:"next_cursor,omitempty"`
 	SendList   []GroupMsgSendResult `json:"send_list"`
 }
@@ -179,6 +185,7 @@ type AddGroupWelcomeTemplateRequest GroupWelcomeTemplate
 
 // AddGroupWelcomeTemplateResponse 添加入群欢迎语素材响应
 type AddGroupWelcomeTemplateResponse struct {
+	common.Response
 	TemplateID string `json:"template_id"`
 }
 
@@ -201,6 +208,7 @@ type GetGroupWelcomeTemplateRequest struct {
 
 // GetGroupWelcomeTemplateResponse 获取入群欢迎语素材响应
 type GetGroupWelcomeTemplateResponse struct {
+	common.Response
 	Text        *TextContent           `json:"text,omitempty"`
 	Image       *ImageAttachment       `json:"image,omitempty"`
 	Link        *LinkAttachment        `json:"link,omitempty"`

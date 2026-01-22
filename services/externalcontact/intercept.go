@@ -5,6 +5,7 @@ import (
 	"net/url"
 
 	"github.com/shuaidd/wecom-core/internal/client"
+	"github.com/shuaidd/wecom-core/types/common"
 	"github.com/shuaidd/wecom-core/types/externalcontact"
 )
 
@@ -33,8 +34,7 @@ func (s *Service) GetInterceptRule(ctx context.Context, req *externalcontact.Get
 // 企业和第三方应用可以通过此接口修改敏感词规则
 // 文档: https://developer.work.weixin.qq.com/document/path/95130
 func (s *Service) UpdateInterceptRule(ctx context.Context, req *externalcontact.UpdateInterceptRuleRequest) error {
-	type response struct{}
-	_, err := client.PostAndUnmarshal[response](s.client, ctx, "/cgi-bin/externalcontact/update_intercept_rule", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/update_intercept_rule", req)
 	return err
 }
 
@@ -42,7 +42,6 @@ func (s *Service) UpdateInterceptRule(ctx context.Context, req *externalcontact.
 // 企业和第三方应用可以通过此接口删除敏感词规则
 // 文档: https://developer.work.weixin.qq.com/document/path/95130
 func (s *Service) DelInterceptRule(ctx context.Context, req *externalcontact.DelInterceptRuleRequest) error {
-	type response struct{}
-	_, err := client.PostAndUnmarshal[response](s.client, ctx, "/cgi-bin/externalcontact/del_intercept_rule", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/del_intercept_rule", req)
 	return err
 }

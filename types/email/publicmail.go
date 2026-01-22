@@ -1,5 +1,7 @@
 package email
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // IDList ID列表
 type IDList struct {
 	List []uint32 `json:"list,omitempty"`
@@ -28,8 +30,7 @@ type CreatePublicMailRequest struct {
 
 // CreatePublicMailResponse 创建公共邮箱响应
 type CreatePublicMailResponse struct {
-	ErrCode    int32  `json:"errcode"`
-	ErrMsg     string `json:"errmsg"`
+	common.Response
 	ID         uint32 `json:"id"`                     // 公共邮箱ID
 	AuthCodeID uint32 `json:"auth_code_id,omitempty"` // 客户端专用密码ID
 	AuthCode   string `json:"auth_code,omitempty"`    // 客户端专用密码
@@ -49,8 +50,7 @@ type UpdatePublicMailRequest struct {
 
 // UpdatePublicMailResponse 更新公共邮箱响应
 type UpdatePublicMailResponse struct {
-	ErrCode    int32  `json:"errcode"`
-	ErrMsg     string `json:"errmsg"`
+	common.Response
 	AuthCodeID uint32 `json:"auth_code_id,omitempty"` // 客户端专用密码ID
 	AuthCode   string `json:"auth_code,omitempty"`    // 客户端专用密码
 }
@@ -62,8 +62,7 @@ type DeletePublicMailRequest struct {
 
 // DeletePublicMailResponse 删除公共邮箱响应
 type DeletePublicMailResponse struct {
-	ErrCode int32  `json:"errcode"`
-	ErrMsg  string `json:"errmsg"`
+	common.Response
 }
 
 // GetPublicMailRequest 获取公共邮箱详情请求
@@ -84,9 +83,8 @@ type PublicMailDetail struct {
 
 // GetPublicMailResponse 获取公共邮箱详情响应
 type GetPublicMailResponse struct {
-	ErrCode int32               `json:"errcode"`
-	ErrMsg  string              `json:"errmsg"`
-	List    []*PublicMailDetail `json:"list,omitempty"` // 公共邮箱详情列表
+	common.Response
+	List []*PublicMailDetail `json:"list,omitempty"` // 公共邮箱详情列表
 }
 
 // SearchPublicMailRequest 搜索公共邮箱请求(通过URL参数传递)
@@ -104,9 +102,8 @@ type PublicMailInfo struct {
 
 // SearchPublicMailResponse 搜索公共邮箱响应
 type SearchPublicMailResponse struct {
-	ErrCode int32             `json:"errcode"`
-	ErrMsg  string            `json:"errmsg"`
-	List    []*PublicMailInfo `json:"list,omitempty"` // 公共邮箱列表
+	common.Response
+	List []*PublicMailInfo `json:"list,omitempty"` // 公共邮箱列表
 }
 
 // GetAuthCodeListRequest 获取客户端专用密码列表请求
@@ -124,8 +121,7 @@ type AuthCodeDetail struct {
 
 // GetAuthCodeListResponse 获取客户端专用密码列表响应
 type GetAuthCodeListResponse struct {
-	ErrCode      int32             `json:"errcode"`
-	ErrMsg       string            `json:"errmsg"`
+	common.Response
 	AuthCodeList []*AuthCodeDetail `json:"auth_code_list,omitempty"` // 客户端专用密码列表
 }
 
@@ -137,6 +133,5 @@ type DeleteAuthCodeRequest struct {
 
 // DeleteAuthCodeResponse 删除客户端专用密码响应
 type DeleteAuthCodeResponse struct {
-	ErrCode int32  `json:"errcode"`
-	ErrMsg  string `json:"errmsg"`
+	common.Response
 }

@@ -1,5 +1,7 @@
 package email
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // EmailRecipient 邮件收件人
 type EmailRecipient struct {
 	Emails  []string `json:"emails,omitempty"`  // 邮箱地址列表
@@ -75,6 +77,5 @@ type SendEmailRequest struct {
 
 // SendEmailResponse 发送邮件响应
 type SendEmailResponse struct {
-	ErrCode int32  `json:"errcode"`
-	ErrMsg  string `json:"errmsg"`
+	common.Response
 }

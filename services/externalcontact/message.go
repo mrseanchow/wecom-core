@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/shuaidd/wecom-core/internal/client"
+	"github.com/shuaidd/wecom-core/types/common"
 	"github.com/shuaidd/wecom-core/types/externalcontact"
 )
 
@@ -40,8 +41,7 @@ func (s *Service) GetGroupMsgSendResult(ctx context.Context, req *externalcontac
 // 企业以此为凭据调用接口，即可通过成员向新添加的客户发送个性化的欢迎语
 // 文档: https://developer.work.weixin.qq.com/document/path/92137
 func (s *Service) SendWelcomeMsg(ctx context.Context, req *externalcontact.SendWelcomeMsgRequest) error {
-	type response struct{}
-	_, err := client.PostAndUnmarshal[response](s.client, ctx, "/cgi-bin/externalcontact/send_welcome_msg", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/send_welcome_msg", req)
 	return err
 }
 
@@ -49,8 +49,7 @@ func (s *Service) SendWelcomeMsg(ctx context.Context, req *externalcontact.SendW
 // 企业和第三方应用可调用此接口，停止无需成员继续发送的企业群发
 // 文档: https://developer.work.weixin.qq.com/document/path/93341
 func (s *Service) CancelGroupMsgSend(ctx context.Context, req *externalcontact.CancelGroupMsgSendRequest) error {
-	type response struct{}
-	_, err := client.PostAndUnmarshal[response](s.client, ctx, "/cgi-bin/externalcontact/cancel_groupmsg_send", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/cancel_groupmsg_send", req)
 	return err
 }
 
@@ -59,8 +58,7 @@ func (s *Service) CancelGroupMsgSend(ctx context.Context, req *externalcontact.C
 // 24小时内每个群发最多触发三次提醒
 // 文档: https://developer.work.weixin.qq.com/document/path/93340
 func (s *Service) RemindGroupMsgSend(ctx context.Context, req *externalcontact.RemindGroupMsgSendRequest) error {
-	type response struct{}
-	_, err := client.PostAndUnmarshal[response](s.client, ctx, "/cgi-bin/externalcontact/remind_groupmsg_send", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/remind_groupmsg_send", req)
 	return err
 }
 
@@ -76,8 +74,7 @@ func (s *Service) AddGroupWelcomeTemplate(ctx context.Context, req *externalcont
 // 企业可通过此API编辑入群欢迎语素材库中的素材，且仅能够编辑调用方自己创建的入群欢迎语素材
 // 文档: https://developer.work.weixin.qq.com/document/path/92366
 func (s *Service) EditGroupWelcomeTemplate(ctx context.Context, req *externalcontact.EditGroupWelcomeTemplateRequest) error {
-	type response struct{}
-	_, err := client.PostAndUnmarshal[response](s.client, ctx, "/cgi-bin/externalcontact/group_welcome_template/edit", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/group_welcome_template/edit", req)
 	return err
 }
 
@@ -92,7 +89,6 @@ func (s *Service) GetGroupWelcomeTemplate(ctx context.Context, req *externalcont
 // 企业可通过此API删除入群欢迎语素材，且仅能删除调用方自己创建的入群欢迎语素材
 // 文档: https://developer.work.weixin.qq.com/document/path/92366
 func (s *Service) DelGroupWelcomeTemplate(ctx context.Context, req *externalcontact.DelGroupWelcomeTemplateRequest) error {
-	type response struct{}
-	_, err := client.PostAndUnmarshal[response](s.client, ctx, "/cgi-bin/externalcontact/group_welcome_template/del", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/group_welcome_template/del", req)
 	return err
 }

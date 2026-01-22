@@ -1,5 +1,7 @@
 package externalcontact
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // ProductAttachment 商品图册附件
 type ProductAttachment struct {
 	Type  string           `json:"type"`
@@ -26,6 +28,7 @@ type AddProductAlbumRequest struct {
 
 // AddProductAlbumResponse 创建商品图册响应
 type AddProductAlbumResponse struct {
+	common.Response
 	ProductID string `json:"product_id"`
 }
 
@@ -36,6 +39,7 @@ type GetProductAlbumRequest struct {
 
 // GetProductAlbumResponse 获取商品图册响应
 type GetProductAlbumResponse struct {
+	common.Response
 	Product Product `json:"product"`
 }
 
@@ -47,6 +51,7 @@ type GetProductAlbumListRequest struct {
 
 // GetProductAlbumListResponse 获取商品图册列表响应
 type GetProductAlbumListResponse struct {
+	common.Response
 	NextCursor  string    `json:"next_cursor,omitempty"`
 	ProductList []Product `json:"product_list"`
 }

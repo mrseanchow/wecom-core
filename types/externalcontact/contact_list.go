@@ -1,5 +1,7 @@
 package externalcontact
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // GetContactListRequest 获取已服务的外部联系人请求
 type GetContactListRequest struct {
 	Cursor string `json:"cursor,omitempty"`
@@ -20,6 +22,7 @@ type ContactInfo struct {
 
 // GetContactListResponse 获取已服务的外部联系人响应
 type GetContactListResponse struct {
+	common.Response
 	InfoList   []ContactInfo `json:"info_list"`
 	NextCursor string        `json:"next_cursor,omitempty"`
 }

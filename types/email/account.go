@@ -1,9 +1,10 @@
 package email
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // GetAppEmailAliasResponse 查询应用邮箱账号响应
 type GetAppEmailAliasResponse struct {
-	ErrCode   int32    `json:"errcode"`
-	ErrMsg    string   `json:"errmsg"`
+	common.Response
 	Email     string   `json:"email"`      // 当前发信账号的主邮箱地址
 	AliasList []string `json:"alias_list"` // 别名邮箱地址列表
 }
@@ -15,8 +16,7 @@ type UpdateAppEmailAliasRequest struct {
 
 // UpdateAppEmailAliasResponse 更新应用邮箱账号响应
 type UpdateAppEmailAliasResponse struct {
-	ErrCode int32  `json:"errcode"`
-	ErrMsg  string `json:"errmsg"`
+	common.Response
 }
 
 // ActEmailRequest 禁用/启用邮箱账号请求
@@ -28,6 +28,5 @@ type ActEmailRequest struct {
 
 // ActEmailResponse 禁用/启用邮箱账号响应
 type ActEmailResponse struct {
-	ErrCode int32  `json:"errcode"`
-	ErrMsg  string `json:"errmsg"`
+	common.Response
 }

@@ -1,5 +1,7 @@
 package externalcontact
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // CorpTag 企业客户标签
 type CorpTag struct {
 	ID         string `json:"id"`
@@ -28,6 +30,7 @@ type GetCorpTagListRequest struct {
 
 // GetCorpTagListResponse 获取企业标签库响应
 type GetCorpTagListResponse struct {
+	common.Response
 	TagGroup []CorpTagGroup `json:"tag_group"`
 }
 
@@ -48,6 +51,7 @@ type AddCorpTagItem struct {
 
 // AddCorpTagResponse 添加企业客户标签响应
 type AddCorpTagResponse struct {
+	common.Response
 	TagGroup CorpTagGroup `json:"tag_group"`
 }
 
@@ -83,6 +87,7 @@ type GetStrategyTagListRequest struct {
 
 // GetStrategyTagListResponse 获取指定规则组下的企业客户标签响应
 type GetStrategyTagListResponse struct {
+	common.Response
 	TagGroup []CorpTagGroup `json:"tag_group"`
 }
 
@@ -97,6 +102,7 @@ type AddStrategyTagRequest struct {
 
 // AddStrategyTagResponse 为指定规则组创建企业客户标签响应
 type AddStrategyTagResponse struct {
+	common.Response
 	TagGroup CorpTagGroup `json:"tag_group"`
 }
 

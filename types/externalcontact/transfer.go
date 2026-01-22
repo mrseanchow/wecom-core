@@ -1,5 +1,7 @@
 package externalcontact
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // OnJobTransferCustomerRequest 分配在职成员的客户请求
 type OnJobTransferCustomerRequest struct {
 	HandoverUserID     string   `json:"handover_userid"`
@@ -16,6 +18,7 @@ type OnJobCustomerTransferResult struct {
 
 // OnJobTransferCustomerResponse 分配在职成员的客户响应
 type OnJobTransferCustomerResponse struct {
+	common.Response
 	Customer []OnJobCustomerTransferResult `json:"customer"`
 }
 
@@ -34,6 +37,7 @@ type FailedChatItem struct {
 
 // OnJobTransferGroupChatResponse 分配在职成员的客户群响应
 type OnJobTransferGroupChatResponse struct {
+	common.Response
 	FailedChatList []FailedChatItem `json:"failed_chat_list,omitempty"`
 }
 
@@ -53,6 +57,7 @@ type CustomerTransferStatus struct {
 
 // TransferResultResponse 查询客户接替状态响应
 type TransferResultResponse struct {
+	common.Response
 	Customer   []CustomerTransferStatus `json:"customer"`
 	NextCursor string                   `json:"next_cursor,omitempty"`
 }

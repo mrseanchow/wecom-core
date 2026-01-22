@@ -1,5 +1,7 @@
 package externalcontact
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // GetUnassignedListRequest 获取待分配的离职成员列表请求
 type GetUnassignedListRequest struct {
 	Cursor   string `json:"cursor,omitempty"`
@@ -15,6 +17,7 @@ type UnassignedInfo struct {
 
 // GetUnassignedListResponse 获取待分配的离职成员列表响应
 type GetUnassignedListResponse struct {
+	common.Response
 	Info       []UnassignedInfo `json:"info,omitempty"`
 	IsLast     bool             `json:"is_last"`
 	NextCursor string           `json:"next_cursor,omitempty"`
@@ -35,5 +38,6 @@ type TransferResult struct {
 
 // TransferCustomerResponse 分配离职成员的客户响应
 type TransferCustomerResponse struct {
+	common.Response
 	Customer []TransferResult `json:"customer"`
 }

@@ -1,5 +1,7 @@
 package wedoc
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // CreateFormRequest 创建收集表请求
 type CreateFormRequest struct {
 	SpaceID  string   `json:"spaceid,omitempty"`  // 空间spaceid
@@ -173,6 +175,7 @@ type TimedRepeatInfo struct {
 
 // CreateFormResponse 创建收集表响应
 type CreateFormResponse struct {
+	common.Response
 	FormID string `json:"formid"` // 收集表id
 }
 
@@ -183,6 +186,7 @@ type GetFormInfoRequest struct {
 
 // GetFormInfoResponse 获取收集表信息响应
 type GetFormInfoResponse struct {
+	common.Response
 	FormInfo FormInfoDetail `json:"form_info"` // 收集表信息
 }
 
@@ -212,6 +216,7 @@ type GetFormAnswerRequest struct {
 
 // GetFormAnswerResponse 读取收集表答案响应
 type GetFormAnswerResponse struct {
+	common.Response
 	Answer Answer `json:"answer"` // 答案
 }
 
@@ -303,6 +308,7 @@ type GetFormStatisticRequest struct {
 
 // GetFormStatisticResponse 收集表的统计信息查询响应
 type GetFormStatisticResponse struct {
+	common.Response
 	FillCnt       uint64       `json:"fill_cnt"`               // 已填写次数
 	FillUserCnt   uint64       `json:"fill_user_cnt"`          // 已填写人数
 	UnfillUserCnt uint64       `json:"unfill_user_cnt"`        // 未填写人数

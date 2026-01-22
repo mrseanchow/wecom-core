@@ -1,5 +1,7 @@
 package miniapppay
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // RefundRequest 申请退款请求
 type RefundRequest struct {
 	MchID        string        `json:"mchid"`
@@ -20,6 +22,7 @@ type RefundAmount struct {
 
 // RefundResponse 申请退款响应
 type RefundResponse struct {
+	common.Response
 	OutRefundNo     string                `json:"out_refund_no"`
 	Amount          *RefundResponseAmount `json:"amount,omitempty"`
 	PromotionDetail []*PromotionDetail    `json:"promotion_detail,omitempty"`
@@ -41,6 +44,7 @@ type GetRefundRequest struct {
 
 // GetRefundResponse 查询退款响应
 type GetRefundResponse struct {
+	common.Response
 	RefundID            string                `json:"refund_id,omitempty"`
 	OutRefundNo         string                `json:"out_refund_no"`
 	TransactionID       string                `json:"transaction_id,omitempty"`

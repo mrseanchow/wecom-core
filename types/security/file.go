@@ -1,5 +1,7 @@
 package security
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // GetFileOperRecordRequest 获取文件操作记录请求
 type GetFileOperRecordRequest struct {
 	StartTime  int64      `json:"start_time"`            // 开始时间
@@ -18,8 +20,7 @@ type Operation struct {
 
 // GetFileOperRecordResponse 获取文件操作记录响应
 type GetFileOperRecordResponse struct {
-	ErrCode    int              `json:"errcode"`
-	ErrMsg     string           `json:"errmsg"`
+	common.Response
 	HasMore    bool             `json:"has_more"`    // 是否还有更多数据
 	NextCursor string           `json:"next_cursor"` // 下一次调用的cursor值
 	RecordList []FileOperRecord `json:"record_list"` // 记录列表

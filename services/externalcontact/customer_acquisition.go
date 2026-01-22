@@ -5,6 +5,7 @@ import (
 	"net/url"
 
 	"github.com/shuaidd/wecom-core/internal/client"
+	"github.com/shuaidd/wecom-core/types/common"
 	"github.com/shuaidd/wecom-core/types/externalcontact"
 )
 
@@ -36,8 +37,7 @@ func (s *Service) CreateAcquisitionLink(ctx context.Context, req *externalcontac
 // 企业可通过此接口编辑获客链接，修改获客链接的关联范围或修改获客链接的名称
 // 文档: https://developer.work.weixin.qq.com/document/path/97297
 func (s *Service) UpdateAcquisitionLink(ctx context.Context, req *externalcontact.UpdateAcquisitionLinkRequest) error {
-	type response struct{}
-	_, err := client.PostAndUnmarshal[response](s.client, ctx, "/cgi-bin/externalcontact/customer_acquisition/update_link", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/customer_acquisition/update_link", req)
 	return err
 }
 
@@ -48,8 +48,7 @@ func (s *Service) DeleteAcquisitionLink(ctx context.Context, linkID string) erro
 	req := &externalcontact.DeleteAcquisitionLinkRequest{
 		LinkID: linkID,
 	}
-	type response struct{}
-	_, err := client.PostAndUnmarshal[response](s.client, ctx, "/cgi-bin/externalcontact/customer_acquisition/delete_link", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/customer_acquisition/delete_link", req)
 	return err
 }
 

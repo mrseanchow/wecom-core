@@ -1,18 +1,23 @@
 package journal
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 type DownloadWedriveFileResponse struct {
+	common.Response
 	DownloadURL string `json:"download_url"`
 	CookieName  string `json:"cookie_name"`
 	CookieValue string `json:"cookie_value"`
 }
 
 type GetRecordListResponse struct {
+	common.Response
 	JournalUUIDList []string `json:"journaluuid_list"`
 	NextCursor      uint32   `json:"next_cursor"`
 	EndFlag         uint32   `json:"endflag"`
 }
 
 type GetStatListResponse struct {
+	common.Response
 	StatList []StatInfo `json:"stat_list"`
 }
 
@@ -71,6 +76,7 @@ type ReportItem struct {
 }
 
 type GetRecordDetailResponse struct {
+	common.Response
 	Info JournalInfo `json:"info"`
 }
 

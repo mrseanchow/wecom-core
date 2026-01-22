@@ -1,5 +1,7 @@
 package agent
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // GetAgentRequest 获取应用详情请求
 type GetAgentRequest struct {
 	AgentID int `json:"agentid" url:"agentid"` // 应用id
@@ -7,8 +9,7 @@ type GetAgentRequest struct {
 
 // GetAgentResponse 获取应用详情响应
 type GetAgentResponse struct {
-	ErrCode                 int             `json:"errcode"`
-	ErrMsg                  string          `json:"errmsg"`
+	common.Response
 	AgentID                 int             `json:"agentid"`                   // 企业应用id
 	Name                    string          `json:"name"`                      // 企业应用名称
 	SquareLogoURL           string          `json:"square_logo_url"`           // 企业应用方形头像
@@ -46,8 +47,7 @@ type AllowTags struct {
 
 // ListAgentResponse 获取应用列表响应
 type ListAgentResponse struct {
-	ErrCode   int         `json:"errcode"`
-	ErrMsg    string      `json:"errmsg"`
+	common.Response
 	AgentList []AgentItem `json:"agentlist"` // 应用列表
 }
 
@@ -72,6 +72,5 @@ type SetAgentRequest struct {
 
 // SetAgentResponse 设置应用响应
 type SetAgentResponse struct {
-	ErrCode int    `json:"errcode"`
-	ErrMsg  string `json:"errmsg"`
+	common.Response
 }

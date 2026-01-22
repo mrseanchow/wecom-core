@@ -5,6 +5,7 @@ import (
 	"net/url"
 
 	"github.com/shuaidd/wecom-core/internal/client"
+	"github.com/shuaidd/wecom-core/types/common"
 	"github.com/shuaidd/wecom-core/types/externalcontact"
 )
 
@@ -33,8 +34,7 @@ func (s *Service) GetExternalContact(ctx context.Context, externalUserID string,
 // 企业可通过此接口修改指定用户添加的客户的备注信息
 // 文档: https://developer.work.weixin.qq.com/document/path/92115
 func (s *Service) UpdateRemark(ctx context.Context, req *externalcontact.UpdateRemarkRequest) error {
-	type response struct{}
-	_, err := client.PostAndUnmarshal[response](s.client, ctx, "/cgi-bin/externalcontact/remark", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/remark", req)
 	return err
 }
 

@@ -7,3 +7,16 @@ type Response struct {
 	// ErrMsg 错误消息
 	ErrMsg string `json:"errmsg"`
 }
+
+func (r Response) Code() int {
+	return r.ErrCode
+}
+
+func (r Response) Msg() string {
+	return r.ErrMsg
+}
+
+type Errcode interface {
+	Code() int
+	Msg() string
+}

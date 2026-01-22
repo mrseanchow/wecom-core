@@ -1,9 +1,10 @@
 package security
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // GetServerDomainIPResponse 获取企业微信域名IP信息响应
 type GetServerDomainIPResponse struct {
-	ErrCode    int          `json:"errcode"`
-	ErrMsg     string       `json:"errmsg"`
+	common.Response
 	DomainList []DomainInfo `json:"domain_list"` // 域名列表
 	IPList     []IPInfo     `json:"ip_list"`     // IP列表
 }

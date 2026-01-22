@@ -1,5 +1,7 @@
 package security
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // SubmitBatchAddVIPJobRequest 批量分配高级功能账号请求
 type SubmitBatchAddVIPJobRequest struct {
 	UserIDList []string `json:"userid_list"` // 要分配高级功能的企业成员userid列表，单次最多100个
@@ -7,8 +9,7 @@ type SubmitBatchAddVIPJobRequest struct {
 
 // SubmitBatchAddVIPJobResponse 批量分配高级功能账号响应
 type SubmitBatchAddVIPJobResponse struct {
-	ErrCode           int      `json:"errcode"`
-	ErrMsg            string   `json:"errmsg"`
+	common.Response
 	JobID             string   `json:"jobid"`                         // 批量分配高级功能的任务id
 	InvalidUserIDList []string `json:"invalid_userid_list,omitempty"` // 非法的userid列表
 }
@@ -20,8 +21,7 @@ type BatchAddVIPJobResultRequest struct {
 
 // BatchAddVIPJobResultResponse 查询分配高级功能账号结果响应
 type BatchAddVIPJobResultResponse struct {
-	ErrCode   int       `json:"errcode"`
-	ErrMsg    string    `json:"errmsg"`
+	common.Response
 	JobResult JobResult `json:"job_result"` // 执行任务结果详情
 }
 
@@ -32,8 +32,7 @@ type SubmitBatchDelVIPJobRequest struct {
 
 // SubmitBatchDelVIPJobResponse 批量取消高级功能账号响应
 type SubmitBatchDelVIPJobResponse struct {
-	ErrCode           int      `json:"errcode"`
-	ErrMsg            string   `json:"errmsg"`
+	common.Response
 	JobID             string   `json:"jobid"`                         // 批量取消高级功能的任务id
 	InvalidUserIDList []string `json:"invalid_userid_list,omitempty"` // 非法的userid列表
 }
@@ -45,8 +44,7 @@ type BatchDelVIPJobResultRequest struct {
 
 // BatchDelVIPJobResultResponse 查询取消高级功能账号结果响应
 type BatchDelVIPJobResultResponse struct {
-	ErrCode   int       `json:"errcode"`
-	ErrMsg    string    `json:"errmsg"`
+	common.Response
 	JobResult JobResult `json:"job_result"` // 执行任务结果详情
 }
 
@@ -64,8 +62,7 @@ type ListVIPRequest struct {
 
 // ListVIPResponse 获取高级功能账号列表响应
 type ListVIPResponse struct {
-	ErrCode    int      `json:"errcode"`
-	ErrMsg     string   `json:"errmsg"`
+	common.Response
 	HasMore    bool     `json:"has_more"`    // 是否还有更多数据未获取
 	NextCursor string   `json:"next_cursor"` // 下一次请求的cursor值
 	UserIDList []string `json:"userid_list"` // 符合条件的企业成员userid列表

@@ -1,5 +1,7 @@
 package externalcontact
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // ExternalProfile 外部联系人的自定义展示信息
 type ExternalProfile struct {
 	ExternalAttr []ExternalAttr `json:"external_attr,omitempty"`
@@ -92,11 +94,13 @@ type FollowInfo struct {
 
 // ListExternalContactResponse 获取客户列表响应
 type ListExternalContactResponse struct {
+	common.Response
 	ExternalUserID []string `json:"external_userid"`
 }
 
 // GetExternalContactResponse 获取客户详情响应
 type GetExternalContactResponse struct {
+	common.Response
 	ExternalContact ExternalContact `json:"external_contact"`
 	FollowUser      []FollowUser    `json:"follow_user"`
 	NextCursor      string          `json:"next_cursor,omitempty"`
@@ -133,6 +137,7 @@ type FailInfo struct {
 
 // BatchGetByUserResponse 批量获取客户详情响应
 type BatchGetByUserResponse struct {
+	common.Response
 	ExternalContactList []ExternalContactItem `json:"external_contact_list"`
 	NextCursor          string                `json:"next_cursor,omitempty"`
 	FailInfo            *FailInfo             `json:"fail_info,omitempty"`

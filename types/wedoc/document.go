@@ -1,5 +1,7 @@
 package wedoc
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // ==================== 获取文档数据 ====================
 
 // GetDocumentRequest 获取文档数据请求
@@ -9,6 +11,7 @@ type GetDocumentRequest struct {
 
 // GetDocumentResponse 获取文档数据响应
 type GetDocumentResponse struct {
+	common.Response
 	Version  uint32 `json:"version"`  // 文档版本
 	Document *Node  `json:"document"` // 文档内容根节点
 }

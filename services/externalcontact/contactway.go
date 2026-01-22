@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/shuaidd/wecom-core/internal/client"
+	"github.com/shuaidd/wecom-core/types/common"
 	"github.com/shuaidd/wecom-core/types/externalcontact"
 )
 
@@ -36,8 +37,7 @@ func (s *Service) ListContactWay(ctx context.Context, req *externalcontact.ListC
 // 更新企业配置的「联系我」二维码和「联系我」小程序按钮中的信息，如使用人员和备注等
 // 文档: https://developer.work.weixin.qq.com/document/path/92572
 func (s *Service) UpdateContactWay(ctx context.Context, req *externalcontact.UpdateContactWayRequest) error {
-	type response struct{}
-	_, err := client.PostAndUnmarshal[response](s.client, ctx, "/cgi-bin/externalcontact/update_contact_way", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/update_contact_way", req)
 	return err
 }
 
@@ -48,8 +48,7 @@ func (s *Service) DeleteContactWay(ctx context.Context, configID string) error {
 	req := &externalcontact.DeleteContactWayRequest{
 		ConfigID: configID,
 	}
-	type response struct{}
-	_, err := client.PostAndUnmarshal[response](s.client, ctx, "/cgi-bin/externalcontact/del_contact_way", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/del_contact_way", req)
 	return err
 }
 
@@ -61,7 +60,6 @@ func (s *Service) CloseTempChat(ctx context.Context, userID, externalUserID stri
 		UserID:         userID,
 		ExternalUserID: externalUserID,
 	}
-	type response struct{}
-	_, err := client.PostAndUnmarshal[response](s.client, ctx, "/cgi-bin/externalcontact/close_temp_chat", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/close_temp_chat", req)
 	return err
 }

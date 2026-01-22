@@ -1,5 +1,7 @@
 package wedoc
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // CreateDocRequest 新建文档请求
 type CreateDocRequest struct {
 	SpaceID    string   `json:"spaceid,omitempty"`     // 空间spaceid
@@ -11,6 +13,7 @@ type CreateDocRequest struct {
 
 // CreateDocResponse 新建文档响应
 type CreateDocResponse struct {
+	common.Response
 	URL   string `json:"url"`   // 新建文档的访问链接
 	DocID string `json:"docid"` // 新建文档的docid
 }
@@ -31,6 +34,7 @@ type DocBaseInfo struct {
 
 // GetDocBaseInfoResponse 获取文档基础信息响应
 type GetDocBaseInfoResponse struct {
+	common.Response
 	DocBaseInfo DocBaseInfo `json:"doc_base_info"` // 文档基础信息
 }
 
@@ -55,6 +59,7 @@ type ShareDocRequest struct {
 
 // ShareDocResponse 分享文档响应
 type ShareDocResponse struct {
+	common.Response
 	ShareURL string `json:"share_url"` // 文档分享链接
 }
 
@@ -65,6 +70,7 @@ type GetDocAuthRequest struct {
 
 // GetDocAuthResponse 获取文档权限信息响应
 type GetDocAuthResponse struct {
+	common.Response
 	AccessRule    AccessRule    `json:"access_rule"`     // 文档的查看规则
 	SecureSetting SecureSetting `json:"secure_setting"`  // 文档安全设置
 	DocMemberList []DocMember   `json:"doc_member_list"` // 文档通知范围及权限列表

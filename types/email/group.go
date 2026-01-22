@@ -1,5 +1,7 @@
 package email
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // CreateGroupRequest 创建邮件群组请求
 type CreateGroupRequest struct {
 	GroupID             string      `json:"groupid"`                        // 邮件群组ID，邮箱格式(必填)
@@ -16,8 +18,7 @@ type CreateGroupRequest struct {
 
 // CreateGroupResponse 创建邮件群组响应
 type CreateGroupResponse struct {
-	ErrCode int32  `json:"errcode"`
-	ErrMsg  string `json:"errmsg"`
+	common.Response
 }
 
 // GetGroupRequest 获取邮件群组详情请求(通过URL参数传递)
@@ -27,8 +28,7 @@ type GetGroupRequest struct {
 
 // GetGroupResponse 获取邮件群组详情响应
 type GetGroupResponse struct {
-	ErrCode             int32       `json:"errcode"`
-	ErrMsg              string      `json:"errmsg"`
+	common.Response
 	GroupID             string      `json:"groupid"`                        // 邮件群组ID
 	GroupName           string      `json:"groupname"`                      // 邮件群组名称
 	EmailList           *StringList `json:"email_list,omitempty"`           // 群组内成员邮箱地址
@@ -57,8 +57,7 @@ type UpdateGroupRequest struct {
 
 // UpdateGroupResponse 更新邮件群组响应
 type UpdateGroupResponse struct {
-	ErrCode int32  `json:"errcode"`
-	ErrMsg  string `json:"errmsg"`
+	common.Response
 }
 
 // SearchGroupRequest 模糊搜索邮件群组请求(通过URL参数传递)
@@ -75,10 +74,9 @@ type GroupInfo struct {
 
 // SearchGroupResponse 模糊搜索邮件群组响应
 type SearchGroupResponse struct {
-	ErrCode int32        `json:"errcode"`
-	ErrMsg  string       `json:"errmsg"`
-	Count   int          `json:"count"`            // 返回条数
-	Groups  []*GroupInfo `json:"groups,omitempty"` // 邮件群组列表
+	common.Response
+	Count  int          `json:"count"`            // 返回条数
+	Groups []*GroupInfo `json:"groups,omitempty"` // 邮件群组列表
 }
 
 // DeleteGroupRequest 删除邮件群组请求
@@ -88,6 +86,5 @@ type DeleteGroupRequest struct {
 
 // DeleteGroupResponse 删除邮件群组响应
 type DeleteGroupResponse struct {
-	ErrCode int32  `json:"errcode"`
-	ErrMsg  string `json:"errmsg"`
+	common.Response
 }

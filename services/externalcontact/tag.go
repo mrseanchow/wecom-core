@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/shuaidd/wecom-core/internal/client"
+	"github.com/shuaidd/wecom-core/types/common"
 	"github.com/shuaidd/wecom-core/types/externalcontact"
 )
 
@@ -25,8 +26,7 @@ func (s *Service) AddCorpTag(ctx context.Context, req *externalcontact.AddCorpTa
 // 企业可通过此接口编辑客户标签/标签组的名称或次序值
 // 文档: https://developer.work.weixin.qq.com/document/path/92117
 func (s *Service) EditCorpTag(ctx context.Context, req *externalcontact.EditCorpTagRequest) error {
-	type response struct{}
-	_, err := client.PostAndUnmarshal[response](s.client, ctx, "/cgi-bin/externalcontact/edit_corp_tag", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/edit_corp_tag", req)
 	return err
 }
 
@@ -34,8 +34,7 @@ func (s *Service) EditCorpTag(ctx context.Context, req *externalcontact.EditCorp
 // 企业可通过此接口删除客户标签库中的标签，或删除整个标签组
 // 文档: https://developer.work.weixin.qq.com/document/path/92117
 func (s *Service) DeleteCorpTag(ctx context.Context, req *externalcontact.DeleteCorpTagRequest) error {
-	type response struct{}
-	_, err := client.PostAndUnmarshal[response](s.client, ctx, "/cgi-bin/externalcontact/del_corp_tag", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/del_corp_tag", req)
 	return err
 }
 
@@ -43,8 +42,7 @@ func (s *Service) DeleteCorpTag(ctx context.Context, req *externalcontact.Delete
 // 企业可通过此接口为指定成员的客户添加上由企业统一配置的标签
 // 文档: https://developer.work.weixin.qq.com/document/path/92118
 func (s *Service) MarkTag(ctx context.Context, req *externalcontact.MarkTagRequest) error {
-	type response struct{}
-	_, err := client.PostAndUnmarshal[response](s.client, ctx, "/cgi-bin/externalcontact/mark_tag", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/mark_tag", req)
 	return err
 }
 
@@ -66,8 +64,7 @@ func (s *Service) AddStrategyTag(ctx context.Context, req *externalcontact.AddSt
 // 企业可通过此接口编辑指定规则组下的客户标签/标签组的名称或次序值
 // 文档: https://developer.work.weixin.qq.com/document/path/94882
 func (s *Service) EditStrategyTag(ctx context.Context, req *externalcontact.EditStrategyTagRequest) error {
-	type response struct{}
-	_, err := client.PostAndUnmarshal[response](s.client, ctx, "/cgi-bin/externalcontact/edit_strategy_tag", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/edit_strategy_tag", req)
 	return err
 }
 
@@ -75,7 +72,6 @@ func (s *Service) EditStrategyTag(ctx context.Context, req *externalcontact.Edit
 // 企业可通过此接口删除某个规则组下的标签，或删除整个标签组
 // 文档: https://developer.work.weixin.qq.com/document/path/94882
 func (s *Service) DeleteStrategyTag(ctx context.Context, req *externalcontact.DeleteStrategyTagRequest) error {
-	type response struct{}
-	_, err := client.PostAndUnmarshal[response](s.client, ctx, "/cgi-bin/externalcontact/del_strategy_tag", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/del_strategy_tag", req)
 	return err
 }

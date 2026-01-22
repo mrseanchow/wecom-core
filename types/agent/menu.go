@@ -1,5 +1,7 @@
 package agent
 
+import "github.com/shuaidd/wecom-core/types/common"
+
 // CreateMenuRequest 创建菜单请求
 type CreateMenuRequest struct {
 	AgentID int          `json:"-" url:"agentid"` // 企业应用的id
@@ -19,8 +21,7 @@ type MenuButton struct {
 
 // CreateMenuResponse 创建菜单响应
 type CreateMenuResponse struct {
-	ErrCode int    `json:"errcode"`
-	ErrMsg  string `json:"errmsg"`
+	common.Response
 }
 
 // GetMenuRequest 获取菜单请求
@@ -30,9 +31,8 @@ type GetMenuRequest struct {
 
 // GetMenuResponse 获取菜单响应
 type GetMenuResponse struct {
-	ErrCode int          `json:"errcode"`
-	ErrMsg  string       `json:"errmsg"`
-	Button  []MenuButton `json:"button"` // 菜单数组
+	common.Response
+	Button []MenuButton `json:"button"` // 菜单数组
 }
 
 // DeleteMenuRequest 删除菜单请求
@@ -42,6 +42,5 @@ type DeleteMenuRequest struct {
 
 // DeleteMenuResponse 删除菜单响应
 type DeleteMenuResponse struct {
-	ErrCode int    `json:"errcode"`
-	ErrMsg  string `json:"errmsg"`
+	common.Response
 }

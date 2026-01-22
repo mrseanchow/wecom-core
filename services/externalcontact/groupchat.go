@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/shuaidd/wecom-core/internal/client"
+	"github.com/shuaidd/wecom-core/types/common"
 	"github.com/shuaidd/wecom-core/types/externalcontact"
 )
 
@@ -56,8 +57,7 @@ func (s *Service) GetJoinWay(ctx context.Context, configID string) (*externalcon
 // 更新进群方式配置信息。注意：使用覆盖的方式更新
 // 文档: https://developer.work.weixin.qq.com/document/path/92229
 func (s *Service) UpdateJoinWay(ctx context.Context, req *externalcontact.UpdateJoinWayRequest) error {
-	type response struct{}
-	_, err := client.PostAndUnmarshal[response](s.client, ctx, "/cgi-bin/externalcontact/groupchat/update_join_way", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/groupchat/update_join_way", req)
 	return err
 }
 
@@ -68,7 +68,6 @@ func (s *Service) DeleteJoinWay(ctx context.Context, configID string) error {
 	req := &externalcontact.DeleteJoinWayRequest{
 		ConfigID: configID,
 	}
-	type response struct{}
-	_, err := client.PostAndUnmarshal[response](s.client, ctx, "/cgi-bin/externalcontact/groupchat/del_join_way", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/groupchat/del_join_way", req)
 	return err
 }
