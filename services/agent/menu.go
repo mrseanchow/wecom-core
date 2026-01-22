@@ -11,8 +11,10 @@ import (
 
 // CreateMenu 创建菜单
 func (s *Service) CreateMenu(ctx context.Context, req *agent.CreateMenuRequest) error {
+	query := url.Values{}
+	query.Set("agentid", fmt.Sprintf("%d", req.AgentID))
 	// 构建请求，需要在query参数中传递agentid，在body中传递菜单内容
-	_, err := client.PostAndUnmarshal[agent.CreateMenuResponse](s.client, ctx, fmt.Sprintf("/cgi-bin/menu/create?agentid=%d", req.AgentID), req)
+	_, err := client.PostAndUnmarshalWithQuery[agent.CreateMenuResponse](s.client, ctx, "/cgi-bin/menu/create", query, req)
 	return err
 }
 

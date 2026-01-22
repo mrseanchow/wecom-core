@@ -1,0 +1,13 @@
+title,url
+获取审批模板详情,https://developer.work.weixin.qq.com/document/path/91982
+提交审批申请,https://developer.work.weixin.qq.com/document/path/91853
+审批申请状态变化回调通知,https://developer.work.weixin.qq.com/document/path/91815
+批量获取审批单号,https://developer.work.weixin.qq.com/document/path/91816
+获取审批申请详情,https://developer.work.weixin.qq.com/document/path/91983
+获取审批数据（旧）,https://developer.work.weixin.qq.com/document/path/91530
+获取企业假期管理配置,https://developer.work.weixin.qq.com/document/path/93375
+获取成员假期余额,https://developer.work.weixin.qq.com/document/path/93376
+修改成员假期余额,https://developer.work.weixin.qq.com/document/path/93377
+审批流程引擎,https://developer.work.weixin.qq.com/document/path/90269
+创建审批模板,https://developer.work.weixin.qq.com/document/path/97437
+更新审批模板,https://developer.work.weixin.qq.com/document/path/97438

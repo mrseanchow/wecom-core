@@ -19,7 +19,7 @@ func TestUploadMediaFromReader(t *testing.T) {
 	}
 
 	// 读取文件到内存
-	data, err := os.ReadFile("二维码.png")
+	data, err := os.ReadFile("/var/folders/t3/y6vxtfbn76b5n3t0hzdc6myw0000gn/T/material_3332207419.png")
 	if err != nil {
 		fmt.Println("read file error:", err)
 		return
@@ -31,6 +31,21 @@ func TestUploadMediaFromReader(t *testing.T) {
 	ctx := wecom.WithAgentName(context.Background(), "boss-customer")
 	// 调用上传方法并处理返回值/错误
 	if data, err := cli.Media.UploadMediaFromReader(ctx, media.MediaTypeImage, reader, "1.png"); err != nil {
+		fmt.Println("upload error:", err)
+		return
+	} else {
+		fmt.Printf("upload success: mediaId %s %+v \n", data.MediaID, data)
+	}
+}
+
+func TestUploadMedia(t *testing.T) {
+	cli, err := wecom.Default()
+	if err != nil {
+		return
+	}
+
+	// 调用上传方法并处理返回值/错误
+	if data, err := cli.Media.UploadMedia(context.Background(), media.MediaTypeImage, "/var/folders/t3/y6vxtfbn76b5n3t0hzdc6myw0000gn/T/material_3332207419.png"); err != nil {
 		fmt.Println("upload error:", err)
 		return
 	} else {
@@ -71,7 +86,7 @@ func TestUploadMediaFromRemote(t *testing.T) {
 	}
 
 	// 远程下载地址
-	url := "http://fzapi.shinyway.com/boss-base-svc/storage/download/20260117100001"
+	url := "https://fzapi.shinyway.com/boss-base-svc/storage/download/20260117100001"
 	// 使用带鉴权的 HTTP 请求，添加 access-token header
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {

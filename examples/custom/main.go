@@ -169,6 +169,7 @@ func exampleCustomPostAndUnmarshal(client *wecom.Client, ctx context.Context) {
 		ctx,
 		"/cgi-bin/message/send",
 		req,
+		nil,
 	)
 	if err != nil {
 		log.Printf("Failed to send message: %v", err)
