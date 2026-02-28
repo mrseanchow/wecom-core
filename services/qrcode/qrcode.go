@@ -8,6 +8,10 @@ import (
 	"github.com/shuaidd/wecom-core/internal/client"
 	"github.com/shuaidd/wecom-core/types/qrcode"
 )
+const (
+	AtchInviteURL = "/cgi-bin/batch/invite"
+	OrpGetJoinQrcodeURL = "/cgi-bin/corp/get_join_qrcode"
+)
 
 // Service 企业二维码服务
 type Service struct {
@@ -29,7 +33,7 @@ func (s *Service) GetJoinQRCode(ctx context.Context, sizeType int) (string, erro
 		query.Set("size_type", strconv.Itoa(sizeType))
 	}
 
-	result, err := client.GetAndUnmarshal[qrcode.GetJoinQRCodeResponse](s.client, ctx, "/cgi-bin/corp/get_join_qrcode", query)
+	result, err := client.GetAndUnmarshal[qrcode.GetJoinQRCodeResponse](s.client, ctx, OrpGetJoinQrcodeURL, query)
 	if err != nil {
 		return "", err
 	}
@@ -40,5 +44,5 @@ func (s *Service) GetJoinQRCode(ctx context.Context, sizeType int) (string, erro
 // BatchInvite 邀请成员
 // 文档: https://developer.work.weixin.qq.com/document/path/90975
 func (s *Service) BatchInvite(ctx context.Context, req *qrcode.BatchInviteRequest) (*qrcode.BatchInviteResponse, error) {
-	return client.PostAndUnmarshal[qrcode.BatchInviteResponse](s.client, ctx, "/cgi-bin/batch/invite", req)
+	return client.PostAndUnmarshal[qrcode.BatchInviteResponse](s.client, ctx, AtchInviteURL, req)
 }

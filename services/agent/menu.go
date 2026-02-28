@@ -8,6 +8,10 @@ import (
 	"github.com/shuaidd/wecom-core/internal/client"
 	"github.com/shuaidd/wecom-core/types/agent"
 )
+const (
+	EnuDeleteURL = "/cgi-bin/menu/delete"
+	EnuGetURL = "/cgi-bin/menu/get"
+)
 
 // CreateMenu 创建菜单
 func (s *Service) CreateMenu(ctx context.Context, req *agent.CreateMenuRequest) error {
@@ -23,7 +27,7 @@ func (s *Service) GetMenu(ctx context.Context, agentID int) (*agent.GetMenuRespo
 	query := url.Values{}
 	query.Set("agentid", fmt.Sprintf("%d", agentID))
 
-	return client.GetAndUnmarshal[agent.GetMenuResponse](s.client, ctx, "/cgi-bin/menu/get", query)
+	return client.GetAndUnmarshal[agent.GetMenuResponse](s.client, ctx, EnuGetURL, query)
 }
 
 // DeleteMenu 删除菜单
@@ -31,6 +35,6 @@ func (s *Service) DeleteMenu(ctx context.Context, agentID int) error {
 	query := url.Values{}
 	query.Set("agentid", fmt.Sprintf("%d", agentID))
 
-	_, err := client.GetAndUnmarshal[agent.DeleteMenuResponse](s.client, ctx, "/cgi-bin/menu/delete", query)
+	_, err := client.GetAndUnmarshal[agent.DeleteMenuResponse](s.client, ctx, EnuDeleteURL, query)
 	return err
 }

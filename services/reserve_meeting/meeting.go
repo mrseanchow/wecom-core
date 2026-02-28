@@ -7,6 +7,18 @@ import (
 	"github.com/shuaidd/wecom-core/types/common"
 	"github.com/shuaidd/wecom-core/types/reserve_meeting"
 )
+const (
+	EetingCancelURL = "/cgi-bin/meeting/cancel"
+	EetingCancelURL = "/cgi-bin/meeting/cancel"
+	EetingCheckDeviceInMeetingURL = "/cgi-bin/meeting/check_device_in_meeting"
+	EetingCreateURL = "/cgi-bin/meeting/create"
+	EetingGetInfoURL = "/cgi-bin/meeting/get_info"
+	EetingGetInfoURL = "/cgi-bin/meeting/get_info"
+	EetingGetInfoURL = "/cgi-bin/meeting/get_info"
+	EetingGetQualityURL = "/cgi-bin/meeting/get_quality"
+	EetingGetUserMeetingidURL = "/cgi-bin/meeting/get_user_meetingid"
+	EetingUpdateURL = "/cgi-bin/meeting/update"
+)
 
 // Service 预约会议高级管理服务
 type Service struct {
@@ -21,13 +33,13 @@ func NewService(c *client.Client) *Service {
 // Create 创建预约会议
 // 文档: https://developer.work.weixin.qq.com/document/path/93624
 func (s *Service) Create(ctx context.Context, req *reserve_meeting.CreateMeetingRequest) (*reserve_meeting.CreateMeetingResponse, error) {
-	return client.PostAndUnmarshal[reserve_meeting.CreateMeetingResponse](s.client, ctx, "/cgi-bin/meeting/create", req)
+	return client.PostAndUnmarshal[reserve_meeting.CreateMeetingResponse](s.client, ctx, EetingCreateURL, req)
 }
 
 // Update 修改预约会议
 // 文档: https://developer.work.weixin.qq.com/document/path/93625
 func (s *Service) Update(ctx context.Context, req *reserve_meeting.UpdateMeetingRequest) error {
-	_, err := client.PostAndUnmarshal[reserve_meeting.UpdateMeetingResponse](s.client, ctx, "/cgi-bin/meeting/update", req)
+	_, err := client.PostAndUnmarshal[reserve_meeting.UpdateMeetingResponse](s.client, ctx, EetingUpdateURL, req)
 	return err
 }
 
@@ -37,7 +49,7 @@ func (s *Service) Cancel(ctx context.Context, meetingID string) error {
 	req := &reserve_meeting.CancelMeetingRequest{
 		MeetingID: meetingID,
 	}
-	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/meeting/cancel", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, EetingCancelURL, req)
 	return err
 }
 
@@ -48,7 +60,7 @@ func (s *Service) CancelWithSubMeeting(ctx context.Context, meetingID, subMeetin
 		MeetingID:    meetingID,
 		SubMeetingID: subMeetingID,
 	}
-	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/meeting/cancel", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, EetingCancelURL, req)
 	return err
 }
 
@@ -58,7 +70,7 @@ func (s *Service) GetInfo(ctx context.Context, meetingID string) (*reserve_meeti
 	req := &reserve_meeting.GetMeetingInfoRequest{
 		MeetingID: meetingID,
 	}
-	return client.PostAndUnmarshal[reserve_meeting.GetMeetingInfoResponse](s.client, ctx, "/cgi-bin/meeting/get_info", req)
+	return client.PostAndUnmarshal[reserve_meeting.GetMeetingInfoResponse](s.client, ctx, EetingGetInfoURL, req)
 }
 
 // GetInfoByCode 通过会议号获取会议详情
@@ -67,7 +79,7 @@ func (s *Service) GetInfoByCode(ctx context.Context, meetingCode string) (*reser
 	req := &reserve_meeting.GetMeetingInfoRequest{
 		MeetingCode: meetingCode,
 	}
-	return client.PostAndUnmarshal[reserve_meeting.GetMeetingInfoResponse](s.client, ctx, "/cgi-bin/meeting/get_info", req)
+	return client.PostAndUnmarshal[reserve_meeting.GetMeetingInfoResponse](s.client, ctx, EetingGetInfoURL, req)
 }
 
 // GetSubMeetingInfo 获取周期性子会议详情
@@ -77,23 +89,23 @@ func (s *Service) GetSubMeetingInfo(ctx context.Context, meetingID, subMeetingID
 		MeetingID:    meetingID,
 		SubMeetingID: subMeetingID,
 	}
-	return client.PostAndUnmarshal[reserve_meeting.GetMeetingInfoResponse](s.client, ctx, "/cgi-bin/meeting/get_info", req)
+	return client.PostAndUnmarshal[reserve_meeting.GetMeetingInfoResponse](s.client, ctx, EetingGetInfoURL, req)
 }
 
 // GetUserMeetingIDs 获取成员会议ID列表
 // 文档: https://developer.work.weixin.qq.com/document/path/93854
 func (s *Service) GetUserMeetingIDs(ctx context.Context, req *reserve_meeting.GetUserMeetingIDsRequest) (*reserve_meeting.GetUserMeetingIDsResponse, error) {
-	return client.PostAndUnmarshal[reserve_meeting.GetUserMeetingIDsResponse](s.client, ctx, "/cgi-bin/meeting/get_user_meetingid", req)
+	return client.PostAndUnmarshal[reserve_meeting.GetUserMeetingIDsResponse](s.client, ctx, EetingGetUserMeetingidURL, req)
 }
 
 // CheckDeviceInMeeting 获取成员设备是否入会
 // 文档: https://developer.work.weixin.qq.com/document/path/95026
 func (s *Service) CheckDeviceInMeeting(ctx context.Context, req *reserve_meeting.CheckDeviceInMeetingRequest) (*reserve_meeting.CheckDeviceInMeetingResponse, error) {
-	return client.PostAndUnmarshal[reserve_meeting.CheckDeviceInMeetingResponse](s.client, ctx, "/cgi-bin/meeting/check_device_in_meeting", req)
+	return client.PostAndUnmarshal[reserve_meeting.CheckDeviceInMeetingResponse](s.client, ctx, EetingCheckDeviceInMeetingURL, req)
 }
 
 // GetQuality 获取会议健康度
 // 文档: https://developer.work.weixin.qq.com/document/path/94060
 func (s *Service) GetQuality(ctx context.Context, req *reserve_meeting.GetQualityRequest) (*reserve_meeting.GetQualityResponse, error) {
-	return client.PostAndUnmarshal[reserve_meeting.GetQualityResponse](s.client, ctx, "/cgi-bin/meeting/get_quality", req)
+	return client.PostAndUnmarshal[reserve_meeting.GetQualityResponse](s.client, ctx, EetingGetQualityURL, req)
 }

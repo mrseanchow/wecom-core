@@ -8,33 +8,40 @@ import (
 	"github.com/shuaidd/wecom-core/types/common"
 	"github.com/shuaidd/wecom-core/types/externalcontact"
 )
+const (
+	XternalcontactAddInterceptRuleURL = "/cgi-bin/externalcontact/add_intercept_rule"
+	XternalcontactDelInterceptRuleURL = "/cgi-bin/externalcontact/del_intercept_rule"
+	XternalcontactGetInterceptRuleListURL = "/cgi-bin/externalcontact/get_intercept_rule_list"
+	XternalcontactGetInterceptRuleURL = "/cgi-bin/externalcontact/get_intercept_rule"
+	XternalcontactUpdateInterceptRuleURL = "/cgi-bin/externalcontact/update_intercept_rule"
+)
 
 // AddInterceptRule 新建敏感词规则
 // 企业和第三方应用可以通过此接口新建敏感词规则
 // 文档: https://developer.work.weixin.qq.com/document/path/95130
 func (s *Service) AddInterceptRule(ctx context.Context, req *externalcontact.AddInterceptRuleRequest) (*externalcontact.AddInterceptRuleResponse, error) {
-	return client.PostAndUnmarshal[externalcontact.AddInterceptRuleResponse](s.client, ctx, "/cgi-bin/externalcontact/add_intercept_rule", req)
+	return client.PostAndUnmarshal[externalcontact.AddInterceptRuleResponse](s.client, ctx, XternalcontactAddInterceptRuleURL, req)
 }
 
 // GetInterceptRuleList 获取敏感词规则列表
 // 企业和第三方应用可以通过此接口获取敏感词规则列表
 // 文档: https://developer.work.weixin.qq.com/document/path/95130
 func (s *Service) GetInterceptRuleList(ctx context.Context) (*externalcontact.GetInterceptRuleListResponse, error) {
-	return client.GetAndUnmarshal[externalcontact.GetInterceptRuleListResponse](s.client, ctx, "/cgi-bin/externalcontact/get_intercept_rule_list", url.Values{})
+	return client.GetAndUnmarshal[externalcontact.GetInterceptRuleListResponse](s.client, ctx, XternalcontactGetInterceptRuleListURL, url.Values{})
 }
 
 // GetInterceptRule 获取敏感词规则详情
 // 企业和第三方应用可以通过此接口获取敏感词规则详情
 // 文档: https://developer.work.weixin.qq.com/document/path/95130
 func (s *Service) GetInterceptRule(ctx context.Context, req *externalcontact.GetInterceptRuleRequest) (*externalcontact.GetInterceptRuleResponse, error) {
-	return client.PostAndUnmarshal[externalcontact.GetInterceptRuleResponse](s.client, ctx, "/cgi-bin/externalcontact/get_intercept_rule", req)
+	return client.PostAndUnmarshal[externalcontact.GetInterceptRuleResponse](s.client, ctx, XternalcontactGetInterceptRuleURL, req)
 }
 
 // UpdateInterceptRule 修改敏感词规则
 // 企业和第三方应用可以通过此接口修改敏感词规则
 // 文档: https://developer.work.weixin.qq.com/document/path/95130
 func (s *Service) UpdateInterceptRule(ctx context.Context, req *externalcontact.UpdateInterceptRuleRequest) error {
-	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/update_intercept_rule", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, XternalcontactUpdateInterceptRuleURL, req)
 	return err
 }
 
@@ -42,6 +49,6 @@ func (s *Service) UpdateInterceptRule(ctx context.Context, req *externalcontact.
 // 企业和第三方应用可以通过此接口删除敏感词规则
 // 文档: https://developer.work.weixin.qq.com/document/path/95130
 func (s *Service) DelInterceptRule(ctx context.Context, req *externalcontact.DelInterceptRuleRequest) error {
-	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/del_intercept_rule", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, XternalcontactDelInterceptRuleURL, req)
 	return err
 }

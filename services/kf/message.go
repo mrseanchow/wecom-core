@@ -6,6 +6,10 @@ import (
 	"github.com/shuaidd/wecom-core/internal/client"
 	"github.com/shuaidd/wecom-core/types/kf"
 )
+const (
+	FSendMsgOnEventURL = "/cgi-bin/kf/send_msg_on_event"
+	FSendMsgURL = "/cgi-bin/kf/send_msg"
+)
 
 // SendMsg 发送消息
 // 当微信客户处于"新接入待处理"或"由智能助手接待"状态下,可调用该接口给用户发送消息
@@ -13,7 +17,7 @@ import (
 // 支持发送消息类型:文本、图片、语音、视频、文件、图文、小程序、菜单消息、地理位置、获客链接
 // 文档: https://developer.work.weixin.qq.com/document/path/94677
 func (s *Service) SendMsg(ctx context.Context, req *kf.SendMsgRequest) (*kf.SendMsgResponse, error) {
-	return client.PostAndUnmarshal[kf.SendMsgResponse](s.client, ctx, "/cgi-bin/kf/send_msg", req)
+	return client.PostAndUnmarshal[kf.SendMsgResponse](s.client, ctx, FSendMsgURL, req)
 }
 
 // SendMsgOnEvent 发送欢迎语等事件响应消息
@@ -21,5 +25,5 @@ func (s *Service) SendMsg(ctx context.Context, req *kf.SendMsgRequest) (*kf.Send
 // 开发者可以此code为凭证,调用该接口给用户发送相应事件场景下的消息
 // 文档: https://developer.work.weixin.qq.com/document/path/94698
 func (s *Service) SendMsgOnEvent(ctx context.Context, req *kf.SendMsgOnEventRequest) (*kf.SendMsgOnEventResponse, error) {
-	return client.PostAndUnmarshal[kf.SendMsgOnEventResponse](s.client, ctx, "/cgi-bin/kf/send_msg_on_event", req)
+	return client.PostAndUnmarshal[kf.SendMsgOnEventResponse](s.client, ctx, FSendMsgOnEventURL, req)
 }

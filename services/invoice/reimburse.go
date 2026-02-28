@@ -6,6 +6,12 @@ import (
 	"github.com/shuaidd/wecom-core/internal/client"
 	"github.com/shuaidd/wecom-core/types/invoice"
 )
+const (
+	ArdInvoiceReimburseGetinvoiceinfoURL = "/cgi-bin/card/invoice/reimburse/getinvoiceinfo"
+	ArdInvoiceReimburseGetinvoiceinfobatchURL = "/cgi-bin/card/invoice/reimburse/getinvoiceinfobatch"
+	ArdInvoiceReimburseUpdateinvoicestatusURL = "/cgi-bin/card/invoice/reimburse/updateinvoicestatus"
+	ArdInvoiceReimburseUpdatestatusbatchURL = "/cgi-bin/card/invoice/reimburse/updatestatusbatch"
+)
 
 // GetInvoiceInfo 查询电子发票
 // 报销方在获得用户选择的电子发票标识参数后，可以通过该接口查询电子发票的结构化信息，并获取发票PDF文件
@@ -15,7 +21,7 @@ func (s *Service) GetInvoiceInfo(ctx context.Context, cardID, encryptCode string
 		CardID:      cardID,
 		EncryptCode: encryptCode,
 	}
-	return client.PostAndUnmarshal[invoice.GetInvoiceInfoResponse](s.client, ctx, "/cgi-bin/card/invoice/reimburse/getinvoiceinfo", req)
+	return client.PostAndUnmarshal[invoice.GetInvoiceInfoResponse](s.client, ctx, ArdInvoiceReimburseGetinvoiceinfoURL, req)
 }
 
 // GetInvoiceInfoBatch 批量查询电子发票
@@ -25,7 +31,7 @@ func (s *Service) GetInvoiceInfoBatch(ctx context.Context, itemList []invoice.In
 	req := &invoice.GetInvoiceInfoBatchRequest{
 		ItemList: itemList,
 	}
-	return client.PostAndUnmarshal[invoice.GetInvoiceInfoBatchResponse](s.client, ctx, "/cgi-bin/card/invoice/reimburse/getinvoiceinfobatch", req)
+	return client.PostAndUnmarshal[invoice.GetInvoiceInfoBatchResponse](s.client, ctx, ArdInvoiceReimburseGetinvoiceinfobatchURL, req)
 }
 
 // UpdateInvoiceStatus 更新发票状态
@@ -37,7 +43,7 @@ func (s *Service) UpdateInvoiceStatus(ctx context.Context, cardID, encryptCode s
 		EncryptCode:     encryptCode,
 		ReimburseStatus: status,
 	}
-	_, err := client.PostAndUnmarshal[invoice.GetInvoiceInfoResponse](s.client, ctx, "/cgi-bin/card/invoice/reimburse/updateinvoicestatus", req)
+	_, err := client.PostAndUnmarshal[invoice.GetInvoiceInfoResponse](s.client, ctx, ArdInvoiceReimburseUpdateinvoicestatusURL, req)
 	return err
 }
 
@@ -51,6 +57,6 @@ func (s *Service) UpdateStatusBatch(ctx context.Context, openID string, status i
 		ReimburseStatus: status,
 		InvoiceList:     invoiceList,
 	}
-	_, err := client.PostAndUnmarshal[invoice.GetInvoiceInfoResponse](s.client, ctx, "/cgi-bin/card/invoice/reimburse/updatestatusbatch", req)
+	_, err := client.PostAndUnmarshal[invoice.GetInvoiceInfoResponse](s.client, ctx, ArdInvoiceReimburseUpdatestatusbatchURL, req)
 	return err
 }

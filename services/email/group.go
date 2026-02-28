@@ -8,13 +8,20 @@ import (
 	"github.com/shuaidd/wecom-core/internal/client"
 	"github.com/shuaidd/wecom-core/types/email"
 )
+const (
+	XmailGroupCreateURL = "/cgi-bin/exmail/group/create"
+	XmailGroupDeleteURL = "/cgi-bin/exmail/group/delete"
+	XmailGroupGetURL = "/cgi-bin/exmail/group/get"
+	XmailGroupSearchURL = "/cgi-bin/exmail/group/search"
+	XmailGroupUpdateURL = "/cgi-bin/exmail/group/update"
+)
 
 // CreateGroup 创建邮件群组
 // 该接口用于创建新邮件群组，可以指定群组成员，定义群组使用权限范围
 //
 // 文档: https://developer.work.weixin.qq.com/document/path/95838
 func (s *Service) CreateGroup(ctx context.Context, req *email.CreateGroupRequest) (*email.CreateGroupResponse, error) {
-	return client.PostAndUnmarshal[email.CreateGroupResponse](s.client, ctx, "/cgi-bin/exmail/group/create", req)
+	return client.PostAndUnmarshal[email.CreateGroupResponse](s.client, ctx, XmailGroupCreateURL, req)
 }
 
 // GetGroup 获取邮件群组详情
@@ -24,7 +31,7 @@ func (s *Service) CreateGroup(ctx context.Context, req *email.CreateGroupRequest
 func (s *Service) GetGroup(ctx context.Context, groupID string) (*email.GetGroupResponse, error) {
 	query := url.Values{}
 	query.Set("groupid", groupID)
-	return client.GetAndUnmarshal[email.GetGroupResponse](s.client, ctx, "/cgi-bin/exmail/group/get", query)
+	return client.GetAndUnmarshal[email.GetGroupResponse](s.client, ctx, XmailGroupGetURL, query)
 }
 
 // UpdateGroup 更新邮件群组
@@ -33,7 +40,7 @@ func (s *Service) GetGroup(ctx context.Context, groupID string) (*email.GetGroup
 //
 // 文档: https://developer.work.weixin.qq.com/document/path/95840
 func (s *Service) UpdateGroup(ctx context.Context, req *email.UpdateGroupRequest) (*email.UpdateGroupResponse, error) {
-	return client.PostAndUnmarshal[email.UpdateGroupResponse](s.client, ctx, "/cgi-bin/exmail/group/update", req)
+	return client.PostAndUnmarshal[email.UpdateGroupResponse](s.client, ctx, XmailGroupUpdateURL, req)
 }
 
 // SearchGroup 模糊搜索邮件群组
@@ -46,7 +53,7 @@ func (s *Service) SearchGroup(ctx context.Context, fuzzy uint32, groupID string)
 	if groupID != "" {
 		query.Set("groupid", groupID)
 	}
-	return client.GetAndUnmarshal[email.SearchGroupResponse](s.client, ctx, "/cgi-bin/exmail/group/search", query)
+	return client.GetAndUnmarshal[email.SearchGroupResponse](s.client, ctx, XmailGroupSearchURL, query)
 }
 
 // DeleteGroup 删除邮件群组
@@ -57,5 +64,5 @@ func (s *Service) DeleteGroup(ctx context.Context, groupID string) (*email.Delet
 	req := &email.DeleteGroupRequest{
 		GroupID: groupID,
 	}
-	return client.PostAndUnmarshal[email.DeleteGroupResponse](s.client, ctx, "/cgi-bin/exmail/group/delete", req)
+	return client.PostAndUnmarshal[email.DeleteGroupResponse](s.client, ctx, XmailGroupDeleteURL, req)
 }

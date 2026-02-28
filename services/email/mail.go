@@ -6,13 +6,18 @@ import (
 	"github.com/shuaidd/wecom-core/internal/client"
 	"github.com/shuaidd/wecom-core/types/email"
 )
+const (
+	XmailAppGetMailListURL = "/cgi-bin/exmail/app/get_mail_list"
+	XmailAppReadMailURL = "/cgi-bin/exmail/app/read_mail"
+	XmailMailGetNewcountURL = "/cgi-bin/exmail/mail/get_newcount"
+)
 
 // GetNewCount 获取邮件未读数
 // 获取指定成员邮箱当前未读邮件数量
 //
 // 文档: https://developer.work.weixin.qq.com/document/path/95845
 func (s *Service) GetNewCount(ctx context.Context, req *email.GetNewCountRequest) (*email.GetNewCountResponse, error) {
-	return client.PostAndUnmarshal[email.GetNewCountResponse](s.client, ctx, "/cgi-bin/exmail/mail/get_newcount", req)
+	return client.PostAndUnmarshal[email.GetNewCountResponse](s.client, ctx, XmailMailGetNewcountURL, req)
 }
 
 // GetMailList 获取收件箱邮件列表
@@ -21,7 +26,7 @@ func (s *Service) GetNewCount(ctx context.Context, req *email.GetNewCountRequest
 //
 // 文档: https://developer.work.weixin.qq.com/document/path/95846
 func (s *Service) GetMailList(ctx context.Context, req *email.GetMailListRequest) (*email.GetMailListResponse, error) {
-	return client.PostAndUnmarshal[email.GetMailListResponse](s.client, ctx, "/cgi-bin/exmail/app/get_mail_list", req)
+	return client.PostAndUnmarshal[email.GetMailListResponse](s.client, ctx, XmailAppGetMailListURL, req)
 }
 
 // ReadMail 获取邮件内容
@@ -29,5 +34,5 @@ func (s *Service) GetMailList(ctx context.Context, req *email.GetMailListRequest
 //
 // 文档: https://developer.work.weixin.qq.com/document/path/95847
 func (s *Service) ReadMail(ctx context.Context, req *email.ReadMailRequest) (*email.ReadMailResponse, error) {
-	return client.PostAndUnmarshal[email.ReadMailResponse](s.client, ctx, "/cgi-bin/exmail/app/read_mail", req)
+	return client.PostAndUnmarshal[email.ReadMailResponse](s.client, ctx, XmailAppReadMailURL, req)
 }

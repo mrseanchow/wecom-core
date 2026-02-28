@@ -7,33 +7,40 @@ import (
 	"github.com/shuaidd/wecom-core/types/common"
 	"github.com/shuaidd/wecom-core/types/externalcontact"
 )
+const (
+	XternalcontactAddProductAlbumURL = "/cgi-bin/externalcontact/add_product_album"
+	XternalcontactDeleteProductAlbumURL = "/cgi-bin/externalcontact/delete_product_album"
+	XternalcontactGetProductAlbumListURL = "/cgi-bin/externalcontact/get_product_album_list"
+	XternalcontactGetProductAlbumURL = "/cgi-bin/externalcontact/get_product_album"
+	XternalcontactUpdateProductAlbumURL = "/cgi-bin/externalcontact/update_product_album"
+)
 
 // AddProductAlbum 创建商品图册
 // 企业和第三方应用可以通过此接口增加商品
 // 文档: https://developer.work.weixin.qq.com/document/path/95096
 func (s *Service) AddProductAlbum(ctx context.Context, req *externalcontact.AddProductAlbumRequest) (*externalcontact.AddProductAlbumResponse, error) {
-	return client.PostAndUnmarshal[externalcontact.AddProductAlbumResponse](s.client, ctx, "/cgi-bin/externalcontact/add_product_album", req)
+	return client.PostAndUnmarshal[externalcontact.AddProductAlbumResponse](s.client, ctx, XternalcontactAddProductAlbumURL, req)
 }
 
 // GetProductAlbum 获取商品图册
 // 企业和第三方应用可以通过此接口获取商品信息
 // 文档: https://developer.work.weixin.qq.com/document/path/95096
 func (s *Service) GetProductAlbum(ctx context.Context, req *externalcontact.GetProductAlbumRequest) (*externalcontact.GetProductAlbumResponse, error) {
-	return client.PostAndUnmarshal[externalcontact.GetProductAlbumResponse](s.client, ctx, "/cgi-bin/externalcontact/get_product_album", req)
+	return client.PostAndUnmarshal[externalcontact.GetProductAlbumResponse](s.client, ctx, XternalcontactGetProductAlbumURL, req)
 }
 
 // GetProductAlbumList 获取商品图册列表
 // 企业和第三方应用可以通过此接口导出商品
 // 文档: https://developer.work.weixin.qq.com/document/path/95096
 func (s *Service) GetProductAlbumList(ctx context.Context, req *externalcontact.GetProductAlbumListRequest) (*externalcontact.GetProductAlbumListResponse, error) {
-	return client.PostAndUnmarshal[externalcontact.GetProductAlbumListResponse](s.client, ctx, "/cgi-bin/externalcontact/get_product_album_list", req)
+	return client.PostAndUnmarshal[externalcontact.GetProductAlbumListResponse](s.client, ctx, XternalcontactGetProductAlbumListURL, req)
 }
 
 // UpdateProductAlbum 编辑商品图册
 // 企业和第三方应用可以通过此接口修改商品信息
 // 文档: https://developer.work.weixin.qq.com/document/path/95096
 func (s *Service) UpdateProductAlbum(ctx context.Context, req *externalcontact.UpdateProductAlbumRequest) error {
-	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/update_product_album", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, XternalcontactUpdateProductAlbumURL, req)
 	return err
 }
 
@@ -41,6 +48,6 @@ func (s *Service) UpdateProductAlbum(ctx context.Context, req *externalcontact.U
 // 企业和第三方应用可以通过此接口删除商品信息
 // 文档: https://developer.work.weixin.qq.com/document/path/95096
 func (s *Service) DeleteProductAlbum(ctx context.Context, req *externalcontact.DeleteProductAlbumRequest) error {
-	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/delete_product_album", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, XternalcontactDeleteProductAlbumURL, req)
 	return err
 }

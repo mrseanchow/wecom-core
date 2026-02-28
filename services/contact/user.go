@@ -8,11 +8,26 @@ import (
 	"github.com/shuaidd/wecom-core/internal/client"
 	"github.com/shuaidd/wecom-core/types/contact"
 )
+const (
+	SerAuthsuccURL = "/cgi-bin/user/authsucc"
+	SerBatchdeleteURL = "/cgi-bin/user/batchdelete"
+	SerConvertToOpenidURL = "/cgi-bin/user/convert_to_openid"
+	SerConvertToUseridURL = "/cgi-bin/user/convert_to_userid"
+	SerCreateURL = "/cgi-bin/user/create"
+	SerDeleteURL = "/cgi-bin/user/delete"
+	SerGetURL = "/cgi-bin/user/get"
+	SerGetUseridByEmailURL = "/cgi-bin/user/get_userid_by_email"
+	SerGetuseridURL = "/cgi-bin/user/getuserid"
+	SerListIdURL = "/cgi-bin/user/list_id"
+	SerListURL = "/cgi-bin/user/list"
+	SerSimplelistURL = "/cgi-bin/user/simplelist"
+	SerUpdateURL = "/cgi-bin/user/update"
+)
 
 // CreateUser 创建成员
 // 文档: https://developer.work.weixin.qq.com/document/path/90195
 func (s *Service) CreateUser(ctx context.Context, req *contact.CreateUserRequest) (*contact.CreateUserResponse, error) {
-	return client.PostAndUnmarshal[contact.CreateUserResponse](s.client, ctx, "/cgi-bin/user/create", req)
+	return client.PostAndUnmarshal[contact.CreateUserResponse](s.client, ctx, SerCreateURL, req)
 }
 
 // GetUser 读取成员
@@ -21,7 +36,7 @@ func (s *Service) GetUser(ctx context.Context, userID string) (*contact.User, er
 	query := url.Values{}
 	query.Set("userid", userID)
 
-	result, err := client.GetAndUnmarshal[contact.GetUserResponse](s.client, ctx, "/cgi-bin/user/get", query)
+	result, err := client.GetAndUnmarshal[contact.GetUserResponse](s.client, ctx, SerGetURL, query)
 	if err != nil {
 		return nil, err
 	}
@@ -32,7 +47,7 @@ func (s *Service) GetUser(ctx context.Context, userID string) (*contact.User, er
 // UpdateUser 更新成员
 // 文档: https://developer.work.weixin.qq.com/document/path/90197
 func (s *Service) UpdateUser(ctx context.Context, req *contact.UpdateUserRequest) error {
-	_, err := client.PostAndUnmarshal[contact.UpdateUserResponse](s.client, ctx, "/cgi-bin/user/update", req)
+	_, err := client.PostAndUnmarshal[contact.UpdateUserResponse](s.client, ctx, SerUpdateURL, req)
 	return err
 }
 
@@ -42,7 +57,7 @@ func (s *Service) DeleteUser(ctx context.Context, userID string) error {
 	query := url.Values{}
 	query.Set("userid", userID)
 
-	_, err := client.GetAndUnmarshal[contact.DeleteUserResponse](s.client, ctx, "/cgi-bin/user/delete", query)
+	_, err := client.GetAndUnmarshal[contact.DeleteUserResponse](s.client, ctx, SerDeleteURL, query)
 	return err
 }
 
@@ -57,7 +72,7 @@ func (s *Service) ListUsers(ctx context.Context, departmentID int, fetchChild bo
 		query.Set("fetch_child", "0")
 	}
 
-	result, err := client.GetAndUnmarshal[contact.ListUsersResponse](s.client, ctx, "/cgi-bin/user/simplelist", query)
+	result, err := client.GetAndUnmarshal[contact.ListUsersResponse](s.client, ctx, SerSimplelistURL, query)
 	if err != nil {
 		return nil, err
 	}
@@ -76,7 +91,7 @@ func (s *Service) ListUsersDetail(ctx context.Context, departmentID int, fetchCh
 		query.Set("fetch_child", "0")
 	}
 
-	result, err := client.GetAndUnmarshal[contact.ListUsersDetailResponse](s.client, ctx, "/cgi-bin/user/list", query)
+	result, err := client.GetAndUnmarshal[contact.ListUsersDetailResponse](s.client, ctx, SerListURL, query)
 	if err != nil {
 		return nil, err
 	}
@@ -87,7 +102,7 @@ func (s *Service) ListUsersDetail(ctx context.Context, departmentID int, fetchCh
 // ListUserIDs 获取成员ID列表
 // 文档: https://developer.work.weixin.qq.com/document/path/96067
 func (s *Service) ListUserIDs(ctx context.Context, req *contact.ListUserIDsRequest) (*contact.ListUserIDsResponse, error) {
-	return client.PostAndUnmarshal[contact.ListUserIDsResponse](s.client, ctx, "/cgi-bin/user/list_id", req)
+	return client.PostAndUnmarshal[contact.ListUserIDsResponse](s.client, ctx, SerListIdURL, req)
 }
 
 // AuthSuccess 二次验证
@@ -96,7 +111,7 @@ func (s *Service) AuthSuccess(ctx context.Context, userID string) error {
 	query := url.Values{}
 	query.Set("userid", userID)
 
-	_, err := client.GetAndUnmarshal[contact.AuthSuccessResponse](s.client, ctx, "/cgi-bin/user/authsucc", query)
+	_, err := client.GetAndUnmarshal[contact.AuthSuccessResponse](s.client, ctx, SerAuthsuccURL, query)
 	return err
 }
 
@@ -107,7 +122,7 @@ func (s *Service) ConvertToOpenID(ctx context.Context, userID string) (string, e
 		UserID: userID,
 	}
 
-	result, err := client.PostAndUnmarshal[contact.ConvertToOpenIDResponse](s.client, ctx, "/cgi-bin/user/convert_to_openid", req)
+	result, err := client.PostAndUnmarshal[contact.ConvertToOpenIDResponse](s.client, ctx, SerConvertToOpenidURL, req)
 	if err != nil {
 		return "", err
 	}
@@ -122,7 +137,7 @@ func (s *Service) ConvertToUserID(ctx context.Context, openID string) (string, e
 		OpenID: openID,
 	}
 
-	result, err := client.PostAndUnmarshal[contact.ConvertToUserIDResponse](s.client, ctx, "/cgi-bin/user/convert_to_userid", req)
+	result, err := client.PostAndUnmarshal[contact.ConvertToUserIDResponse](s.client, ctx, SerConvertToUseridURL, req)
 	if err != nil {
 		return "", err
 	}
@@ -138,7 +153,7 @@ func (s *Service) GetUserIDByEmail(ctx context.Context, email string, emailType 
 		EmailType: emailType,
 	}
 
-	result, err := client.PostAndUnmarshal[contact.GetUserIDByEmailResponse](s.client, ctx, "/cgi-bin/user/get_userid_by_email", req)
+	result, err := client.PostAndUnmarshal[contact.GetUserIDByEmailResponse](s.client, ctx, SerGetUseridByEmailURL, req)
 	if err != nil {
 		return "", err
 	}
@@ -153,7 +168,7 @@ func (s *Service) GetUserIDByMobile(ctx context.Context, mobile string) (string,
 		Mobile: mobile,
 	}
 
-	result, err := client.PostAndUnmarshal[contact.GetUserIDByMobileResponse](s.client, ctx, "/cgi-bin/user/getuserid", req)
+	result, err := client.PostAndUnmarshal[contact.GetUserIDByMobileResponse](s.client, ctx, SerGetuseridURL, req)
 	if err != nil {
 		return "", err
 	}
@@ -168,6 +183,6 @@ func (s *Service) BatchDeleteUsers(ctx context.Context, userIDList []string) err
 		UserIDList: userIDList,
 	}
 
-	_, err := client.PostAndUnmarshal[contact.BatchDeleteUsersResponse](s.client, ctx, "/cgi-bin/user/batchdelete", req)
+	_, err := client.PostAndUnmarshal[contact.BatchDeleteUsersResponse](s.client, ctx, SerBatchdeleteURL, req)
 	return err
 }

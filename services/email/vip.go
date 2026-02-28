@@ -6,13 +6,18 @@ import (
 	"github.com/shuaidd/wecom-core/internal/client"
 	"github.com/shuaidd/wecom-core/types/email"
 )
+const (
+	XmailVipBatchAddURL = "/cgi-bin/exmail/vip/batch_add"
+	XmailVipBatchDelURL = "/cgi-bin/exmail/vip/batch_del"
+	XmailVipListURL = "/cgi-bin/exmail/vip/list"
+)
 
 // BatchAddVIP 分配高级功能账号
 // 该接口可以为在应用可见范围的企业成员分配高级功能。
 //
 // 文档: https://developer.work.weixin.qq.com/document/path/95848
 func (s *Service) BatchAddVIP(ctx context.Context, req *email.BatchAddVIPRequest) (*email.BatchAddVIPResponse, error) {
-	return client.PostAndUnmarshal[email.BatchAddVIPResponse](s.client, ctx, "/cgi-bin/exmail/vip/batch_add", req)
+	return client.PostAndUnmarshal[email.BatchAddVIPResponse](s.client, ctx, XmailVipBatchAddURL, req)
 }
 
 // BatchDelVIP 取消高级功能账号
@@ -20,7 +25,7 @@ func (s *Service) BatchAddVIP(ctx context.Context, req *email.BatchAddVIPRequest
 //
 // 文档: https://developer.work.weixin.qq.com/document/path/95849
 func (s *Service) BatchDelVIP(ctx context.Context, req *email.BatchDelVIPRequest) (*email.BatchDelVIPResponse, error) {
-	return client.PostAndUnmarshal[email.BatchDelVIPResponse](s.client, ctx, "/cgi-bin/exmail/vip/batch_del", req)
+	return client.PostAndUnmarshal[email.BatchDelVIPResponse](s.client, ctx, XmailVipBatchDelURL, req)
 }
 
 // ListVIP 获取高级功能账号列表
@@ -28,5 +33,5 @@ func (s *Service) BatchDelVIP(ctx context.Context, req *email.BatchDelVIPRequest
 //
 // 文档: https://developer.work.weixin.qq.com/document/path/95850
 func (s *Service) ListVIP(ctx context.Context, req *email.ListVIPRequest) (*email.ListVIPResponse, error) {
-	return client.PostAndUnmarshal[email.ListVIPResponse](s.client, ctx, "/cgi-bin/exmail/vip/list", req)
+	return client.PostAndUnmarshal[email.ListVIPResponse](s.client, ctx, XmailVipListURL, req)
 }

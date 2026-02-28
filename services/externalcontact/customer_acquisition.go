@@ -8,12 +8,23 @@ import (
 	"github.com/shuaidd/wecom-core/types/common"
 	"github.com/shuaidd/wecom-core/types/externalcontact"
 )
+const (
+	XternalcontactCustomerAcquisitionCreateLinkURL = "/cgi-bin/externalcontact/customer_acquisition/create_link"
+	XternalcontactCustomerAcquisitionCustomerURL = "/cgi-bin/externalcontact/customer_acquisition/customer"
+	XternalcontactCustomerAcquisitionDeleteLinkURL = "/cgi-bin/externalcontact/customer_acquisition/delete_link"
+	XternalcontactCustomerAcquisitionGetChatInfoURL = "/cgi-bin/externalcontact/customer_acquisition/get_chat_info"
+	XternalcontactCustomerAcquisitionGetURL = "/cgi-bin/externalcontact/customer_acquisition/get"
+	XternalcontactCustomerAcquisitionListLinkURL = "/cgi-bin/externalcontact/customer_acquisition/list_link"
+	XternalcontactCustomerAcquisitionQuotaURL = "/cgi-bin/externalcontact/customer_acquisition_quota"
+	XternalcontactCustomerAcquisitionStatisticURL = "/cgi-bin/externalcontact/customer_acquisition/statistic"
+	XternalcontactCustomerAcquisitionUpdateLinkURL = "/cgi-bin/externalcontact/customer_acquisition/update_link"
+)
 
 // ListAcquisitionLink 获取获客链接列表
 // 企业可通过此接口获取当前仍然有效且是当前应用创建的获客链接
 // 文档: https://developer.work.weixin.qq.com/document/path/97297
 func (s *Service) ListAcquisitionLink(ctx context.Context, req *externalcontact.ListAcquisitionLinkRequest) (*externalcontact.ListAcquisitionLinkResponse, error) {
-	return client.PostAndUnmarshal[externalcontact.ListAcquisitionLinkResponse](s.client, ctx, "/cgi-bin/externalcontact/customer_acquisition/list_link", req)
+	return client.PostAndUnmarshal[externalcontact.ListAcquisitionLinkResponse](s.client, ctx, XternalcontactCustomerAcquisitionListLinkURL, req)
 }
 
 // GetAcquisitionLink 获取获客链接详情
@@ -23,21 +34,21 @@ func (s *Service) GetAcquisitionLink(ctx context.Context, linkID string) (*exter
 	req := &externalcontact.GetAcquisitionLinkRequest{
 		LinkID: linkID,
 	}
-	return client.PostAndUnmarshal[externalcontact.GetAcquisitionLinkResponse](s.client, ctx, "/cgi-bin/externalcontact/customer_acquisition/get", req)
+	return client.PostAndUnmarshal[externalcontact.GetAcquisitionLinkResponse](s.client, ctx, XternalcontactCustomerAcquisitionGetURL, req)
 }
 
 // CreateAcquisitionLink 创建获客链接
 // 企业可通过此接口创建新的获客链接
 // 文档: https://developer.work.weixin.qq.com/document/path/97297
 func (s *Service) CreateAcquisitionLink(ctx context.Context, req *externalcontact.CreateAcquisitionLinkRequest) (*externalcontact.CreateAcquisitionLinkResponse, error) {
-	return client.PostAndUnmarshal[externalcontact.CreateAcquisitionLinkResponse](s.client, ctx, "/cgi-bin/externalcontact/customer_acquisition/create_link", req)
+	return client.PostAndUnmarshal[externalcontact.CreateAcquisitionLinkResponse](s.client, ctx, XternalcontactCustomerAcquisitionCreateLinkURL, req)
 }
 
 // UpdateAcquisitionLink 编辑获客链接
 // 企业可通过此接口编辑获客链接，修改获客链接的关联范围或修改获客链接的名称
 // 文档: https://developer.work.weixin.qq.com/document/path/97297
 func (s *Service) UpdateAcquisitionLink(ctx context.Context, req *externalcontact.UpdateAcquisitionLinkRequest) error {
-	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/customer_acquisition/update_link", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, XternalcontactCustomerAcquisitionUpdateLinkURL, req)
 	return err
 }
 
@@ -48,7 +59,7 @@ func (s *Service) DeleteAcquisitionLink(ctx context.Context, linkID string) erro
 	req := &externalcontact.DeleteAcquisitionLinkRequest{
 		LinkID: linkID,
 	}
-	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/customer_acquisition/delete_link", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, XternalcontactCustomerAcquisitionDeleteLinkURL, req)
 	return err
 }
 
@@ -56,14 +67,14 @@ func (s *Service) DeleteAcquisitionLink(ctx context.Context, linkID string) erro
 // 企业可通过此接口查询当前剩余的使用量
 // 文档: https://developer.work.weixin.qq.com/document/path/97375
 func (s *Service) GetAcquisitionQuota(ctx context.Context) (*externalcontact.GetAcquisitionQuotaResponse, error) {
-	return client.GetAndUnmarshal[externalcontact.GetAcquisitionQuotaResponse](s.client, ctx, "/cgi-bin/externalcontact/customer_acquisition_quota", url.Values{})
+	return client.GetAndUnmarshal[externalcontact.GetAcquisitionQuotaResponse](s.client, ctx, XternalcontactCustomerAcquisitionQuotaURL, url.Values{})
 }
 
 // GetAcquisitionStatistic 查询链接使用详情
 // 企业可通过此接口查询指定获客链接在指定时间范围内的访问情况
 // 文档: https://developer.work.weixin.qq.com/document/path/97375
 func (s *Service) GetAcquisitionStatistic(ctx context.Context, req *externalcontact.GetAcquisitionStatisticRequest) (*externalcontact.GetAcquisitionStatisticResponse, error) {
-	return client.PostAndUnmarshal[externalcontact.GetAcquisitionStatisticResponse](s.client, ctx, "/cgi-bin/externalcontact/customer_acquisition/statistic", req)
+	return client.PostAndUnmarshal[externalcontact.GetAcquisitionStatisticResponse](s.client, ctx, XternalcontactCustomerAcquisitionStatisticURL, req)
 }
 
 // GetAcquisitionChatInfo 获取成员多次收消息详情
@@ -73,12 +84,12 @@ func (s *Service) GetAcquisitionChatInfo(ctx context.Context, chatKey string) (*
 	req := &externalcontact.GetAcquisitionChatInfoRequest{
 		ChatKey: chatKey,
 	}
-	return client.PostAndUnmarshal[externalcontact.GetAcquisitionChatInfoResponse](s.client, ctx, "/cgi-bin/externalcontact/customer_acquisition/get_chat_info", req)
+	return client.PostAndUnmarshal[externalcontact.GetAcquisitionChatInfoResponse](s.client, ctx, XternalcontactCustomerAcquisitionGetChatInfoURL, req)
 }
 
 // ListAcquisitionCustomer 获取获客客户列表
 // 企业可通过此接口获取到由指定的获客链接添加的客户列表
 // 文档: https://developer.work.weixin.qq.com/document/path/97443
 func (s *Service) ListAcquisitionCustomer(ctx context.Context, req *externalcontact.ListAcquisitionCustomerRequest) (*externalcontact.ListAcquisitionCustomerResponse, error) {
-	return client.PostAndUnmarshal[externalcontact.ListAcquisitionCustomerResponse](s.client, ctx, "/cgi-bin/externalcontact/customer_acquisition/customer", req)
+	return client.PostAndUnmarshal[externalcontact.ListAcquisitionCustomerResponse](s.client, ctx, XternalcontactCustomerAcquisitionCustomerURL, req)
 }

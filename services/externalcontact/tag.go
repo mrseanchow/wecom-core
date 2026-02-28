@@ -7,26 +7,37 @@ import (
 	"github.com/shuaidd/wecom-core/types/common"
 	"github.com/shuaidd/wecom-core/types/externalcontact"
 )
+const (
+	XternalcontactAddCorpTagURL = "/cgi-bin/externalcontact/add_corp_tag"
+	XternalcontactAddStrategyTagURL = "/cgi-bin/externalcontact/add_strategy_tag"
+	XternalcontactDelCorpTagURL = "/cgi-bin/externalcontact/del_corp_tag"
+	XternalcontactDelStrategyTagURL = "/cgi-bin/externalcontact/del_strategy_tag"
+	XternalcontactEditCorpTagURL = "/cgi-bin/externalcontact/edit_corp_tag"
+	XternalcontactEditStrategyTagURL = "/cgi-bin/externalcontact/edit_strategy_tag"
+	XternalcontactGetCorpTagListURL = "/cgi-bin/externalcontact/get_corp_tag_list"
+	XternalcontactGetStrategyTagListURL = "/cgi-bin/externalcontact/get_strategy_tag_list"
+	XternalcontactMarkTagURL = "/cgi-bin/externalcontact/mark_tag"
+)
 
 // GetCorpTagList 获取企业标签库
 // 企业可通过此接口获取企业客户标签详情
 // 文档: https://developer.work.weixin.qq.com/document/path/92117
 func (s *Service) GetCorpTagList(ctx context.Context, req *externalcontact.GetCorpTagListRequest) (*externalcontact.GetCorpTagListResponse, error) {
-	return client.PostAndUnmarshal[externalcontact.GetCorpTagListResponse](s.client, ctx, "/cgi-bin/externalcontact/get_corp_tag_list", req)
+	return client.PostAndUnmarshal[externalcontact.GetCorpTagListResponse](s.client, ctx, XternalcontactGetCorpTagListURL, req)
 }
 
 // AddCorpTag 添加企业客户标签
 // 企业可通过此接口向客户标签库中添加新的标签组和标签
 // 文档: https://developer.work.weixin.qq.com/document/path/92117
 func (s *Service) AddCorpTag(ctx context.Context, req *externalcontact.AddCorpTagRequest) (*externalcontact.AddCorpTagResponse, error) {
-	return client.PostAndUnmarshal[externalcontact.AddCorpTagResponse](s.client, ctx, "/cgi-bin/externalcontact/add_corp_tag", req)
+	return client.PostAndUnmarshal[externalcontact.AddCorpTagResponse](s.client, ctx, XternalcontactAddCorpTagURL, req)
 }
 
 // EditCorpTag 编辑企业客户标签
 // 企业可通过此接口编辑客户标签/标签组的名称或次序值
 // 文档: https://developer.work.weixin.qq.com/document/path/92117
 func (s *Service) EditCorpTag(ctx context.Context, req *externalcontact.EditCorpTagRequest) error {
-	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/edit_corp_tag", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, XternalcontactEditCorpTagURL, req)
 	return err
 }
 
@@ -34,7 +45,7 @@ func (s *Service) EditCorpTag(ctx context.Context, req *externalcontact.EditCorp
 // 企业可通过此接口删除客户标签库中的标签，或删除整个标签组
 // 文档: https://developer.work.weixin.qq.com/document/path/92117
 func (s *Service) DeleteCorpTag(ctx context.Context, req *externalcontact.DeleteCorpTagRequest) error {
-	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/del_corp_tag", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, XternalcontactDelCorpTagURL, req)
 	return err
 }
 
@@ -42,7 +53,7 @@ func (s *Service) DeleteCorpTag(ctx context.Context, req *externalcontact.Delete
 // 企业可通过此接口为指定成员的客户添加上由企业统一配置的标签
 // 文档: https://developer.work.weixin.qq.com/document/path/92118
 func (s *Service) MarkTag(ctx context.Context, req *externalcontact.MarkTagRequest) error {
-	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/mark_tag", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, XternalcontactMarkTagURL, req)
 	return err
 }
 
@@ -50,21 +61,21 @@ func (s *Service) MarkTag(ctx context.Context, req *externalcontact.MarkTagReque
 // 企业可通过此接口获取某个规则组内的企业客户标签详情
 // 文档: https://developer.work.weixin.qq.com/document/path/94882
 func (s *Service) GetStrategyTagList(ctx context.Context, req *externalcontact.GetStrategyTagListRequest) (*externalcontact.GetStrategyTagListResponse, error) {
-	return client.PostAndUnmarshal[externalcontact.GetStrategyTagListResponse](s.client, ctx, "/cgi-bin/externalcontact/get_strategy_tag_list", req)
+	return client.PostAndUnmarshal[externalcontact.GetStrategyTagListResponse](s.client, ctx, XternalcontactGetStrategyTagListURL, req)
 }
 
 // AddStrategyTag 为指定规则组创建企业客户标签
 // 企业可通过此接口向规则组中添加新的标签组和标签
 // 文档: https://developer.work.weixin.qq.com/document/path/94882
 func (s *Service) AddStrategyTag(ctx context.Context, req *externalcontact.AddStrategyTagRequest) (*externalcontact.AddStrategyTagResponse, error) {
-	return client.PostAndUnmarshal[externalcontact.AddStrategyTagResponse](s.client, ctx, "/cgi-bin/externalcontact/add_strategy_tag", req)
+	return client.PostAndUnmarshal[externalcontact.AddStrategyTagResponse](s.client, ctx, XternalcontactAddStrategyTagURL, req)
 }
 
 // EditStrategyTag 编辑指定规则组下的企业客户标签
 // 企业可通过此接口编辑指定规则组下的客户标签/标签组的名称或次序值
 // 文档: https://developer.work.weixin.qq.com/document/path/94882
 func (s *Service) EditStrategyTag(ctx context.Context, req *externalcontact.EditStrategyTagRequest) error {
-	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/edit_strategy_tag", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, XternalcontactEditStrategyTagURL, req)
 	return err
 }
 
@@ -72,6 +83,6 @@ func (s *Service) EditStrategyTag(ctx context.Context, req *externalcontact.Edit
 // 企业可通过此接口删除某个规则组下的标签，或删除整个标签组
 // 文档: https://developer.work.weixin.qq.com/document/path/94882
 func (s *Service) DeleteStrategyTag(ctx context.Context, req *externalcontact.DeleteStrategyTagRequest) error {
-	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/del_strategy_tag", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, XternalcontactDelStrategyTagURL, req)
 	return err
 }

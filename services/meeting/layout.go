@@ -7,6 +7,23 @@ import (
 	"github.com/shuaidd/wecom-core/types/common"
 	"github.com/shuaidd/wecom-core/types/meeting"
 )
+const (
+	EetingAdvancedLayoutAddURL = "/cgi-bin/meeting/advanced_layout/add"
+	EetingAdvancedLayoutApplyURL = "/cgi-bin/meeting/advanced_layout/apply"
+	EetingAdvancedLayoutBatchDeleteURL = "/cgi-bin/meeting/advanced_layout/batch_delete"
+	EetingAdvancedLayoutGetUserLayoutURL = "/cgi-bin/meeting/advanced_layout/get_user_layout"
+	EetingAdvancedLayoutListURL = "/cgi-bin/meeting/advanced_layout/list"
+	EetingAdvancedLayoutUpdateURL = "/cgi-bin/meeting/advanced_layout/update"
+	EetingLayoutAddBackgroundURL = "/cgi-bin/meeting/layout/add_background"
+	EetingLayoutAddURL = "/cgi-bin/meeting/layout/add"
+	EetingLayoutBatchDeleteBackgroundURL = "/cgi-bin/meeting/layout/batch_delete_background"
+	EetingLayoutDeleteBackgroundURL = "/cgi-bin/meeting/layout/delete_background"
+	EetingLayoutListBackgroundURL = "/cgi-bin/meeting/layout/list_background"
+	EetingLayoutListTemplateURL = "/cgi-bin/meeting/layout/list_template"
+	EetingLayoutSetDefaultBackgroundURL = "/cgi-bin/meeting/layout/set_default_background"
+	EetingLayoutSetDefaultURL = "/cgi-bin/meeting/layout/set_default"
+	EetingLayoutUpdateURL = "/cgi-bin/meeting/layout/update"
+)
 
 // ==================== 布局管理相关接口 ====================
 
@@ -17,7 +34,7 @@ func (s *Service) ListLayout(ctx context.Context, meetingID string) (*meeting.Li
 	req := &meeting.ListLayoutRequest{
 		MeetingID: meetingID,
 	}
-	return client.PostAndUnmarshal[meeting.ListLayoutResponse](s.client, ctx, "/cgi-bin/meeting/advanced_layout/list", req)
+	return client.PostAndUnmarshal[meeting.ListLayoutResponse](s.client, ctx, EetingAdvancedLayoutListURL, req)
 }
 
 // AddBasicLayout 添加会议基础布局
@@ -25,7 +42,7 @@ func (s *Service) ListLayout(ctx context.Context, meetingID string) (*meeting.Li
 // 一场会议最多添加10个布局
 // 文档: https://developer.work.weixin.qq.com/document/path/93629
 func (s *Service) AddBasicLayout(ctx context.Context, req *meeting.AddBasicLayoutRequest) (*meeting.AddBasicLayoutResponse, error) {
-	return client.PostAndUnmarshal[meeting.AddBasicLayoutResponse](s.client, ctx, "/cgi-bin/meeting/layout/add", req)
+	return client.PostAndUnmarshal[meeting.AddBasicLayoutResponse](s.client, ctx, EetingLayoutAddURL, req)
 }
 
 // AddAdvancedLayout 添加会议高级布局
@@ -34,14 +51,14 @@ func (s *Service) AddBasicLayout(ctx context.Context, req *meeting.AddBasicLayou
 // 注意：高级布局目前仅支持 H.323/SIP 会议室终端
 // 文档: https://developer.work.weixin.qq.com/document/path/93630
 func (s *Service) AddAdvancedLayout(ctx context.Context, req *meeting.AddAdvancedLayoutRequest) (*meeting.AddAdvancedLayoutResponse, error) {
-	return client.PostAndUnmarshal[meeting.AddAdvancedLayoutResponse](s.client, ctx, "/cgi-bin/meeting/advanced_layout/add", req)
+	return client.PostAndUnmarshal[meeting.AddAdvancedLayoutResponse](s.client, ctx, EetingAdvancedLayoutAddURL, req)
 }
 
 // UpdateBasicLayout 修改会议基础布局
 // 根据布局ID对设置好的会议基础布局进行修改
 // 文档: https://developer.work.weixin.qq.com/document/path/93631
 func (s *Service) UpdateBasicLayout(ctx context.Context, req *meeting.UpdateBasicLayoutRequest) error {
-	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/meeting/layout/update", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, EetingLayoutUpdateURL, req)
 	return err
 }
 
@@ -52,7 +69,7 @@ func (s *Service) UpdateBasicLayout(ctx context.Context, req *meeting.UpdateBasi
 // 注意：高级布局目前仅支持 H.323/SIP 会议室终端
 // 文档: https://developer.work.weixin.qq.com/document/path/93632
 func (s *Service) UpdateAdvancedLayout(ctx context.Context, req *meeting.UpdateAdvancedLayoutRequest) error {
-	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/meeting/advanced_layout/update", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, EetingAdvancedLayoutUpdateURL, req)
 	return err
 }
 
@@ -63,7 +80,7 @@ func (s *Service) UpdateAdvancedLayout(ctx context.Context, req *meeting.UpdateA
 // 注意：高级布局目前仅支持 H.323/SIP 会议室终端
 // 文档: https://developer.work.weixin.qq.com/document/path/93633
 func (s *Service) BatchDeleteLayout(ctx context.Context, req *meeting.BatchDeleteLayoutRequest) error {
-	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/meeting/advanced_layout/batch_delete", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, EetingAdvancedLayoutBatchDeleteURL, req)
 	return err
 }
 
@@ -71,7 +88,7 @@ func (s *Service) BatchDeleteLayout(ctx context.Context, req *meeting.BatchDelet
 // 对API成功预定的会议设置默认布局
 // 文档: https://developer.work.weixin.qq.com/document/path/93634
 func (s *Service) SetDefaultLayout(ctx context.Context, req *meeting.SetDefaultLayoutRequest) error {
-	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/meeting/layout/set_default", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, EetingLayoutSetDefaultURL, req)
 	return err
 }
 
@@ -81,7 +98,7 @@ func (s *Service) SetDefaultLayout(ctx context.Context, req *meeting.SetDefaultL
 // 注意：高级布局应用到指定成员目前仅支持 H.323/SIP 会议室终端
 // 文档: https://developer.work.weixin.qq.com/document/path/93635
 func (s *Service) ApplyAdvancedLayout(ctx context.Context, req *meeting.ApplyAdvancedLayoutRequest) error {
-	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/meeting/advanced_layout/apply", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, EetingAdvancedLayoutApplyURL, req)
 	return err
 }
 
@@ -91,14 +108,14 @@ func (s *Service) ApplyAdvancedLayout(ctx context.Context, req *meeting.ApplyAdv
 // 注意：高级布局目前仅支持 H.323/SIP 会议室终端
 // 文档: https://developer.work.weixin.qq.com/document/path/93636
 func (s *Service) GetUserLayout(ctx context.Context, req *meeting.GetUserLayoutRequest) (*meeting.GetUserLayoutResponse, error) {
-	return client.PostAndUnmarshal[meeting.GetUserLayoutResponse](s.client, ctx, "/cgi-bin/meeting/advanced_layout/get_user_layout", req)
+	return client.PostAndUnmarshal[meeting.GetUserLayoutResponse](s.client, ctx, EetingAdvancedLayoutGetUserLayoutURL, req)
 }
 
 // ListLayoutTemplate 获取布局模板列表
 // 获取企业下所有的布局模板列表
 // 文档: https://developer.work.weixin.qq.com/document/path/93637
 func (s *Service) ListLayoutTemplate(ctx context.Context) (*meeting.ListLayoutTemplateResponse, error) {
-	return client.GetAndUnmarshal[meeting.ListLayoutTemplateResponse](s.client, ctx, "/cgi-bin/meeting/layout/list_template", nil)
+	return client.GetAndUnmarshal[meeting.ListLayoutTemplateResponse](s.client, ctx, EetingLayoutListTemplateURL, nil)
 }
 
 // ==================== 背景管理相关接口 ====================
@@ -110,7 +127,7 @@ func (s *Service) ListBackground(ctx context.Context, meetingID string) (*meetin
 	req := &meeting.ListBackgroundRequest{
 		MeetingID: meetingID,
 	}
-	return client.PostAndUnmarshal[meeting.ListBackgroundResponse](s.client, ctx, "/cgi-bin/meeting/layout/list_background", req)
+	return client.PostAndUnmarshal[meeting.ListBackgroundResponse](s.client, ctx, EetingLayoutListBackgroundURL, req)
 }
 
 // AddBackground 添加会议背景
@@ -119,7 +136,7 @@ func (s *Service) ListBackground(ctx context.Context, meetingID string) (*meetin
 // 背景图片上传方式为异步上传，您可以通过订阅"素材上传结果"获取上传结果通知
 // 文档: https://developer.work.weixin.qq.com/document/path/93639
 func (s *Service) AddBackground(ctx context.Context, req *meeting.AddBackgroundRequest) (*meeting.AddBackgroundResponse, error) {
-	return client.PostAndUnmarshal[meeting.AddBackgroundResponse](s.client, ctx, "/cgi-bin/meeting/layout/add_background", req)
+	return client.PostAndUnmarshal[meeting.AddBackgroundResponse](s.client, ctx, EetingLayoutAddBackgroundURL, req)
 }
 
 // DeleteBackground 删除会议背景
@@ -127,7 +144,7 @@ func (s *Service) AddBackground(ctx context.Context, req *meeting.AddBackgroundR
 // 正在被会议应用的背景无法删除，请先设置成其他背景或恢复成会议的默认黑色背景后再行删除
 // 文档: https://developer.work.weixin.qq.com/document/path/93640
 func (s *Service) DeleteBackground(ctx context.Context, req *meeting.DeleteBackgroundRequest) error {
-	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/meeting/layout/delete_background", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, EetingLayoutDeleteBackgroundURL, req)
 	return err
 }
 
@@ -136,7 +153,7 @@ func (s *Service) DeleteBackground(ctx context.Context, req *meeting.DeleteBackg
 // 正在被会议应用的背景无法删除，请先设置成其他背景或恢复成会议的默认黑色背景后再行删除
 // 文档: https://developer.work.weixin.qq.com/document/path/93641
 func (s *Service) BatchDeleteBackground(ctx context.Context, req *meeting.BatchDeleteBackgroundRequest) error {
-	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/meeting/layout/batch_delete_background", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, EetingLayoutBatchDeleteBackgroundURL, req)
 	return err
 }
 
@@ -144,6 +161,6 @@ func (s *Service) BatchDeleteBackground(ctx context.Context, req *meeting.BatchD
 // 对API成功预定的会议设置默认背景
 // 文档: https://developer.work.weixin.qq.com/document/path/93642
 func (s *Service) SetDefaultBackground(ctx context.Context, req *meeting.SetDefaultBackgroundRequest) error {
-	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/meeting/layout/set_default_background", req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, EetingLayoutSetDefaultBackgroundURL, req)
 	return err
 }
