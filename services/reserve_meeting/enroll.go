@@ -12,8 +12,6 @@ const (
 	EetingEnrollGetConfigURL = "/cgi-bin/meeting/enroll/get_config"
 	EetingEnrollImportURL = "/cgi-bin/meeting/enroll/import"
 	EetingEnrollListURL = "/cgi-bin/meeting/enroll/list"
-	EetingEnrollListURL = "/cgi-bin/meeting/enroll/list"
-	EetingEnrollListURL = "/cgi-bin/meeting/enroll/list"
 	EetingEnrollQueryByTmpOpenidURL = "/cgi-bin/meeting/enroll/query_by_tmp_openid"
 	EetingEnrollSetConfigURL = "/cgi-bin/meeting/enroll/set_config"
 )

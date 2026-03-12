@@ -10,18 +10,13 @@ import (
 const (
 	EetingCreateCustomerShortUrlURL = "/cgi-bin/meeting/create_customer_short_url"
 	EetingGetAttendeeListURL = "/cgi-bin/meeting/get_attendee_list"
-	EetingGetAttendeeListURL = "/cgi-bin/meeting/get_attendee_list"
 	EetingGetCustomerShortUrlURL = "/cgi-bin/meeting/get_customer_short_url"
 	EetingGetGuestsURL = "/cgi-bin/meeting/get_guests"
 	EetingGetInviteesURL = "/cgi-bin/meeting/get_invitees"
-	EetingGetInviteesURL = "/cgi-bin/meeting/get_invitees"
-	EetingGetRealtimeAttendeeListURL = "/cgi-bin/meeting/get_realtime_attendee_list"
 	EetingGetRealtimeAttendeeListURL = "/cgi-bin/meeting/get_realtime_attendee_list"
 	EetingSetGuestsURL = "/cgi-bin/meeting/set_guests"
 	EetingSetInviteesURL = "/cgi-bin/meeting/set_invitees"
 	EetingWaitingroomGetCurrentUserListURL = "/cgi-bin/meeting/waitingroom/get_current_user_list"
-	EetingWaitingroomGetCurrentUserListURL = "/cgi-bin/meeting/waitingroom/get_current_user_list"
-	EetingWaitingroomGetUserListURL = "/cgi-bin/meeting/waitingroom/get_user_list"
 	EetingWaitingroomGetUserListURL = "/cgi-bin/meeting/waitingroom/get_user_list"
 )
 

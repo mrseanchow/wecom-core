@@ -9,11 +9,8 @@ import (
 )
 const (
 	EetingCancelURL = "/cgi-bin/meeting/cancel"
-	EetingCancelURL = "/cgi-bin/meeting/cancel"
 	EetingCheckDeviceInMeetingURL = "/cgi-bin/meeting/check_device_in_meeting"
 	EetingCreateURL = "/cgi-bin/meeting/create"
-	EetingGetInfoURL = "/cgi-bin/meeting/get_info"
-	EetingGetInfoURL = "/cgi-bin/meeting/get_info"
 	EetingGetInfoURL = "/cgi-bin/meeting/get_info"
 	EetingGetQualityURL = "/cgi-bin/meeting/get_quality"
 	EetingGetUserMeetingidURL = "/cgi-bin/meeting/get_user_meetingid"
