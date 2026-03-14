@@ -15,7 +15,7 @@ func (s *Service) BatchGetCustomer(ctx context.Context, req *kf.BatchGetCustomer
 	return client.PostAndUnmarshal[kf.BatchGetCustomerResponse](s.client, ctx, "/cgi-bin/kf/customer/batchget", req)
 }
 
-// GetUpgradeServiceConfig 获取配置的专员与客户�?
+// GetUpgradeServiceConfig 获取配置的专员与客户群
 // 文档: https://developer.work.weixin.qq.com/document/path/94674
 func (s *Service) GetUpgradeServiceConfig(ctx context.Context) (*kf.GetUpgradeServiceConfigResponse, error) {
 	return client.GetAndUnmarshal[kf.GetUpgradeServiceConfigResponse](s.client, ctx, "/cgi-bin/kf/customer/get_upgrade_service_config", url.Values{})
@@ -28,10 +28,9 @@ func (s *Service) UpgradeService(ctx context.Context, req *kf.UpgradeServiceRequ
 	return err
 }
 
-// CancelUpgradeService 为客户取消推�?
+// CancelUpgradeService 为客户取消推荐
 // 文档: https://developer.work.weixin.qq.com/document/path/94676
 func (s *Service) CancelUpgradeService(ctx context.Context, req *kf.CancelUpgradeServiceRequest) error {
 	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/kf/customer/cancel_upgrade_service", req)
 	return err
 }
-

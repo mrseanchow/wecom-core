@@ -97,4 +97,3 @@ type FieldInfo struct {
 	ValueMobile *MobileValue `json:"value_mobile,omitempty"`
 	ValueFile   *FileValue   `json:"value_file,omitempty"`
 }
-

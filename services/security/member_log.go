@@ -12,4 +12,3 @@ import (
 func (s *Service) ListMemberOperLog(ctx context.Context, req *security.ListMemberOperLogRequest) (*security.ListMemberOperLogResponse, error) {
 	return client.PostAndUnmarshal[security.ListMemberOperLogResponse](s.client, ctx, "/cgi-bin/security/member_oper_log/list", req)
 }
-

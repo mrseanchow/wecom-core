@@ -59,4 +59,3 @@ func (s *Service) DeleteGroup(ctx context.Context, groupID string) (*email.Delet
 	}
 	return client.PostAndUnmarshal[email.DeleteGroupResponse](s.client, ctx, "/cgi-bin/exmail/group/delete", req)
 }
-

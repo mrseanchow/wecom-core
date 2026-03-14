@@ -122,4 +122,3 @@ func (c *XMLClient) PostXML(ctx context.Context, path string, xmlData []byte) (*
 
 	return &result, nil
 }
-

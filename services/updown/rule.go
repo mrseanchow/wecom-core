@@ -50,4 +50,3 @@ func (s *Service) GetRuleInfo(ctx context.Context, req *updown.GetRuleInfoReques
 	}
 	return result.RuleInfo, nil
 }
-

@@ -36,4 +36,3 @@ func (s *Service) BatchDelVIPJobResult(ctx context.Context, req *security.BatchD
 func (s *Service) ListVIP(ctx context.Context, req *security.ListVIPRequest) (*security.ListVIPResponse, error) {
 	return client.PostAndUnmarshal[security.ListVIPResponse](s.client, ctx, "/cgi-bin/security/vip/list", req)
 }
-

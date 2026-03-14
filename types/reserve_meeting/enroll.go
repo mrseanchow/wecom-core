@@ -109,7 +109,7 @@ type EnrollDeleteRequest struct {
 	EnrollIDList []EnrollIDItem `json:"enroll_id_list"`
 }
 
-// EnrollIDItem 报名ID�?
+// EnrollIDItem 报名ID项
 type EnrollIDItem struct {
 	EnrollID string `json:"enroll_id"`
 }
@@ -126,7 +126,7 @@ type EnrollImportRequest struct {
 	EnrollList []EnrollImportItem `json:"enroll_list"`
 }
 
-// EnrollImportItem 导入报名�?
+// EnrollImportItem 导入报名项
 type EnrollImportItem struct {
 	UserID      string `json:"userid,omitempty"`
 	Area        string `json:"area,omitempty"`
@@ -141,7 +141,7 @@ type EnrollImportResponse struct {
 	EnrollList []EnrollImportResponseItem `json:"enroll_list,omitempty"`
 }
 
-// EnrollImportResponseItem 导入报名响应�?
+// EnrollImportResponseItem 导入报名响应项
 type EnrollImportResponseItem struct {
 	EnrollID    string `json:"enroll_id"`
 	UserID      string `json:"userid"`
@@ -163,4 +163,3 @@ type EnrollApproveResponse struct {
 	common.Response
 	HandledCount int32 `json:"handled_count"`
 }
-

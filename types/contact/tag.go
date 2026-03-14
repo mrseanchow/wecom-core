@@ -45,7 +45,7 @@ type ListTagsResponse struct {
 // GetTagResponse 获取标签成员响应
 type GetTagResponse struct {
 	common.Response
-	// TagName 标签�?
+	// TagName 标签名
 	TagName string `json:"tagname"`
 	// UserList 标签中包含的成员列表
 	UserList []TagUser `json:"userlist,omitempty"`
@@ -56,7 +56,7 @@ type GetTagResponse struct {
 // AddTagUsersResponse 增加标签成员响应
 type AddTagUsersResponse struct {
 	common.Response
-	// InvalidList 非法的成员帐号列�?
+	// InvalidList 非法的成员帐号列表
 	InvalidList string `json:"invalidlist,omitempty"`
 	// InvalidParty 非法的部门id列表
 	InvalidParty []int `json:"invalidparty,omitempty"`
@@ -65,9 +65,8 @@ type AddTagUsersResponse struct {
 // DeleteTagUsersResponse 删除标签成员响应
 type DeleteTagUsersResponse struct {
 	common.Response
-	// InvalidList 非法的成员帐号列�?
+	// InvalidList 非法的成员帐号列表
 	InvalidList string `json:"invalidlist,omitempty"`
 	// InvalidParty 非法的部门id列表
 	InvalidParty []int `json:"invalidparty,omitempty"`
 }
-

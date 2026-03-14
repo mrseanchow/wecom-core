@@ -10,4 +10,3 @@ import (
 func (s *Service) GetFields(ctx context.Context) (*hr.GetFieldsResponse, error) {
 	return client.GetAndUnmarshal[hr.GetFieldsResponse](s.client, ctx, "/cgi-bin/hr/get_fields", nil)
 }
-

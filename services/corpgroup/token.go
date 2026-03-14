@@ -12,4 +12,3 @@ import (
 func (s *Service) GetToken(ctx context.Context, req *corpgroup.GetTokenRequest) (*corpgroup.GetTokenResponse, error) {
 	return client.PostAndUnmarshal[corpgroup.GetTokenResponse](s.client, ctx, "/cgi-bin/corpgroup/corp/gettoken", req)
 }
-

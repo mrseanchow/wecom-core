@@ -16,4 +16,3 @@ func (s *Service) ImportChainContact(ctx context.Context, req *updown.ImportChai
 	}
 	return result.JobID, nil
 }
-

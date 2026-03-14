@@ -8,7 +8,7 @@ type ApplicableRange struct {
 	DepartmentList []int    `json:"department_list,omitempty"`
 }
 
-// InterceptRule 敏感词规�?
+// InterceptRule 敏感词规则
 type InterceptRule struct {
 	RuleID          string           `json:"rule_id,omitempty"`
 	RuleName        string           `json:"rule_name"`
@@ -19,7 +19,7 @@ type InterceptRule struct {
 	CreateTime      int64            `json:"create_time,omitempty"`
 }
 
-// AddInterceptRuleRequest 新建敏感词规则请�?
+// AddInterceptRuleRequest 新建敏感词规则请求
 type AddInterceptRuleRequest struct {
 	RuleName        string           `json:"rule_name"`
 	WordList        []string         `json:"word_list"`
@@ -28,13 +28,13 @@ type AddInterceptRuleRequest struct {
 	ApplicableRange *ApplicableRange `json:"applicable_range"`
 }
 
-// AddInterceptRuleResponse 新建敏感词规则响�?
+// AddInterceptRuleResponse 新建敏感词规则响应
 type AddInterceptRuleResponse struct {
 	common.Response
 	RuleID string `json:"rule_id"`
 }
 
-// GetInterceptRuleListResponse 获取敏感词规则列表响�?
+// GetInterceptRuleListResponse 获取敏感词规则列表响应
 type GetInterceptRuleListResponse struct {
 	common.Response
 	RuleList []struct {
@@ -44,18 +44,18 @@ type GetInterceptRuleListResponse struct {
 	} `json:"rule_list"`
 }
 
-// GetInterceptRuleRequest 获取敏感词规则详情请�?
+// GetInterceptRuleRequest 获取敏感词规则详情请求
 type GetInterceptRuleRequest struct {
 	RuleID string `json:"rule_id"`
 }
 
-// GetInterceptRuleResponse 获取敏感词规则详情响�?
+// GetInterceptRuleResponse 获取敏感词规则详情响应
 type GetInterceptRuleResponse struct {
 	common.Response
 	Rule InterceptRule `json:"rule"`
 }
 
-// UpdateInterceptRuleRequest 修改敏感词规则请�?
+// UpdateInterceptRuleRequest 修改敏感词规则请求
 type UpdateInterceptRuleRequest struct {
 	RuleID    string   `json:"rule_id"`
 	RuleName  string   `json:"rule_name,omitempty"`
@@ -68,8 +68,7 @@ type UpdateInterceptRuleRequest struct {
 	RemoveApplicableRange *ApplicableRange `json:"remove_applicable_range,omitempty"`
 }
 
-// DelInterceptRuleRequest 删除敏感词规则请�?
+// DelInterceptRuleRequest 删除敏感词规则请求
 type DelInterceptRuleRequest struct {
 	RuleID string `json:"rule_id"`
 }
-

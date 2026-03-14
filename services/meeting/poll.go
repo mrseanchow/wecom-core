@@ -58,4 +58,3 @@ func (s *Service) GetPollList(ctx context.Context, req *meeting.GetPollListReque
 func (s *Service) StartPoll(ctx context.Context, req *meeting.StartPollRequest) (*meeting.StartPollResponse, error) {
 	return client.PostAndUnmarshal[meeting.StartPollResponse](s.client, ctx, "/cgi-bin/meeting/poll/start", req)
 }
-

@@ -60,4 +60,3 @@ func (s *Service) GetExportResult(ctx context.Context, jobID string) (*contact.G
 
 	return client.GetAndUnmarshal[contact.GetExportResultResponse](s.client, ctx, "/cgi-bin/export/get_result", query)
 }
-

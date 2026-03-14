@@ -12,4 +12,3 @@ import (
 func (s *Service) ListAppShareInfo(ctx context.Context, req *updown.ListAppShareInfoRequest) (*updown.ListAppShareInfoResponse, error) {
 	return client.PostAndUnmarshal[updown.ListAppShareInfoResponse](s.client, ctx, "/cgi-bin/corpgroup/corp/list_app_share_info", req)
 }
-

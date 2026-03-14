@@ -8,7 +8,7 @@ type GetUnassignedListRequest struct {
 	PageSize int    `json:"page_size,omitempty"`
 }
 
-// UnassignedInfo 离职成员对应的外部联系人�?
+// UnassignedInfo 离职成员对应的外部联系人项
 type UnassignedInfo struct {
 	HandoverUserID string `json:"handover_userid"`
 	ExternalUserID string `json:"external_userid"`
@@ -23,7 +23,7 @@ type GetUnassignedListResponse struct {
 	NextCursor string           `json:"next_cursor,omitempty"`
 }
 
-// TransferCustomerRequest 分配离职成员的客户请�?
+// TransferCustomerRequest 分配离职成员的客户请求
 type TransferCustomerRequest struct {
 	HandoverUserID  string   `json:"handover_userid"`
 	TakeoverUserID  string   `json:"takeover_userid"`
@@ -36,9 +36,8 @@ type TransferResult struct {
 	ErrCode        int    `json:"errcode"`
 }
 
-// TransferCustomerResponse 分配离职成员的客户响�?
+// TransferCustomerResponse 分配离职成员的客户响应
 type TransferCustomerResponse struct {
 	common.Response
 	Customer []TransferResult `json:"customer"`
 }
-

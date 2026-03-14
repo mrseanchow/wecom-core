@@ -217,4 +217,3 @@ type GetWebinarResponse struct {
 	WarmUpVideo                string        `json:"warm_up_video,omitempty"`
 	AllowAttendeesInviteOthers bool          `json:"allow_attendees_invite_others,omitempty"`
 }
-

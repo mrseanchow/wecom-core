@@ -12,4 +12,3 @@ import (
 func (s *Service) GetFileOperRecord(ctx context.Context, req *security.GetFileOperRecordRequest) (*security.GetFileOperRecordResponse, error) {
 	return client.PostAndUnmarshal[security.GetFileOperRecordResponse](s.client, ctx, "/cgi-bin/security/get_file_oper_record", req)
 }
-

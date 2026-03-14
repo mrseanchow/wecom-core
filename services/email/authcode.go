@@ -12,7 +12,7 @@ const (
 	deleteAuthCodeURL  = "/cgi-bin/exmail/publicmail/delete_auth_code"
 )
 
-// GetAuthCodeList 获取客户端专用密码列�?
+// GetAuthCodeList 获取客户端专用密码列表
 func (s *Service) GetAuthCodeList(ctx context.Context, publicMailID uint32) (*email.GetAuthCodeListResponse, error) {
 	req := &email.GetAuthCodeListRequest{
 		ID: publicMailID,
@@ -20,7 +20,7 @@ func (s *Service) GetAuthCodeList(ctx context.Context, publicMailID uint32) (*em
 	return client.PostAndUnmarshal[email.GetAuthCodeListResponse](s.client, ctx, getAuthCodeListURL, req)
 }
 
-// DeleteAuthCode 删除客户端专用密�?
+// DeleteAuthCode 删除客户端专用密码
 func (s *Service) DeleteAuthCode(ctx context.Context, publicMailID, authCodeID uint32) (*email.DeleteAuthCodeResponse, error) {
 	req := &email.DeleteAuthCodeRequest{
 		ID:         publicMailID,
@@ -28,4 +28,3 @@ func (s *Service) DeleteAuthCode(ctx context.Context, publicMailID, authCodeID u
 	}
 	return client.PostAndUnmarshal[email.DeleteAuthCodeResponse](s.client, ctx, deleteAuthCodeURL, req)
 }
-

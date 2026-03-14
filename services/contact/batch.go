@@ -49,4 +49,3 @@ func (s *Service) GetBatchResult(ctx context.Context, jobID string) (*contact.Ge
 
 	return client.GetAndUnmarshal[contact.GetBatchResultResponse](s.client, ctx, "/cgi-bin/batch/getresult", query)
 }
-

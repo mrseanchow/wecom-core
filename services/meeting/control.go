@@ -36,7 +36,7 @@ func (s *Service) Dismiss(ctx context.Context, req *meeting.DismissMeetingReques
 	return err
 }
 
-// SetCohost 管理联席主持�?
+// SetCohost 管理联席主持人
 // 文档: https://developer.work.weixin.qq.com/document/path/...
 func (s *Service) SetCohost(ctx context.Context, req *meeting.SetCohostRequest) error {
 	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/meeting/realcontrol/set_cohost", req)
@@ -57,7 +57,7 @@ func (s *Service) ManageWaitingRoomUsers(ctx context.Context, req *meeting.Manag
 	return err
 }
 
-// SwitchUserVideo 关闭或开启成员视�?
+// SwitchUserVideo 关闭或开启成员视频
 // 文档: https://developer.work.weixin.qq.com/document/path/...
 func (s *Service) SwitchUserVideo(ctx context.Context, req *meeting.SwitchUserVideoRequest) error {
 	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/meeting/realcontrol/switch_user_video", req)
@@ -70,4 +70,3 @@ func (s *Service) CloseScreenShare(ctx context.Context, req *meeting.CloseScreen
 	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/meeting/realcontrol/close_screen_share", req)
 	return err
 }
-

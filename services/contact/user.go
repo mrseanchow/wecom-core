@@ -171,4 +171,3 @@ func (s *Service) BatchDeleteUsers(ctx context.Context, userIDList []string) err
 	_, err := client.PostAndUnmarshal[contact.BatchDeleteUsersResponse](s.client, ctx, "/cgi-bin/user/batchdelete", req)
 	return err
 }
-

@@ -269,4 +269,3 @@ type GetApplymentStatusResponse struct {
 	RealSignState int     `json:"real_sign_state"`
 	RejectReason  string  `json:"reject_reason,omitempty"`
 }
-

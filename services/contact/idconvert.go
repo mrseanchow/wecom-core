@@ -12,4 +12,3 @@ import (
 func (s *Service) ConvertTmpExternalUserID(ctx context.Context, req *contact.ConvertTmpExternalUserIDRequest) (*contact.ConvertTmpExternalUserIDResponse, error) {
 	return client.PostAndUnmarshal[contact.ConvertTmpExternalUserIDResponse](s.client, ctx, "/cgi-bin/idconvert/convert_tmp_external_userid", req)
 }
-

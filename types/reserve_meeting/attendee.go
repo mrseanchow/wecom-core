@@ -47,7 +47,7 @@ type SetGuestsRequest struct {
 	Guests    []Guest `json:"guests"`
 }
 
-// GetQualityRequest 获取会议健康度请�?
+// GetQualityRequest 获取会议健康度请求
 type GetQualityRequest struct {
 	MeetingID    string `json:"meetingid"`
 	SubMeetingID string `json:"sub_meetingid,omitempty"`
@@ -56,7 +56,7 @@ type GetQualityRequest struct {
 	Limit        int32  `json:"limit,omitempty"`
 }
 
-// GetQualityResponse 获取会议健康度响�?
+// GetQualityResponse 获取会议健康度响应
 type GetQualityResponse struct {
 	common.Response
 	Quality            int32             `json:"quality"`
@@ -70,7 +70,7 @@ type GetQualityResponse struct {
 	HasMore            bool              `json:"has_more"`
 }
 
-// QualityAttendee 参会人员健康�?
+// QualityAttendee 参会人员健康度
 type QualityAttendee struct {
 	UserID             string   `json:"userid"`
 	TmpOpenID          string   `json:"tmp_openid"`
@@ -100,7 +100,7 @@ type GetRealtimeAttendeeListResponse struct {
 	Attendees  []MeetingAttendee `json:"attendees,omitempty"`
 }
 
-// MeetingAttendee 参会�?
+// MeetingAttendee 参会人
 type MeetingAttendee struct {
 	UserID            string `json:"userid"`
 	TmpOpenID         string `json:"tmp_openid"`
@@ -113,7 +113,7 @@ type MeetingAttendee struct {
 	ScreenSharedState bool   `json:"screen_shared_state,omitempty"`
 }
 
-// GetAttendeeListRequest 获取已参会成员列表请�?
+// GetAttendeeListRequest 获取已参会成员列表请求
 type GetAttendeeListRequest struct {
 	MeetingID    string `json:"meetingid"`
 	SubMeetingID string `json:"sub_meetingid,omitempty"`
@@ -123,7 +123,7 @@ type GetAttendeeListRequest struct {
 	Limit        uint32 `json:"limit,omitempty"`
 }
 
-// GetAttendeeListResponse 获取已参会成员列表响�?
+// GetAttendeeListResponse 获取已参会成员列表响应
 type GetAttendeeListResponse struct {
 	common.Response
 	HasMore    bool              `json:"has_more"`
@@ -131,7 +131,7 @@ type GetAttendeeListResponse struct {
 	Attendees  []HistoryAttendee `json:"attendees,omitempty"`
 }
 
-// HistoryAttendee 历史参会�?
+// HistoryAttendee 历史参会人
 type HistoryAttendee struct {
 	TmpOpenID         string `json:"tmp_openid"`
 	UserID            string `json:"userid"`
@@ -223,4 +223,3 @@ type CustomerData struct {
 	CustomerData    string `json:"customer_data"`
 	MeetingShortURL string `json:"meeting_short_url"`
 }
-

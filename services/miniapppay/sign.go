@@ -10,4 +10,3 @@ import (
 func (s *Service) GetSign(ctx context.Context, req *miniapppay.GetSignRequest) (*miniapppay.GetSignResponse, error) {
 	return client.PostAndUnmarshal[miniapppay.GetSignResponse](s.client, ctx, "/cgi-bin/miniapppay/get_sign", req)
 }
-

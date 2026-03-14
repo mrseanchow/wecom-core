@@ -7,4 +7,3 @@ type GetFollowUserListResponse struct {
 	common.Response
 	FollowUser []string `json:"follow_user"`
 }
-

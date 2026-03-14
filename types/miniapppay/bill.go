@@ -18,4 +18,3 @@ type GetBillResponse struct {
 	HashValue   string `json:"hash_value"`
 	Auth        string `json:"auth,omitempty"`
 }
-

@@ -205,4 +205,3 @@ type Comment struct {
 	Content         string   `json:"content"`
 	CommentTime     uint32   `json:"comment_time"`
 }
-

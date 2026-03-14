@@ -12,4 +12,3 @@ import (
 func (s *Service) UpdateTemplateCard(ctx context.Context, req *message.UpdateTemplateCardRequest) (*message.UpdateTemplateCardResponse, error) {
 	return client.PostAndUnmarshal[message.UpdateTemplateCardResponse](s.client, ctx, "/cgi-bin/message/update_template_card", req)
 }
-

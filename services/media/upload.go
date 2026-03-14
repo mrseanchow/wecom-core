@@ -27,7 +27,7 @@ func (s *Service) UploadImage(ctx context.Context, imagePath string) (*media.Upl
 	return s.UploadImageFromReader(ctx, file, filepath.Base(imagePath))
 }
 
-// UploadImageFromReader �?io.Reader 上传图片
+// UploadImageFromReader 从 io.Reader 上传图片
 func (s *Service) UploadImageFromReader(ctx context.Context, reader io.Reader, filename string) (*media.UploadImageResponse, error) {
 	body := &bytes.Buffer{}
 	writer := multipart.NewWriter(body)
@@ -64,7 +64,7 @@ func (s *Service) UploadMedia(ctx context.Context, mediaType media.MediaType, me
 	return s.UploadMediaFromReader(ctx, mediaType, file, filepath.Base(mediaPath))
 }
 
-// UploadMediaFromReader �?io.Reader 上传临时素材
+// UploadMediaFromReader 从 io.Reader 上传临时素材
 func (s *Service) UploadMediaFromReader(ctx context.Context, mediaType media.MediaType, reader io.Reader, filename string) (*media.UploadMediaResponse, error) {
 	body := &bytes.Buffer{}
 	writer := multipart.NewWriter(body)
@@ -102,7 +102,7 @@ func (s *Service) GetMedia(ctx context.Context, mediaID string) ([]byte, error) 
 }
 
 // GetMediaWithRange 使用Range分块获取临时素材
-// rangeHeader 格式�? "bytes=0-1023"
+// rangeHeader 格式如: "bytes=0-1023"
 func (s *Service) GetMediaWithRange(ctx context.Context, mediaID string, rangeHeader string) ([]byte, error) {
 	query := url.Values{}
 	query.Set("media_id", mediaID)
@@ -115,7 +115,7 @@ func (s *Service) GetMediaWithRange(ctx context.Context, mediaID string, rangeHe
 }
 
 // GetJSSDKMedia 获取高清语音素材
-// 获取从JSSDK的uploadVoice接口上传的临时语音素材，格式为speex�?6K采样�?
+// 获取从JSSDK的uploadVoice接口上传的临时语音素材，格式为speex，16K采样率
 // 文档: https://developer.work.weixin.qq.com/document/path/90255
 func (s *Service) GetJSSDKMedia(ctx context.Context, mediaID string) ([]byte, error) {
 	query := url.Values{}
@@ -125,7 +125,7 @@ func (s *Service) GetJSSDKMedia(ctx context.Context, mediaID string) ([]byte, er
 }
 
 // UploadByURL 异步上传临时素材
-// 生成异步上传任务，支持最�?00M的大文件
+// 生成异步上传任务，支持最高200M的大文件
 // 文档: https://developer.work.weixin.qq.com/document/path/96219
 func (s *Service) UploadByURL(ctx context.Context, req *media.UploadByURLRequest) (*media.UploadByURLResponse, error) {
 	return client.PostAndUnmarshal[media.UploadByURLResponse](s.client, ctx, "/cgi-bin/media/upload_by_url", req)
@@ -139,4 +139,3 @@ func (s *Service) GetUploadByURLResult(ctx context.Context, jobID string) (*medi
 	}
 	return client.PostAndUnmarshal[media.GetUploadByURLResultResponse](s.client, ctx, "/cgi-bin/media/get_upload_by_url_result", req)
 }
-

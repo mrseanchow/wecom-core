@@ -28,7 +28,7 @@ func (s *Service) DownloadFile(ctx context.Context, req *wedrive.FileDownloadReq
 	return client.PostAndUnmarshal[wedrive.FileDownloadResponse](s.client, ctx, "/cgi-bin/wedrive/file_download", req)
 }
 
-// UploadInit 分块上传初始�?
+// UploadInit 分块上传初始化
 func (s *Service) UploadInit(ctx context.Context, req *wedrive.FileUploadInitRequest) (*wedrive.FileUploadInitResponse, error) {
 	return client.PostAndUnmarshal[wedrive.FileUploadInitResponse](s.client, ctx, "/cgi-bin/wedrive/file_upload_init", req)
 }
@@ -43,7 +43,7 @@ func (s *Service) UploadFinish(ctx context.Context, req *wedrive.FileUploadFinis
 	return client.PostAndUnmarshal[wedrive.FileUploadFinishResponse](s.client, ctx, "/cgi-bin/wedrive/file_upload_finish", req)
 }
 
-// CreateFile 新建文件/文档/文件�?
+// CreateFile 新建文件/文档/文件夹
 func (s *Service) CreateFile(ctx context.Context, req *wedrive.FileCreateRequest) (*wedrive.FileCreateResponse, error) {
 	return client.PostAndUnmarshal[wedrive.FileCreateResponse](s.client, ctx, "/cgi-bin/wedrive/file_create", req)
 }
@@ -69,7 +69,7 @@ func (s *Service) MoveFiles(ctx context.Context, req *wedrive.FileMoveRequest) (
 	return client.PostAndUnmarshal[wedrive.FileMoveResponse](s.client, ctx, "/cgi-bin/wedrive/file_move", req)
 }
 
-// RenameFile 重命名文�?
+// RenameFile 重命名文件
 func (s *Service) RenameFile(ctx context.Context, req *wedrive.FileRenameRequest) (*wedrive.FileRenameResponse, error) {
 	return client.PostAndUnmarshal[wedrive.FileRenameResponse](s.client, ctx, "/cgi-bin/wedrive/file_rename", req)
 }
@@ -85,7 +85,7 @@ func (s *Service) SetFileSetting(ctx context.Context, req *wedrive.FileSettingRe
 	return err
 }
 
-// SetFileSecureSetting 修改文件安全设置（水印等�?
+// SetFileSecureSetting 修改文件安全设置（水印等）
 func (s *Service) SetFileSecureSetting(ctx context.Context, req *wedrive.FileSecureSettingRequest) error {
 	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/wedrive/file_secure_setting", req)
 	return err
@@ -118,12 +118,12 @@ func (s *Service) GetSpaceInfo(ctx context.Context, req *wedrive.SpaceInfoReques
 	return client.PostAndUnmarshal[wedrive.SpaceInfoResponse](s.client, ctx, "/cgi-bin/wedrive/space_info", req)
 }
 
-// ShareSpace 获取空间邀请链�?
+// ShareSpace 获取空间邀请链接
 func (s *Service) ShareSpace(ctx context.Context, req *wedrive.SpaceShareRequest) (*wedrive.SpaceShareResponse, error) {
 	return client.PostAndUnmarshal[wedrive.SpaceShareResponse](s.client, ctx, "/cgi-bin/wedrive/space_share", req)
 }
 
-// RenameSpace 重命名空�?
+// RenameSpace 重命名空间
 func (s *Service) RenameSpace(ctx context.Context, req *wedrive.SpaceRenameRequest) error {
 	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/wedrive/space_rename", req)
 	return err
@@ -153,4 +153,3 @@ func (s *Service) RemoveSpaceMembers(ctx context.Context, req *wedrive.SpaceInfo
 	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/wedrive/space_acl_del", req)
 	return err
 }
-

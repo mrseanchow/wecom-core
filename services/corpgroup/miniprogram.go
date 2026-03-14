@@ -12,4 +12,3 @@ import (
 func (s *Service) TransferSession(ctx context.Context, req *corpgroup.TransferSessionRequest) (*corpgroup.TransferSessionResponse, error) {
 	return client.PostAndUnmarshal[corpgroup.TransferSessionResponse](s.client, ctx, "/cgi-bin/miniprogram/transfer_session", req)
 }
-

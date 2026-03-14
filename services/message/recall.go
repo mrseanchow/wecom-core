@@ -14,4 +14,3 @@ func (s *Service) Recall(ctx context.Context, req *message.RecallMessageRequest)
 	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/message/recall", req)
 	return err
 }
-

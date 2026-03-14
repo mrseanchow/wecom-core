@@ -16,4 +16,3 @@ func (s *Service) GetTaskResult(ctx context.Context, jobID string) (*updown.GetT
 
 	return client.GetAndUnmarshal[updown.GetTaskResultResponse](s.client, ctx, "/cgi-bin/corpgroup/getresult", query)
 }
-

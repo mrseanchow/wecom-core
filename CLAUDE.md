@@ -85,19 +85,19 @@ go run examples/contact/main.go
 
 ```
 User calls client.Contact.GetUser()
-  ‚Ü?
+  ‚Üì
 contact.Service.GetUser() prepares request
-  ‚Ü?
+  ‚Üì
 internal/client.Client.Do() executes with retry logic
-  ‚Ü?
+  ‚Üì
 retry.Executor wraps execution with retry policy
-  ‚Ü?
+  ‚Üì
 TokenManager injects access_token (fetches if needed)
-  ‚Ü?
+  ‚Üì
 HTTP request sent to WeCom API
-  ‚Ü?
+  ‚Üì
 Response parsed and errors handled
-  ‚Ü?
+  ‚Üì
 Auto-retry if token expired or rate limited
 ```
 
@@ -115,8 +115,8 @@ When implementing new WeCom API modules:
    - `[feature].go` - Group related API methods (e.g., user.go, department.go)
    - Each method should accept `context.Context` as first parameter
    - **IMPORTANT**: Use `client.PostAndUnmarshal[T]()` or `client.GetAndUnmarshal[T]()` for API calls
-     - ‚ú?**Correct**: `return client.PostAndUnmarshal[ResponseType](s.client, ctx, url, req)`
-     - ‚ù?**Wrong**: `s.client.Post(ctx, url, req, &resp)` - This is the old API and will cause compilation errors
+     - ‚úÖ **Correct**: `return client.PostAndUnmarshal[ResponseType](s.client, ctx, url, req)`
+     - ‚ùå **Wrong**: `s.client.Post(ctx, url, req, &resp)` - This is the old API and will cause compilation errors
      - For endpoints with no response data (only errcode/errmsg), use `client.CommonResponse` as the type
    - Example:
      ```go
@@ -212,4 +212,3 @@ In Progress:
 
 Planned:
 - 20+ additional business modules per WeCom API documentation
-

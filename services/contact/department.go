@@ -83,4 +83,3 @@ func (s *Service) ListSimpleDepartments(ctx context.Context, id int) ([]contact.
 
 	return result.DepartmentID, nil
 }
-

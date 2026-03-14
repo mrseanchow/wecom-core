@@ -70,4 +70,3 @@ func (s *Service) DeleteTagUsers(ctx context.Context, req *contact.DeleteTagUser
 	_, err := client.PostAndUnmarshal[contact.DeleteTagUsersResponse](s.client, ctx, "/cgi-bin/tag/deltagusers", req)
 	return err
 }
-

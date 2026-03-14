@@ -69,4 +69,3 @@ type UpdateProductAlbumRequest struct {
 type DeleteProductAlbumRequest struct {
 	ProductID string `json:"product_id"`
 }
-

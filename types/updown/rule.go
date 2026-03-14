@@ -77,4 +77,3 @@ type GetRuleInfoResponse struct {
 	common.Response
 	RuleInfo *RuleInfo `json:"rule_info"` // 上下游关系规则的详情
 }
-

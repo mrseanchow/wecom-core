@@ -16,24 +16,24 @@ import (
 	"github.com/mrseanchow/wecom-core/types/common"
 )
 
-// contextKey 用于�?context 中存储值的类型
+// contextKey 用于在 context 中存储值的类型
 type contextKey string
 
 const (
-	// traceIDKey TraceId �?context key
+	// traceIDKey TraceId 的 context key
 	traceIDKey contextKey = "trace_id"
-	// agentNameKey 应用名称�?context key
+	// agentNameKey 应用名称的 context key
 	agentNameKey contextKey = "agent_name"
-	// agentIDKey 应用ID�?context key
+	// agentIDKey 应用ID的 context key
 	agentIDKey contextKey = "agent_id"
 )
 
-// WithTraceID �?TraceId 添加�?context
+// WithTraceID 将 TraceId 添加到 context
 func WithTraceID(ctx context.Context, traceID string) context.Context {
 	return context.WithValue(ctx, traceIDKey, traceID)
 }
 
-// getTraceID �?context 中获�?TraceId
+// getTraceID 从 context 中获取 TraceId
 func getTraceID(ctx context.Context) string {
 	if ctx == nil {
 		return ""
@@ -59,12 +59,12 @@ func GetAgentName(ctx context.Context) string {
 	return ""
 }
 
-// WithAgentID 将应用ID添加�?context
+// WithAgentID 将应用ID添加到 context
 func WithAgentID(ctx context.Context, agentID int64) context.Context {
 	return context.WithValue(ctx, agentIDKey, agentID)
 }
 
-// getAgentKey �?context 中获取应用标识（优先使用名称，其次使用ID�?
+// getAgentKey 从 context 中获取应用标识（优先使用名称，其次使用ID）
 func getAgentKey(ctx context.Context) string {
 	if ctx == nil {
 		return ""
@@ -83,33 +83,33 @@ func getAgentKey(ctx context.Context) string {
 	return ""
 }
 
-// Decoder 自定义解码函数，用于将响�?body 解码为目标对�?
+// Decoder 自定义解码函数，用于将响应 body 解码为目标对象
 type Decoder func(data []byte, v any) error
 
-// Client HTTP客户�?
+// Client HTTP客户端
 type Client struct {
-	// httpClient 底层HTTP客户�?
+	// httpClient 底层HTTP客户端
 	httpClient *http.Client
 	// baseURL API基础URL
 	baseURL string
-	// logger 日志记录�?
+	// logger 日志记录器
 	logger logger.Logger
-	// tokenManager Token管理�?
+	// tokenManager Token管理器
 	tokenManager *auth.TokenManager
-	// retryExecutor 重试执行�?
+	// retryExecutor 重试执行器
 	retryExecutor *retry.Executor
-	// interceptors 拦截�?
+	// interceptors 拦截器
 	interceptors *Interceptors
-	// debug 是否打印请求和响应详�?
+	// debug 是否打印请求和响应详情
 	debug bool
-	// decoder 自定义解码器，如果设置则�?DoAndUnmarshal 中使�?
+	// decoder 自定义解码器，如果设置则在 DoAndUnmarshal 中使用
 	decoder   Decoder
 	withToken bool
 }
 
-// New 创建HTTP客户�?
+// New 创建HTTP客户端
 func New(baseURL string, timeout time.Duration, log logger.Logger, tm *auth.TokenManager, re *retry.Executor, proxyURL ...string) *Client {
-	// 创建HTTP客户端配�?
+	// 创建HTTP客户端配置
 	client := &http.Client{
 		Timeout: timeout,
 	}
@@ -137,7 +137,7 @@ func New(baseURL string, timeout time.Duration, log logger.Logger, tm *auth.Toke
 	}
 }
 
-// SetDebug 设置是否打印请求和响应详�?
+// SetDebug 设置是否打印请求和响应详情
 func (c *Client) SetDebug(debug bool) *Client {
 	c.debug = debug
 	return c
@@ -154,7 +154,7 @@ func (c *Client) SetWithToken(withToken bool) *Client {
 	return c
 }
 
-// AddRequestInterceptor 添加请求拦截�?
+// AddRequestInterceptor 添加请求拦截器
 func (c *Client) AddRequestInterceptor(interceptor RequestInterceptor) *Client {
 	c.interceptors.AddRequestInterceptor(interceptor)
 	return c
@@ -166,7 +166,7 @@ func (c *Client) AddResponseInterceptor(interceptor ResponseInterceptor) *Client
 	return c
 }
 
-// AddAfterResponseInterceptor 添加响应后拦截器（解析后�?
+// AddAfterResponseInterceptor 添加响应后拦截器（解析后）
 func (c *Client) AddAfterResponseInterceptor(interceptor AfterResponseInterceptor) *Client {
 	c.interceptors.AddAfterResponseInterceptor(interceptor)
 	return c
@@ -178,7 +178,7 @@ func (c *Client) Do(ctx context.Context, req *Request) (*Response, error) {
 
 	// 使用重试策略执行请求
 	err := c.retryExecutor.Do(ctx, func() error {
-		// 1. �?context 获取应用标识
+		// 1. 从 context 获取应用标识
 		agentKey := getAgentKey(ctx)
 
 		if c.withToken {
@@ -188,7 +188,7 @@ func (c *Client) Do(ctx context.Context, req *Request) (*Response, error) {
 				return fmt.Errorf("failed to get access token: %w", err)
 			}
 
-			// 3. 添加 token 到请�?
+			// 3. 添加 token 到请求
 			req.AddQuery("access_token", token)
 		}
 
@@ -216,12 +216,12 @@ func (c *Client) Do(ctx context.Context, req *Request) (*Response, error) {
 			logger.F("url", httpReq.URL.String()),
 			logger.F("agent_key", agentKey))...)
 
-		// 5.1. Debug模式：打印请求详�?
+		// 5.1. Debug模式：打印请求详情
 		if c.debug {
 			c.logRequestDetails(ctx, httpReq, req.Body)
 		}
 
-		// 6. 发送请�?
+		// 6. 发送请求
 		httpResp, err := c.httpClient.Do(httpReq)
 		if err != nil {
 			duration := time.Since(startTime)
@@ -232,7 +232,7 @@ func (c *Client) Do(ctx context.Context, req *Request) (*Response, error) {
 		}
 		defer httpResp.Body.Close()
 
-		// 6.1. 执行响应前拦截器（解析前�?
+		// 6.1. 执行响应前拦截器（解析前）
 		if err := c.interceptors.executeResponseInterceptors(ctx, httpResp); err != nil {
 			c.logger.Error("Response interceptor failed", withTraceID(ctx,
 				logger.F("error", err))...)
@@ -251,7 +251,7 @@ func (c *Client) Do(ctx context.Context, req *Request) (*Response, error) {
 		resp, err = ParseResponse(httpResp)
 		duration := time.Since(startTime)
 
-		// 7.1. Debug模式：打印响应详�?
+		// 7.1. Debug模式：打印响应详情
 		if c.debug {
 			c.logResponseDetails(ctx, httpResp.StatusCode, resp)
 		}
@@ -291,7 +291,7 @@ func (c *Client) Do(ctx context.Context, req *Request) (*Response, error) {
 			logger.F("url", httpReq.URL.String()),
 			logger.F("duration", duration))...)
 
-		// 9.1. 执行响应后拦截器（解析后�?
+		// 9.1. 执行响应后拦截器（解析后）
 		if err := c.interceptors.executeAfterResponseInterceptors(ctx, resp); err != nil {
 			c.logger.Error("After response interceptor failed", withTraceID(ctx,
 				logger.F("error", err))...)
@@ -331,7 +331,7 @@ func DoAndUnmarshal[T common.Errcode](c *Client, ctx context.Context, req *Reque
 	}
 
 	var result T
-	// 使用自定义解码器（如果已配置），否则使用默认�?Response.Unmarshal
+	// 使用自定义解码器（如果已配置），否则使用默认的 Response.Unmarshal
 	if c != nil && c.decoder != nil {
 		if err := c.decoder(resp.Body, &result); err != nil {
 			return nil, fmt.Errorf("failed to decode response body with custom decoder: %w", err)
@@ -345,7 +345,7 @@ func DoAndUnmarshal[T common.Errcode](c *Client, ctx context.Context, req *Reque
 	return &result, nil
 }
 
-// GetAndUnmarshal 发送GET请求并自动解析响�?
+// GetAndUnmarshal 发送GET请求并自动解析响应
 func GetAndUnmarshal[T common.Errcode](c *Client, ctx context.Context, path string, query url.Values) (*T, error) {
 	req := NewRequest(MethodGet, path)
 	if query != nil {
@@ -354,13 +354,13 @@ func GetAndUnmarshal[T common.Errcode](c *Client, ctx context.Context, path stri
 	return DoAndUnmarshal[T](c, ctx, req)
 }
 
-// PostAndUnmarshal 发送POST请求并自动解析响�?
+// PostAndUnmarshal 发送POST请求并自动解析响应
 func PostAndUnmarshal[T common.Errcode](c *Client, ctx context.Context, path string, body any) (*T, error) {
 	req := NewRequest(MethodPost, path).SetBody(body)
 	return DoAndUnmarshal[T](c, ctx, req)
 }
 
-// PostAndUnmarshalWithQuery 发送POST请求并自动解析响�?
+// PostAndUnmarshalWithQuery 发送POST请求并自动解析响应
 func PostAndUnmarshalWithQuery[T common.Errcode](c *Client, ctx context.Context, path string, query url.Values, body any) (*T, error) {
 	req := NewRequest(MethodPost, path).SetBody(body)
 	if query != nil {
@@ -378,7 +378,7 @@ func (c *Client) PostMultipart(ctx context.Context, path string, query url.Value
 	return c.Do(ctx, req)
 }
 
-// PostMultipartAndUnmarshal 发送multipart/form-data POST请求并自动解析响�?
+// PostMultipartAndUnmarshal 发送multipart/form-data POST请求并自动解析响应
 func PostMultipartAndUnmarshal[T common.Errcode](c *Client, ctx context.Context, path string, body []byte, contentType string) (*T, error) {
 	resp, err := c.PostMultipart(ctx, path, nil, body, contentType)
 	if err != nil {
@@ -393,7 +393,7 @@ func PostMultipartAndUnmarshal[T common.Errcode](c *Client, ctx context.Context,
 	return &result, nil
 }
 
-// PostMultipartAndUnmarshalWithQuery 发送带查询参数的multipart/form-data POST请求并自动解析响�?
+// PostMultipartAndUnmarshalWithQuery 发送带查询参数的multipart/form-data POST请求并自动解析响应
 func PostMultipartAndUnmarshalWithQuery[T common.Errcode](c *Client, ctx context.Context, path string, query url.Values, body []byte, contentType string) (*T, error) {
 	resp, err := c.PostMultipart(ctx, path, query, body, contentType)
 	if err != nil {
@@ -420,7 +420,7 @@ func (c *Client) GetMedia(ctx context.Context, path string, query url.Values, he
 
 	// 使用重试策略执行请求
 	err := c.retryExecutor.Do(ctx, func() error {
-		// 1. �?context 获取应用标识
+		// 1. 从 context 获取应用标识
 		agentKey := getAgentKey(ctx)
 
 		// 2. 获取 access_token（根据应用标识）
@@ -429,7 +429,7 @@ func (c *Client) GetMedia(ctx context.Context, path string, query url.Values, he
 			return fmt.Errorf("failed to get access token: %w", err)
 		}
 
-		// 3. 添加 token 到查询参�?
+		// 3. 添加 token 到查询参数
 		if query == nil {
 			query = url.Values{}
 		}
@@ -449,7 +449,7 @@ func (c *Client) GetMedia(ctx context.Context, path string, query url.Values, he
 			return fmt.Errorf("failed to create http request: %w", err)
 		}
 
-		// 6. 添加自定义headers（如Range�?
+		// 6. 添加自定义headers（如Range）
 		for key, value := range headers {
 			httpReq.Header.Set(key, value)
 		}
@@ -461,7 +461,7 @@ func (c *Client) GetMedia(ctx context.Context, path string, query url.Values, he
 			logger.F("url", httpReq.URL.String()),
 			logger.F("agent_key", agentKey))...)
 
-		// 8. 发送请�?
+		// 8. 发送请求
 		httpResp, err := c.httpClient.Do(httpReq)
 		if err != nil {
 			duration := time.Since(startTime)
@@ -504,7 +504,7 @@ func (c *Client) GetMedia(ctx context.Context, path string, query url.Values, he
 			return fmt.Errorf("unexpected status code: %d", httpResp.StatusCode)
 		}
 
-		// 10. 读取响应�?
+		// 10. 读取响应体
 		result, err = io.ReadAll(httpResp.Body)
 		if err != nil {
 			c.logger.Error("Failed to read media response", withTraceID(ctx,
@@ -570,16 +570,15 @@ func (c *Client) logResponseDetails(ctx context.Context, statusCode int, resp *R
 	}
 }
 
-// withTraceID 为日志字段添�?TraceId
+// withTraceID 为日志字段添加 TraceId
 func withTraceID(ctx context.Context, fields ...logger.Field) []logger.Field {
 	traceID := getTraceID(ctx)
 	if traceID == "" {
 		return fields
 	}
-	// �?TraceId 添加到字段列表的开�?
+	// 将 TraceId 添加到字段列表的开头
 	result := make([]logger.Field, 0, len(fields)+1)
 	result = append(result, logger.F("trace_id", traceID))
 	result = append(result, fields...)
 	return result
 }
-

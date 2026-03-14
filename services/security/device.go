@@ -31,7 +31,7 @@ func (s *Service) DeleteTrustDevice(ctx context.Context, req *security.DeleteTru
 	return client.PostAndUnmarshal[security.DeleteTrustDeviceResponse](s.client, ctx, "/cgi-bin/security/trustdevice/delete", req)
 }
 
-// ApproveTrustDevice 确认为可信设�?
+// ApproveTrustDevice 确认为可信设备
 // 文档: https://developer.work.weixin.qq.com/document/path/94706
 func (s *Service) ApproveTrustDevice(ctx context.Context, req *security.ApproveTrustDeviceRequest) (*security.ApproveTrustDeviceResponse, error) {
 	return client.PostAndUnmarshal[security.ApproveTrustDeviceResponse](s.client, ctx, "/cgi-bin/security/trustdevice/approve", req)
@@ -42,4 +42,3 @@ func (s *Service) ApproveTrustDevice(ctx context.Context, req *security.ApproveT
 func (s *Service) RejectTrustDevice(ctx context.Context, req *security.RejectTrustDeviceRequest) (*security.RejectTrustDeviceResponse, error) {
 	return client.PostAndUnmarshal[security.RejectTrustDeviceResponse](s.client, ctx, "/cgi-bin/security/trustdevice/reject", req)
 }
-

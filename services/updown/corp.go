@@ -7,25 +7,25 @@ import (
 	"github.com/mrseanchow/wecom-core/types/updown"
 )
 
-// GetChainList 获取上下游列�?
+// GetChainList 获取上下游列表
 // 文档: https://developer.work.weixin.qq.com/document/path/93355
 func (s *Service) GetChainList(ctx context.Context) (*updown.GetChainListResponse, error) {
 	return client.GetAndUnmarshal[updown.GetChainListResponse](s.client, ctx, "/cgi-bin/corpgroup/corp/get_chain_list", nil)
 }
 
-// GetChainGroup 获取上下游通讯录分�?
+// GetChainGroup 获取上下游通讯录分组
 // 文档: https://developer.work.weixin.qq.com/document/path/93355
 func (s *Service) GetChainGroup(ctx context.Context, req *updown.GetChainGroupRequest) (*updown.GetChainGroupResponse, error) {
 	return client.PostAndUnmarshal[updown.GetChainGroupResponse](s.client, ctx, "/cgi-bin/corpgroup/corp/get_chain_group", req)
 }
 
-// GetChainCorpInfoList 获取企业上下游通讯录分组下的企业详情列�?
+// GetChainCorpInfoList 获取企业上下游通讯录分组下的企业详情列表
 // 文档: https://developer.work.weixin.qq.com/document/path/93355
 func (s *Service) GetChainCorpInfoList(ctx context.Context, req *updown.GetChainCorpInfoListRequest) (*updown.GetChainCorpInfoListResponse, error) {
 	return client.PostAndUnmarshal[updown.GetChainCorpInfoListResponse](s.client, ctx, "/cgi-bin/corpgroup/corp/get_chain_corpinfo_list", req)
 }
 
-// GetChainCorpInfo 获取企业上下游通讯录下的企业信�?
+// GetChainCorpInfo 获取企业上下游通讯录下的企业信息
 // 文档: https://developer.work.weixin.qq.com/document/path/93355
 func (s *Service) GetChainCorpInfo(ctx context.Context, req *updown.GetChainCorpInfoRequest) (*updown.GetChainCorpInfoResponse, error) {
 	return client.PostAndUnmarshal[updown.GetChainCorpInfoResponse](s.client, ctx, "/cgi-bin/corpgroup/corp/get_chain_corpinfo", req)
@@ -53,4 +53,3 @@ func (s *Service) GetChainUserCustomID(ctx context.Context, req *updown.GetChain
 func (s *Service) GetCorpSharedChainList(ctx context.Context, req *updown.GetCorpSharedChainListRequest) (*updown.GetCorpSharedChainListResponse, error) {
 	return client.PostAndUnmarshal[updown.GetCorpSharedChainListResponse](s.client, ctx, "/cgi-bin/corpgroup/get_corp_shared_chain_list", req)
 }
-

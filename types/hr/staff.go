@@ -69,4 +69,3 @@ type InsertResult struct {
 	Idx       int `json:"idx"`
 	Result    int `json:"result"`
 }
-

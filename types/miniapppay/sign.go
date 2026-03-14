@@ -16,4 +16,3 @@ type GetSignResponse struct {
 	common.Response
 	PaySign string `json:"pay_sign"`
 }
-

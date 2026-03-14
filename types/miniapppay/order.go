@@ -2,7 +2,7 @@ package miniapppay
 
 import "github.com/mrseanchow/wecom-core/types/common"
 
-// CreateOrderRequest 小程序下单请�?
+// CreateOrderRequest 小程序下单请求
 type CreateOrderRequest struct {
 	AppID       string       `json:"appid"`
 	MchID       string       `json:"mchid"`
@@ -25,7 +25,7 @@ type OrderDetail struct {
 	GoodsDetail []GoodsDetail `json:"goods_detail,omitempty"`
 }
 
-// CreateOrderResponse 小程序下单响�?
+// CreateOrderResponse 小程序下单响应
 type CreateOrderResponse struct {
 	common.Response
 	PrepayID string `json:"prepay_id"`
@@ -79,4 +79,3 @@ type PaymentNotification struct {
 	Payer          *Payer  `json:"payer"`
 	Amount         *Amount `json:"amount"`
 }
-

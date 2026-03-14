@@ -20,4 +20,3 @@ func (s *Service) CloseOrder(ctx context.Context, req *miniapppay.CloseOrderRequ
 	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/miniapppay/close_order", req)
 	return err
 }
-

@@ -23,4 +23,3 @@ type ConvertTmpExternalUserIDResponse struct {
 	Results                      []ConvertResult `json:"results,omitempty"`
 	InvalidTmpExternalUserIDList []string        `json:"invalid_tmp_external_userid_list,omitempty"`
 }
-

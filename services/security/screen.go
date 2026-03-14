@@ -12,4 +12,3 @@ import (
 func (s *Service) GetScreenOperRecord(ctx context.Context, req *security.GetScreenOperRecordRequest) (*security.GetScreenOperRecordResponse, error) {
 	return client.PostAndUnmarshal[security.GetScreenOperRecordResponse](s.client, ctx, "/cgi-bin/security/get_screen_oper_record", req)
 }
-

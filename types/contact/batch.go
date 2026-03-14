@@ -71,4 +71,3 @@ type GetBatchResultResponse struct {
 	Percentage int         `json:"percentage"`
 	Result     interface{} `json:"result,omitempty"`
 }
-

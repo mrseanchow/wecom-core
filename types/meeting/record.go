@@ -296,4 +296,3 @@ type GetVIPListResponse struct {
 	NextCursor string   `json:"next_cursor,omitempty"`
 	UserIDList []string `json:"userid_list,omitempty"`
 }
-

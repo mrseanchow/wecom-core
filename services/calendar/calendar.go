@@ -13,4 +13,3 @@ type Service struct {
 func NewService(c *client.Client) *Service {
 	return &Service{client: c}
 }
-

@@ -12,4 +12,3 @@ import (
 func (s *Service) SendSchoolNotice(ctx context.Context, req *message.SendSchoolNoticeRequest) (*message.SendSchoolNoticeResponse, error) {
 	return client.PostAndUnmarshal[message.SendSchoolNoticeResponse](s.client, ctx, "/cgi-bin/externalcontact/message/send", req)
 }
-

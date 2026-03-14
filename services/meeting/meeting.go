@@ -61,4 +61,3 @@ func (s *Service) GetUserMeetingIDs(ctx context.Context, req *meeting.GetUserMee
 func (s *Service) GetStartList(ctx context.Context, req *meeting.GetMeetingStartListRequest) (*meeting.GetMeetingStartListResponse, error) {
 	return client.PostAndUnmarshal[meeting.GetMeetingStartListResponse](s.client, ctx, "/cgi-bin/meeting/statistics/get_start_list", req)
 }
-

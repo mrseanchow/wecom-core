@@ -15,4 +15,3 @@ func NewService(c *client.Client) *Service {
 		client: c,
 	}
 }
-

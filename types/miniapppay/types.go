@@ -11,7 +11,7 @@ type Amount struct {
 	DiscountRefund int    `json:"discount_refund,omitempty"`
 }
 
-// Payer 支付者信�?
+// Payer 支付者信息
 type Payer struct {
 	OpenID string `json:"openid"`
 }
@@ -82,4 +82,3 @@ type NotifyBase struct {
 	Resource     *Resource `json:"resource"`
 	Summary      string    `json:"summary,omitempty"`
 }
-

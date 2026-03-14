@@ -36,4 +36,3 @@ func (s *Service) ExternalUserIDToPendingID(ctx context.Context, req *updown.Ext
 	}
 	return result.Result, nil
 }
-

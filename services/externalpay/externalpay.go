@@ -46,4 +46,3 @@ func (s *Service) ApplyMch(ctx context.Context, req *externalpay.ApplyMchRequest
 func (s *Service) GetApplymentStatus(ctx context.Context, req *externalpay.GetApplymentStatusRequest) (*externalpay.GetApplymentStatusResponse, error) {
 	return client.PostAndUnmarshal[externalpay.GetApplymentStatusResponse](s.client, ctx, "/cgi-bin/miniapppay/get_applyment_status", req)
 }
-

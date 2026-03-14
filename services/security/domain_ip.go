@@ -14,4 +14,3 @@ func (s *Service) GetServerDomainIP(ctx context.Context) (*security.GetServerDom
 	query := url.Values{}
 	return client.GetAndUnmarshal[security.GetServerDomainIPResponse](s.client, ctx, "/cgi-bin/security/get_server_domain_ip", query)
 }
-

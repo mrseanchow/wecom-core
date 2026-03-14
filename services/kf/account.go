@@ -38,4 +38,3 @@ func (s *Service) ListAccount(ctx context.Context, req *kf.ListAccountRequest) (
 func (s *Service) AddContactWay(ctx context.Context, req *kf.AddContactWayRequest) (*kf.AddContactWayResponse, error) {
 	return client.PostAndUnmarshal[kf.AddContactWayResponse](s.client, ctx, "/cgi-bin/kf/add_contact_way", req)
 }
-

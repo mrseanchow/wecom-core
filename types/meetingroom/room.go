@@ -14,7 +14,7 @@ type Range struct {
 	DepartmentList []int64  `json:"department_list,omitempty"`
 }
 
-// AddMeetingRoomRequest 添加会议室请�?
+// AddMeetingRoomRequest 添加会议室请求
 type AddMeetingRoomRequest struct {
 	Name       string      `json:"name"`
 	Capacity   int         `json:"capacity"`
@@ -26,13 +26,13 @@ type AddMeetingRoomRequest struct {
 	Range      *Range      `json:"range,omitempty"`
 }
 
-// AddMeetingRoomResponse 添加会议室响�?
+// AddMeetingRoomResponse 添加会议室响应
 type AddMeetingRoomResponse struct {
 	common.Response
 	MeetingRoomID int64 `json:"meetingroom_id,omitempty"`
 }
 
-// ListMeetingRoomsRequest 查询会议室请�?
+// ListMeetingRoomsRequest 查询会议室请求
 type ListMeetingRoomsRequest struct {
 	City      string `json:"city,omitempty"`
 	Building  string `json:"building,omitempty"`
@@ -40,7 +40,7 @@ type ListMeetingRoomsRequest struct {
 	Equipment []int  `json:"equipment,omitempty"`
 }
 
-// MeetingRoom 会议室信�?
+// MeetingRoom 会议室信息
 type MeetingRoom struct {
 	MeetingRoomID int64       `json:"meetingroom_id,omitempty"`
 	Name          string      `json:"name,omitempty"`
@@ -54,13 +54,13 @@ type MeetingRoom struct {
 	Range         *Range      `json:"range,omitempty"`
 }
 
-// ListMeetingRoomsResponse 查询会议室响�?
+// ListMeetingRoomsResponse 查询会议室响应
 type ListMeetingRoomsResponse struct {
 	common.Response
 	MeetingRoomList []MeetingRoom `json:"meetingroom_list,omitempty"`
 }
 
-// EditMeetingRoomRequest 编辑会议室请�?
+// EditMeetingRoomRequest 编辑会议室请求
 type EditMeetingRoomRequest struct {
 	MeetingRoomID int64       `json:"meetingroom_id"`
 	Name          string      `json:"name,omitempty"`
@@ -73,18 +73,17 @@ type EditMeetingRoomRequest struct {
 	Range         *Range      `json:"range,omitempty"`
 }
 
-// EditMeetingRoomResponse 编辑会议室响�?
+// EditMeetingRoomResponse 编辑会议室响应
 type EditMeetingRoomResponse struct {
 	common.Response
 }
 
-// DeleteMeetingRoomRequest 删除会议室请�?
+// DeleteMeetingRoomRequest 删除会议室请求
 type DeleteMeetingRoomRequest struct {
 	MeetingRoomID int64 `json:"meetingroom_id"`
 }
 
-// DeleteMeetingRoomResponse 删除会议室响�?
+// DeleteMeetingRoomResponse 删除会议室响应
 type DeleteMeetingRoomResponse struct {
 	common.Response
 }
-
