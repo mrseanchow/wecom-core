@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/shuaidd/wecom-core/pkg/cache"
+	"github.com/mrseanchow/wecom-core/pkg/cache"
 )
 
 // FileCache 文件缓存实现
@@ -17,7 +17,7 @@ type FileCache struct {
 	cacheDir string
 }
 
-// FileCacheItem 文件缓存项
+// FileCacheItem 文件缓存�?
 type FileCacheItem struct {
 	Token    string    `json:"token"`
 	ExpireAt time.Time `json:"expire_at"`
@@ -25,7 +25,7 @@ type FileCacheItem struct {
 
 // NewMemoryCache 创建文件缓存实例
 func NewMemoryCache() cache.Cache {
-	// 使用当前工作目录的 cache/token 目录
+	// 使用当前工作目录�?cache/token 目录
 	cacheDir := filepath.Join(".", "cache", "token")
 	fmt.Printf("NewMemoryCache: cacheDir = %s\n", cacheDir)
 
@@ -46,7 +46,7 @@ func (fc *FileCache) Get(ctx context.Context, key string) (token string, expireA
 	// 构建缓存文件路径
 	cacheFile := filepath.Join(fc.cacheDir, key+".json")
 
-	// 检查文件是否存在
+	// 检查文件是否存�?
 	if _, err := os.Stat(cacheFile); os.IsNotExist(err) {
 		return "", time.Time{}, cache.ErrCacheNotFound
 	}
@@ -63,7 +63,7 @@ func (fc *FileCache) Get(ctx context.Context, key string) (token string, expireA
 		return "", time.Time{}, fmt.Errorf("unmarshal cache data error: %w", err)
 	}
 
-	// 检查是否过期
+	// 检查是否过�?
 	if time.Now().After(item.ExpireAt) {
 		return "", time.Time{}, cache.ErrCacheExpired
 	}
@@ -88,13 +88,13 @@ func (fc *FileCache) Set(ctx context.Context, key string, token string, expireAt
 	cacheFile := filepath.Join(fc.cacheDir, key+".json")
 	fmt.Printf("FileCache.Set: cacheFile = %s\n", cacheFile)
 
-	// 创建缓存项
+	// 创建缓存�?
 	item := FileCacheItem{
 		Token:    token,
 		ExpireAt: expireAt,
 	}
 
-	// 序列化缓存数据
+	// 序列化缓存数�?
 	data, err := json.MarshalIndent(item, "", "  ")
 	if err != nil {
 		fmt.Printf("FileCache.Set: json.MarshalIndent error = %v\n", err)
@@ -118,7 +118,7 @@ func (fc *FileCache) Delete(ctx context.Context, key string) error {
 	// 构建缓存文件路径
 	cacheFile := filepath.Join(fc.cacheDir, key+".json")
 
-	// 检查文件是否存在
+	// 检查文件是否存�?
 	if _, err := os.Stat(cacheFile); os.IsNotExist(err) {
 		return nil // 文件不存在，视为删除成功
 	}
@@ -130,3 +130,4 @@ func (fc *FileCache) Delete(ctx context.Context, key string) error {
 
 	return nil
 }
+

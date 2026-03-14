@@ -3,9 +3,9 @@ package webinar
 import (
 	"context"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/common"
-	"github.com/shuaidd/wecom-core/types/webinar"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/common"
+	"github.com/mrseanchow/wecom-core/types/webinar"
 )
 
 type Service struct {
@@ -68,3 +68,4 @@ func (s *Service) GetConfig(ctx context.Context, meetingID string) (*webinar.Get
 func (s *Service) GetInfo(ctx context.Context, req *webinar.GetWebinarRequest) (*webinar.GetWebinarResponse, error) {
 	return client.PostAndUnmarshal[webinar.GetWebinarResponse](s.client, ctx, "/cgi-bin/meeting/webinar/get", req)
 }
+

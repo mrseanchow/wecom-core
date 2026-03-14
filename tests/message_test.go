@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/shuaidd/wecom-core"
-	"github.com/shuaidd/wecom-core/types/message"
+	"github.com/mrseanchow/wecom-core"
+	"github.com/mrseanchow/wecom-core/types/message"
 )
 
 func TestSendTextMessage(t *testing.T) {
@@ -22,7 +22,7 @@ func TestSendTextMessage(t *testing.T) {
 			Content: "hello world",
 		},
 	})
-	fmt.Printf("响应：%+v 错误：%+v", resp, err)
+	fmt.Printf("响应�?+v 错误�?+v", resp, err)
 }
 
 func TestSendImageMessage(t *testing.T) {
@@ -38,7 +38,7 @@ func TestSendImageMessage(t *testing.T) {
 			MediaID: "3GpqnD4o8ztI754ejNTtCPQRfjOgU19pmlJGZN_2wvfVJlGEATht_F2G4yD3Lk3ZI3PODYj99GiAipn2v-EgFhQ",
 		},
 	})
-	fmt.Printf("响应：%+v 错误：%+v", resp, err)
+	fmt.Printf("响应�?+v 错误�?+v", resp, err)
 }
 
 func TestSendVoiceMessage(t *testing.T) {
@@ -54,7 +54,7 @@ func TestSendVoiceMessage(t *testing.T) {
 			MediaID: "MEDIA_ID",
 		},
 	})
-	fmt.Printf("响应：%+v 错误：%+v", resp, err)
+	fmt.Printf("响应�?+v 错误�?+v", resp, err)
 }
 
 func TestSendVideoMessage(t *testing.T) {
@@ -72,7 +72,7 @@ func TestSendVideoMessage(t *testing.T) {
 			Description: "视频描述",
 		},
 	})
-	fmt.Printf("响应：%+v 错误：%+v", resp, err)
+	fmt.Printf("响应�?+v 错误�?+v", resp, err)
 }
 
 func TestSendFileMessage(t *testing.T) {
@@ -88,7 +88,7 @@ func TestSendFileMessage(t *testing.T) {
 			MediaID: "3-uHsjTP0UegpkiB9Gx1RqkRhaMCarEmpInpwQMcovAaYF6v2Exg7ClCOGQ_1oF-L",
 		},
 	})
-	fmt.Printf("响应：%+v 错误：%+v", resp, err)
+	fmt.Printf("响应�?+v 错误�?+v", resp, err)
 }
 
 func TestSendTextCardMessage(t *testing.T) {
@@ -107,7 +107,7 @@ func TestSendTextCardMessage(t *testing.T) {
 			BtnTxt:      "查看详情",
 		},
 	})
-	fmt.Printf("响应：%+v 错误：%+v", resp, err)
+	fmt.Printf("响应�?+v 错误�?+v", resp, err)
 }
 
 func TestSendNewsMessage(t *testing.T) {
@@ -122,7 +122,7 @@ func TestSendNewsMessage(t *testing.T) {
 		News: &message.NewsMessage{
 			Articles: []message.NewsArticle{
 				{
-					Title:       "开发者中心",
+					Title:       "开发者中�?,
 					Description: "客户联系",
 					URL:         "https://developer.work.weixin.qq.com/document/path/92228",
 					PicURL:      "https://wework.qpic.cn/wwpic3az/291238_YYSv1K_mQn6oBN4_1767923045/0",
@@ -130,7 +130,7 @@ func TestSendNewsMessage(t *testing.T) {
 			},
 		},
 	})
-	fmt.Printf("响应：%+v 错误：%+v", resp, err)
+	fmt.Printf("响应�?+v 错误�?+v", resp, err)
 }
 
 func TestSendMPNewsMessage(t *testing.T) {
@@ -147,7 +147,7 @@ func TestSendMPNewsMessage(t *testing.T) {
 				{
 					Title:            "图文标题",
 					ThumbMediaID:     "3IN8NQFtxcnNLUQDV99RB0dHAp9009miO14W5qBb4B88lRHte5nscyuG3Umab1z1u",
-					Author:           "作者",
+					Author:           "作�?,
 					Content:          "图文内容",
 					ContentSourceURL: "https://developer.work.weixin.qq.com/document/path/92228",
 					Digest:           "图文摘要",
@@ -155,7 +155,7 @@ func TestSendMPNewsMessage(t *testing.T) {
 			},
 		},
 	})
-	fmt.Printf("响应：%+v 错误：%+v", resp, err)
+	fmt.Printf("响应�?+v 错误�?+v", resp, err)
 }
 
 func TestSendMarkdownMessage(t *testing.T) {
@@ -168,10 +168,10 @@ func TestSendMarkdownMessage(t *testing.T) {
 		MsgType: "markdown",
 		AgentID: 1000060,
 		Markdown: &message.MarkdownMessage{
-			Content: "您的会议室已经预订，稍后会同步到`邮箱`\n> **收到** <font color='info'>[李四](https://work.weixin.qq.com)</font> 请注意查收",
+			Content: "您的会议室已经预订，稍后会同步到`邮箱`\n> **收到** <font color='info'>[李四](https://work.weixin.qq.com)</font> 请注意查�?,
 		},
 	})
-	fmt.Printf("响应：%+v 错误：%+v", resp, err)
+	fmt.Printf("响应�?+v 错误�?+v", resp, err)
 }
 
 func TestSendMiniProgramNoticeMessage(t *testing.T) {
@@ -187,11 +187,11 @@ func TestSendMiniProgramNoticeMessage(t *testing.T) {
 			AppID:             "wx1234567890abcdef",
 			Page:              "pages/index/index",
 			Title:             "审批通知",
-			Description:       "您有一条新的审批申请",
+			Description:       "您有一条新的审批申�?,
 			EmphasisFirstItem: true,
 			ContentItem: []message.ContentItem{
 				{
-					Key:   "申请人",
+					Key:   "申请�?,
 					Value: "张三",
 				},
 				{
@@ -201,7 +201,7 @@ func TestSendMiniProgramNoticeMessage(t *testing.T) {
 			},
 		},
 	})
-	fmt.Printf("响应：%+v 错误：%+v", resp, err)
+	fmt.Printf("响应�?+v 错误�?+v", resp, err)
 }
 
 func TestSendTemplateCardMessage(t *testing.T) {
@@ -228,11 +228,11 @@ func TestSendTemplateCardMessage(t *testing.T) {
 				Title: "100",
 				Desc:  "数据处理完成",
 			},
-			SubTitleText: "这是副标题文本",
+			SubTitleText: "这是副标题文�?,
 			HorizontalContentList: []message.CardHorizontalContent{
 				{
-					KeyName: "任务状态",
-					Value:   "已完成",
+					KeyName: "任务状�?,
+					Value:   "已完�?,
 				},
 			},
 			CardAction: &message.CardAction{
@@ -241,5 +241,6 @@ func TestSendTemplateCardMessage(t *testing.T) {
 			},
 		},
 	})
-	fmt.Printf("响应：%+v 错误：%+v", resp, err)
+	fmt.Printf("响应�?+v 错误�?+v", resp, err)
 }
+

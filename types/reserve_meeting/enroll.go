@@ -1,6 +1,6 @@
 package reserve_meeting
 
-import "github.com/shuaidd/wecom-core/types/common"
+import "github.com/mrseanchow/wecom-core/types/common"
 
 // EnrollQueryByTmpOpenIDRequest 获取会议成员报名ID请求
 type EnrollQueryByTmpOpenIDRequest struct {
@@ -109,7 +109,7 @@ type EnrollDeleteRequest struct {
 	EnrollIDList []EnrollIDItem `json:"enroll_id_list"`
 }
 
-// EnrollIDItem 报名ID项
+// EnrollIDItem 报名ID�?
 type EnrollIDItem struct {
 	EnrollID string `json:"enroll_id"`
 }
@@ -126,7 +126,7 @@ type EnrollImportRequest struct {
 	EnrollList []EnrollImportItem `json:"enroll_list"`
 }
 
-// EnrollImportItem 导入报名项
+// EnrollImportItem 导入报名�?
 type EnrollImportItem struct {
 	UserID      string `json:"userid,omitempty"`
 	Area        string `json:"area,omitempty"`
@@ -141,7 +141,7 @@ type EnrollImportResponse struct {
 	EnrollList []EnrollImportResponseItem `json:"enroll_list,omitempty"`
 }
 
-// EnrollImportResponseItem 导入报名响应项
+// EnrollImportResponseItem 导入报名响应�?
 type EnrollImportResponseItem struct {
 	EnrollID    string `json:"enroll_id"`
 	UserID      string `json:"userid"`
@@ -163,3 +163,4 @@ type EnrollApproveResponse struct {
 	common.Response
 	HandledCount int32 `json:"handled_count"`
 }
+

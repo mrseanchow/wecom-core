@@ -9,8 +9,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/shuaidd/wecom-core/internal/errors"
-	"github.com/shuaidd/wecom-core/types/common"
+	"github.com/mrseanchow/wecom-core/internal/errors"
+	"github.com/mrseanchow/wecom-core/types/common"
 )
 
 func TestParseResponse_Success(t *testing.T) {
@@ -136,3 +136,4 @@ func TestResponse_IsSuccess(t *testing.T) {
 		})
 	}
 }
+

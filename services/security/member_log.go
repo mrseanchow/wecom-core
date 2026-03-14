@@ -3,8 +3,8 @@ package security
 import (
 	"context"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/security"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/security"
 )
 
 // ListMemberOperLog 获取成员操作记录
@@ -12,3 +12,4 @@ import (
 func (s *Service) ListMemberOperLog(ctx context.Context, req *security.ListMemberOperLogRequest) (*security.ListMemberOperLogResponse, error) {
 	return client.PostAndUnmarshal[security.ListMemberOperLogResponse](s.client, ctx, "/cgi-bin/security/member_oper_log/list", req)
 }
+

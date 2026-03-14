@@ -5,14 +5,14 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/shuaidd/wecom-core"
-	"github.com/shuaidd/wecom-core/config"
-	"github.com/shuaidd/wecom-core/pkg/logger"
-	"github.com/shuaidd/wecom-core/types/wedoc"
+	"github.com/mrseanchow/wecom-core"
+	"github.com/mrseanchow/wecom-core/config"
+	"github.com/mrseanchow/wecom-core/pkg/logger"
+	"github.com/mrseanchow/wecom-core/types/wedoc"
 )
 
 func main() {
-	// 1. 创建企业微信客户端
+	// 1. 创建企业微信客户�?
 	client, err := wecom.New(
 		config.WithCorpID("your_corp_id"),
 		config.WithLogger(logger.NewStdLogger()),
@@ -39,7 +39,7 @@ func main() {
 		fmt.Printf("文档创建成功: DocID=%s, URL=%s\n", createDocResp.DocID, createDocResp.URL)
 	}
 
-	// 保存docid供后续使用
+	// 保存docid供后续使�?
 	docID := ""
 	if createDocResp != nil {
 		docID = createDocResp.DocID
@@ -61,17 +61,17 @@ func main() {
 		}
 	}
 
-	// 4. 重命名文档
+	// 4. 重命名文�?
 	if docID != "" {
-		fmt.Println("\n=== 重命名文档 ===")
+		fmt.Println("\n=== 重命名文�?===")
 		err = client.Wedoc.RenameDoc(ctx, &wedoc.RenameDocRequest{
 			DocID:   docID,
-			NewName: "新测试文档名称",
+			NewName: "新测试文档名�?,
 		})
 		if err != nil {
 			log.Printf("Failed to rename doc: %v", err)
 		} else {
-			fmt.Println("文档重命名成功")
+			fmt.Println("文档重命名成�?)
 		}
 	}
 
@@ -88,14 +88,14 @@ func main() {
 		}
 	}
 
-	// ========== 收集表管理示例 ==========
+	// ========== 收集表管理示�?==========
 
-	// 6. 创建收集表
-	fmt.Println("\n=== 创建收集表 ===")
+	// 6. 创建收集�?
+	fmt.Println("\n=== 创建收集�?===")
 	createFormResp, err := client.Wedoc.CreateForm(ctx, &wedoc.CreateFormRequest{
 		FormInfo: wedoc.FormInfo{
-			FormTitle: "员工信息收集表",
-			FormDesc:  "请填写您的个人信息",
+			FormTitle: "员工信息收集�?,
+			FormDesc:  "请填写您的个人信�?,
 			FormQuestion: wedoc.FormQuestion{
 				Items: []wedoc.QuestionItem{
 					{
@@ -111,12 +111,12 @@ func main() {
 						Title:      "您的部门",
 						Pos:        2,
 						Status:     1,
-						ReplyType:  2, // 2:单选
+						ReplyType:  2, // 2:单�?
 						MustReply:  true,
 						OptionItem: []wedoc.OptionItem{
 							{Key: 1, Value: "技术部", Status: 1},
-							{Key: 2, Value: "产品部", Status: 1},
-							{Key: 3, Value: "运营部", Status: 1},
+							{Key: 2, Value: "产品�?, Status: 1},
+							{Key: 3, Value: "运营�?, Status: 1},
 						},
 					},
 					{
@@ -124,7 +124,7 @@ func main() {
 						Title:      "您的爱好（多选）",
 						Pos:        3,
 						Status:     1,
-						ReplyType:  3, // 3:多选
+						ReplyType:  3, // 3:多�?
 						MustReply:  false,
 						OptionItem: []wedoc.OptionItem{
 							{Key: 1, Value: "运动", Status: 1},
@@ -136,9 +136,9 @@ func main() {
 				},
 			},
 			FormSetting: wedoc.FormSetting{
-				FillOutAuth:     0,     // 0:所有人可填写
-				AllowMultiFill:  false, // 不允许多次填写
-				CanAnonymous:    false, // 不允许匿名
+				FillOutAuth:     0,     // 0:所有人可填�?
+				AllowMultiFill:  false, // 不允许多次填�?
+				CanAnonymous:    false, // 不允许匿�?
 				CanNotifySubmit: true,  // 有回复时提醒
 			},
 		},
@@ -146,41 +146,41 @@ func main() {
 	if err != nil {
 		log.Printf("Failed to create form: %v", err)
 	} else {
-		fmt.Printf("收集表创建成功: FormID=%s\n", createFormResp.FormID)
+		fmt.Printf("收集表创建成�? FormID=%s\n", createFormResp.FormID)
 	}
 
-	// 保存formid供后续使用
+	// 保存formid供后续使�?
 	formID := ""
 	if createFormResp != nil {
 		formID = createFormResp.FormID
 	}
 
-	// 7. 获取收集表信息
+	// 7. 获取收集表信�?
 	if formID != "" {
-		fmt.Println("\n=== 获取收集表信息 ===")
+		fmt.Println("\n=== 获取收集表信�?===")
 		formInfo, err := client.Wedoc.GetFormInfo(ctx, &wedoc.GetFormInfoRequest{
 			FormID: formID,
 		})
 		if err != nil {
 			log.Printf("Failed to get form info: %v", err)
 		} else {
-			fmt.Printf("收集表信息: FormID=%s, Title=%s, 问题数=%d\n",
+			fmt.Printf("收集表信�? FormID=%s, Title=%s, 问题�?%d\n",
 				formInfo.FormInfo.FormID,
 				formInfo.FormInfo.FormTitle,
 				len(formInfo.FormInfo.FormQuestion.Items))
 		}
 	}
 
-	// 8. 编辑收集表（修改设置）
+	// 8. 编辑收集表（修改设置�?
 	if formID != "" {
-		fmt.Println("\n=== 编辑收集表 ===")
+		fmt.Println("\n=== 编辑收集�?===")
 		err = client.Wedoc.ModifyForm(ctx, &wedoc.ModifyFormRequest{
 			Oper:   2, // 2:全量修改设置
 			FormID: formID,
 			FormInfo: wedoc.FormInfo{
 				FormSetting: wedoc.FormSetting{
 					FillOutAuth:     0,
-					AllowMultiFill:  true, // 修改为允许多次填写
+					AllowMultiFill:  true, // 修改为允许多次填�?
 					CanAnonymous:    false,
 					CanNotifySubmit: true,
 				},
@@ -189,54 +189,54 @@ func main() {
 		if err != nil {
 			log.Printf("Failed to modify form: %v", err)
 		} else {
-			fmt.Println("收集表编辑成功")
+			fmt.Println("收集表编辑成�?)
 		}
 	}
 
-	// 9. 获取收集表统计信息
+	// 9. 获取收集表统计信�?
 	if formID != "" {
 		// 注意：需要先获取收集表信息以获得repeated_id
 		formInfo, err := client.Wedoc.GetFormInfo(ctx, &wedoc.GetFormInfoRequest{
 			FormID: formID,
 		})
 		if err == nil && len(formInfo.FormInfo.RepeatedID) > 0 {
-			fmt.Println("\n=== 获取收集表统计信息 ===")
+			fmt.Println("\n=== 获取收集表统计信�?===")
 			repeatedID := formInfo.FormInfo.RepeatedID[0]
 			statistic, err := client.Wedoc.GetFormStatistic(ctx, &wedoc.GetFormStatisticRequest{
 				RepeatedID: repeatedID,
-				ReqType:    1, // 1:只获取统计结果
+				ReqType:    1, // 1:只获取统计结�?
 			})
 			if err != nil {
 				log.Printf("Failed to get form statistic: %v", err)
 			} else {
-				fmt.Printf("统计信息: 已填写次数=%d, 已填写人数=%d, 未填写人数=%d\n",
+				fmt.Printf("统计信息: 已填写次�?%d, 已填写人�?%d, 未填写人�?%d\n",
 					statistic.FillCnt,
 					statistic.FillUserCnt,
 					statistic.UnfillUserCnt)
 			}
 
-			// 10. 获取已提交列表（示例）
-			fmt.Println("\n=== 获取已提交列表 ===")
+			// 10. 获取已提交列表（示例�?
+			fmt.Println("\n=== 获取已提交列�?===")
 			submitList, err := client.Wedoc.GetFormStatistic(ctx, &wedoc.GetFormStatisticRequest{
 				RepeatedID: repeatedID,
-				ReqType:    2,          // 2:获取已提交列表
-				StartTime:  1700000000, // 示例时间戳
-				EndTime:    1800000000, // 示例时间戳
+				ReqType:    2,          // 2:获取已提交列�?
+				StartTime:  1700000000, // 示例时间�?
+				EndTime:    1800000000, // 示例时间�?
 				Limit:      20,
 			})
 			if err != nil {
 				log.Printf("Failed to get submit list: %v", err)
 			} else {
-				fmt.Printf("已提交人数: %d\n", len(submitList.SubmitUsers))
+				fmt.Printf("已提交人�? %d\n", len(submitList.SubmitUsers))
 			}
 
-			// 11. 读取收集表答案（示例）
+			// 11. 读取收集表答案（示例�?
 			if len(submitList.SubmitUsers) > 0 {
-				fmt.Println("\n=== 读取收集表答案 ===")
+				fmt.Println("\n=== 读取收集表答�?===")
 				var answerIDs []uint64
 				for _, user := range submitList.SubmitUsers {
 					answerIDs = append(answerIDs, user.AnswerID)
-					if len(answerIDs) >= 10 { // 最多读取10个
+					if len(answerIDs) >= 10 { // 最多读�?0�?
 						break
 					}
 				}
@@ -250,7 +250,7 @@ func main() {
 				} else {
 					fmt.Printf("答案数量: %d\n", len(answers.Answer.AnswerList))
 					for _, answer := range answers.Answer.AnswerList {
-						fmt.Printf("  - 答案ID=%d, 用户=%s, 问题回答数=%d\n",
+						fmt.Printf("  - 答案ID=%d, 用户=%s, 问题回答�?%d\n",
 							answer.AnswerID,
 							answer.UserName,
 							len(answer.Reply.Items))
@@ -273,18 +273,19 @@ func main() {
 		}
 	}
 
-	// 13. 删除收集表（使用DeleteDoc接口，传入FormID）
+	// 13. 删除收集表（使用DeleteDoc接口，传入FormID�?
 	if formID != "" {
-		fmt.Println("\n=== 删除收集表 ===")
+		fmt.Println("\n=== 删除收集�?===")
 		err = client.Wedoc.DeleteDoc(ctx, &wedoc.DeleteDocRequest{
 			FormID: formID,
 		})
 		if err != nil {
 			log.Printf("Failed to delete form: %v", err)
 		} else {
-			fmt.Println("收集表删除成功")
+			fmt.Println("收集表删除成�?)
 		}
 	}
 
 	fmt.Println("\n=== 示例完成 ===")
 }
+

@@ -3,8 +3,8 @@ package journal
 import (
 	"context"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/journal"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/journal"
 )
 
 type Service struct {
@@ -30,3 +30,4 @@ func (s *Service) GetStatList(ctx context.Context, req *journal.GetStatListReque
 func (s *Service) GetRecordDetail(ctx context.Context, req *journal.GetRecordDetailRequest) (*journal.GetRecordDetailResponse, error) {
 	return client.PostAndUnmarshal[journal.GetRecordDetailResponse](s.client, ctx, "/cgi-bin/oa/journal/get_record_detail", req)
 }
+

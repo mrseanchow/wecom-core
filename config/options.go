@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/pkg/cache"
-	"github.com/shuaidd/wecom-core/pkg/interceptor"
-	"github.com/shuaidd/wecom-core/pkg/logger"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/pkg/cache"
+	"github.com/mrseanchow/wecom-core/pkg/interceptor"
+	"github.com/mrseanchow/wecom-core/pkg/logger"
 )
 
 // Option 配置选项函数
@@ -86,14 +86,14 @@ func WithTimeout(timeout time.Duration) Option {
 	}
 }
 
-// WithRetry 设置最大重试次数
+// WithRetry 设置最大重试次�?
 func WithRetry(maxRetries int) Option {
 	return func(c *Config) {
 		c.MaxRetries = maxRetries
 	}
 }
 
-// WithBackoff 设置退避时间
+// WithBackoff 设置退避时�?
 func WithBackoff(initial, max time.Duration) Option {
 	return func(c *Config) {
 		c.InitialBackoff = initial
@@ -101,7 +101,7 @@ func WithBackoff(initial, max time.Duration) Option {
 	}
 }
 
-// WithLogger 设置日志记录器
+// WithLogger 设置日志记录�?
 func WithLogger(logger logger.Logger) Option {
 	return func(c *Config) {
 		c.Logger = logger
@@ -122,7 +122,7 @@ func WithDebug(debug bool) Option {
 	}
 }
 
-// WithRequestInterceptor 添加请求拦截器
+// WithRequestInterceptor 添加请求拦截�?
 func WithRequestInterceptor(interceptors ...interceptor.RequestInterceptor) Option {
 	return func(c *Config) {
 		c.RequestInterceptors = append(c.RequestInterceptors, interceptors...)
@@ -136,7 +136,7 @@ func WithResponseInterceptor(interceptors ...interceptor.ResponseInterceptor) Op
 	}
 }
 
-// WithAfterResponseInterceptor 添加响应后拦截器（解析后）
+// WithAfterResponseInterceptor 添加响应后拦截器（解析后�?
 func WithAfterResponseInterceptor(interceptors ...interceptor.AfterResponseInterceptor) Option {
 	return func(c *Config) {
 		c.AfterResponseInterceptors = append(c.AfterResponseInterceptors, interceptors...)
@@ -161,3 +161,4 @@ func WithProxy(proxyURL string) Option {
 		c.ProxyURL = proxyURL
 	}
 }
+

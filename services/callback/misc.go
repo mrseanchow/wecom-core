@@ -31,3 +31,4 @@ func ParseSecurity(data []byte) (*SecurityEvent, error) {
 func ParseKFAccountAuthChange(data []byte) (*KFAccountAuthChangeEvent, error) {
 	return Parse[KFAccountAuthChangeEvent](data)
 }
+

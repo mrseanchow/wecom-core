@@ -1,6 +1,6 @@
 package externalcontact
 
-import "github.com/shuaidd/wecom-core/types/common"
+import "github.com/mrseanchow/wecom-core/types/common"
 
 // ProductAttachment 商品图册附件
 type ProductAttachment struct {
@@ -69,3 +69,4 @@ type UpdateProductAlbumRequest struct {
 type DeleteProductAlbumRequest struct {
 	ProductID string `json:"product_id"`
 }
+

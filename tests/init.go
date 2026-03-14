@@ -10,10 +10,10 @@ import (
 	"time"
 
 	"github.com/joho/godotenv"
-	"github.com/shuaidd/wecom-core"
-	"github.com/shuaidd/wecom-core/config"
-	"github.com/shuaidd/wecom-core/pkg/logger"
-	"github.com/shuaidd/wecom-core/types/common"
+	"github.com/mrseanchow/wecom-core"
+	"github.com/mrseanchow/wecom-core/config"
+	"github.com/mrseanchow/wecom-core/pkg/logger"
+	"github.com/mrseanchow/wecom-core/types/common"
 )
 
 type NoCache struct {
@@ -87,7 +87,7 @@ func initByProxy() {
 			return nil
 		}),
 	)
-	fmt.Println("使用代理服务访问企微-初始化完成")
+	fmt.Println("使用代理服务访问企微-初始化完�?)
 }
 
 func initByDirect() {
@@ -98,12 +98,12 @@ func initByDirect() {
 	wecom.MustInit(
 		config.WithCorpID(corpID),
 		config.WithAgent("bosszs", 1000050, bossZSSecret, "boss助手"),
-		config.WithAgent("addressBook", 1, addressBookSecret, "通讯录助手"),
+		config.WithAgent("addressBook", 1, addressBookSecret, "通讯录助�?),
 		config.WithCache(&NoCache{}),
 		config.WithLogger(logger.NewStdLogger()),
 		config.WithTimeout(20*time.Second),
 	)
-	fmt.Println("使用直联访问企微-初始化完成")
+	fmt.Println("使用直联访问企微-初始化完�?)
 }
 
 func init() {
@@ -115,3 +115,4 @@ func init() {
 		initByDirect()
 	}
 }
+

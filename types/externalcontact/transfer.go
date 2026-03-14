@@ -1,8 +1,8 @@
 package externalcontact
 
-import "github.com/shuaidd/wecom-core/types/common"
+import "github.com/mrseanchow/wecom-core/types/common"
 
-// OnJobTransferCustomerRequest 分配在职成员的客户请求
+// OnJobTransferCustomerRequest 分配在职成员的客户请�?
 type OnJobTransferCustomerRequest struct {
 	HandoverUserID     string   `json:"handover_userid"`
 	TakeoverUserID     string   `json:"takeover_userid"`
@@ -16,7 +16,7 @@ type OnJobCustomerTransferResult struct {
 	ErrCode        int    `json:"errcode"`
 }
 
-// OnJobTransferCustomerResponse 分配在职成员的客户响应
+// OnJobTransferCustomerResponse 分配在职成员的客户响�?
 type OnJobTransferCustomerResponse struct {
 	common.Response
 	Customer []OnJobCustomerTransferResult `json:"customer"`
@@ -41,23 +41,24 @@ type OnJobTransferGroupChatResponse struct {
 	FailedChatList []FailedChatItem `json:"failed_chat_list,omitempty"`
 }
 
-// TransferResultRequest 查询客户接替状态请求
+// TransferResultRequest 查询客户接替状态请�?
 type TransferResultRequest struct {
 	HandoverUserID string `json:"handover_userid"`
 	TakeoverUserID string `json:"takeover_userid"`
 	Cursor         string `json:"cursor,omitempty"`
 }
 
-// CustomerTransferStatus 客户接替状态
+// CustomerTransferStatus 客户接替状�?
 type CustomerTransferStatus struct {
 	ExternalUserID string `json:"external_userid"`
 	Status         int    `json:"status"`
 	TakeoverTime   int64  `json:"takeover_time"`
 }
 
-// TransferResultResponse 查询客户接替状态响应
+// TransferResultResponse 查询客户接替状态响�?
 type TransferResultResponse struct {
 	common.Response
 	Customer   []CustomerTransferStatus `json:"customer"`
 	NextCursor string                   `json:"next_cursor,omitempty"`
 }
+

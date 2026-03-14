@@ -4,8 +4,8 @@ import (
 	"context"
 	"net/url"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/contact"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/contact"
 )
 
 // ExportSimpleUser 导出成员
@@ -60,3 +60,4 @@ func (s *Service) GetExportResult(ctx context.Context, jobID string) (*contact.G
 
 	return client.GetAndUnmarshal[contact.GetExportResultResponse](s.client, ctx, "/cgi-bin/export/get_result", query)
 }
+

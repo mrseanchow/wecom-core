@@ -4,8 +4,8 @@ import (
 	"context"
 	"net/url"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/updown"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/updown"
 )
 
 // GetTaskResult 获取异步任务结果
@@ -16,3 +16,4 @@ func (s *Service) GetTaskResult(ctx context.Context, jobID string) (*updown.GetT
 
 	return client.GetAndUnmarshal[updown.GetTaskResultResponse](s.client, ctx, "/cgi-bin/corpgroup/getresult", query)
 }
+

@@ -1,6 +1,6 @@
 package externalpay
 
-import "github.com/shuaidd/wecom-core/types/common"
+import "github.com/mrseanchow/wecom-core/types/common"
 
 type UploadImageResponse struct {
 	common.Response
@@ -269,3 +269,4 @@ type GetApplymentStatusResponse struct {
 	RealSignState int     `json:"real_sign_state"`
 	RejectReason  string  `json:"reject_reason,omitempty"`
 }
+

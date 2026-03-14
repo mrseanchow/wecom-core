@@ -3,8 +3,8 @@ package hr
 import (
 	"context"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/hr"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/hr"
 )
 
 func (s *Service) GetStaffInfo(ctx context.Context, req *hr.GetStaffInfoRequest) (*hr.GetStaffInfoResponse, error) {
@@ -14,3 +14,4 @@ func (s *Service) GetStaffInfo(ctx context.Context, req *hr.GetStaffInfoRequest)
 func (s *Service) UpdateStaffInfo(ctx context.Context, req *hr.UpdateStaffInfoRequest) (*hr.UpdateStaffInfoResponse, error) {
 	return client.PostAndUnmarshal[hr.UpdateStaffInfoResponse](s.client, ctx, "/cgi-bin/hr/update_staff_info", req)
 }
+

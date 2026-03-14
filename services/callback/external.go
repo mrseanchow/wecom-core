@@ -142,3 +142,4 @@ func ParseCustomerStartChat(data []byte) (*CustomerStartChatEvent, error) {
 func ParseMessageFromCustomer(data []byte) (*MessageFromCustomerEvent, error) {
 	return Parse[MessageFromCustomerEvent](data)
 }
+

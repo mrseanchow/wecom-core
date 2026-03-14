@@ -9,9 +9,9 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/pkg/logger"
-	"github.com/shuaidd/wecom-core/types/payment"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/pkg/logger"
+	"github.com/mrseanchow/wecom-core/types/payment"
 )
 
 type Service struct {
@@ -342,3 +342,4 @@ func (s *Service) md5Sign(params map[string]string, key string) (string, error) 
 	hash := md5.Sum([]byte(buf.String()))
 	return strings.ToUpper(hex.EncodeToString(hash[:])), nil
 }
+

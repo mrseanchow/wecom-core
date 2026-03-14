@@ -3,8 +3,8 @@ package security
 import (
 	"context"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/security"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/security"
 )
 
 // SubmitBatchAddVIPJob 批量分配高级功能账号
@@ -36,3 +36,4 @@ func (s *Service) BatchDelVIPJobResult(ctx context.Context, req *security.BatchD
 func (s *Service) ListVIP(ctx context.Context, req *security.ListVIPRequest) (*security.ListVIPResponse, error) {
 	return client.PostAndUnmarshal[security.ListVIPResponse](s.client, ctx, "/cgi-bin/security/vip/list", req)
 }
+

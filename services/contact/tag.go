@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"net/url"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/contact"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/contact"
 )
 
 // CreateTag 创建标签
@@ -70,3 +70,4 @@ func (s *Service) DeleteTagUsers(ctx context.Context, req *contact.DeleteTagUser
 	_, err := client.PostAndUnmarshal[contact.DeleteTagUsersResponse](s.client, ctx, "/cgi-bin/tag/deltagusers", req)
 	return err
 }
+

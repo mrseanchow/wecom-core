@@ -1,6 +1,6 @@
 package miniapppay
 
-import "github.com/shuaidd/wecom-core/types/common"
+import "github.com/mrseanchow/wecom-core/types/common"
 
 // GetSignRequest 获取支付签名请求
 type GetSignRequest struct {
@@ -16,3 +16,4 @@ type GetSignResponse struct {
 	common.Response
 	PaySign string `json:"pay_sign"`
 }
+

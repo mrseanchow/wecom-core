@@ -1,4 +1,4 @@
-module github.com/shuaidd/wecom-core
+module github.com/mrseanchow/wecom-core
 
 go 1.23
 
@@ -12,3 +12,4 @@ require (
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
+

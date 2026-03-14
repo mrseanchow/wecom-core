@@ -3,8 +3,8 @@ package reserve_meeting
 import (
 	"context"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/reserve_meeting"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/reserve_meeting"
 )
 
 // EnrollQueryByTmpOpenID 获取会议成员报名ID
@@ -28,7 +28,7 @@ func (s *Service) EnrollListWithCursor(ctx context.Context, req *reserve_meeting
 	return client.PostAndUnmarshal[reserve_meeting.EnrollListResponse](s.client, ctx, "/cgi-bin/meeting/enroll/list", req)
 }
 
-// EnrollListByStatus 按状态获取会议报名信息
+// EnrollListByStatus 按状态获取会议报名信�?
 // 文档: https://developer.work.weixin.qq.com/document/path/93853
 func (s *Service) EnrollListByStatus(ctx context.Context, meetingID string, status int32) (*reserve_meeting.EnrollListResponse, error) {
 	req := &reserve_meeting.EnrollListRequest{
@@ -70,3 +70,4 @@ func (s *Service) EnrollImport(ctx context.Context, req *reserve_meeting.EnrollI
 func (s *Service) EnrollApprove(ctx context.Context, req *reserve_meeting.EnrollApproveRequest) (*reserve_meeting.EnrollApproveResponse, error) {
 	return client.PostAndUnmarshal[reserve_meeting.EnrollApproveResponse](s.client, ctx, "/cgi-bin/meeting/enroll/approve", req)
 }
+

@@ -3,9 +3,9 @@ package reserve_meeting
 import (
 	"context"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/common"
-	"github.com/shuaidd/wecom-core/types/reserve_meeting"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/common"
+	"github.com/mrseanchow/wecom-core/types/reserve_meeting"
 )
 
 // GetInvitees 获取会议受邀成员列表
@@ -65,7 +65,7 @@ func (s *Service) GetRealtimeAttendeeListWithCursor(ctx context.Context, req *re
 	return client.PostAndUnmarshal[reserve_meeting.GetRealtimeAttendeeListResponse](s.client, ctx, "/cgi-bin/meeting/get_realtime_attendee_list", req)
 }
 
-// GetAttendeeList 获取已参会成员列表
+// GetAttendeeList 获取已参会成员列�?
 // 文档: https://developer.work.weixin.qq.com/document/path/93736
 func (s *Service) GetAttendeeList(ctx context.Context, meetingID string) (*reserve_meeting.GetAttendeeListResponse, error) {
 	req := &reserve_meeting.GetAttendeeListRequest{
@@ -74,7 +74,7 @@ func (s *Service) GetAttendeeList(ctx context.Context, meetingID string) (*reser
 	return client.PostAndUnmarshal[reserve_meeting.GetAttendeeListResponse](s.client, ctx, "/cgi-bin/meeting/get_attendee_list", req)
 }
 
-// GetAttendeeListWithCursor 分页获取已参会成员列表
+// GetAttendeeListWithCursor 分页获取已参会成员列�?
 // 文档: https://developer.work.weixin.qq.com/document/path/93736
 func (s *Service) GetAttendeeListWithCursor(ctx context.Context, req *reserve_meeting.GetAttendeeListRequest) (*reserve_meeting.GetAttendeeListResponse, error) {
 	return client.PostAndUnmarshal[reserve_meeting.GetAttendeeListResponse](s.client, ctx, "/cgi-bin/meeting/get_attendee_list", req)
@@ -134,3 +134,4 @@ func (s *Service) GetCustomerShortURL(ctx context.Context, meetingID string) (*r
 	}
 	return client.PostAndUnmarshal[reserve_meeting.GetCustomerShortURLResponse](s.client, ctx, "/cgi-bin/meeting/get_customer_short_url", req)
 }
+

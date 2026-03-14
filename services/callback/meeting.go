@@ -326,3 +326,4 @@ func ParseWebinarRoleChange(data []byte) (*WebinarRoleChangeEvent, error) {
 func ParseWebinarWarmUpUpload(data []byte) (*WebinarWarmUpUploadEvent, error) {
 	return Parse[WebinarWarmUpUploadEvent](data)
 }
+

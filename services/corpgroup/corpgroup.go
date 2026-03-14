@@ -1,7 +1,7 @@
 package corpgroup
 
 import (
-	"github.com/shuaidd/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/internal/client"
 )
 
 // Service 企业互联服务
@@ -15,3 +15,4 @@ func NewService(c *client.Client) *Service {
 		client: c,
 	}
 }
+

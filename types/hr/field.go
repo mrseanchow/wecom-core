@@ -1,6 +1,6 @@
 package hr
 
-import "github.com/shuaidd/wecom-core/types/common"
+import "github.com/mrseanchow/wecom-core/types/common"
 
 const (
 	FieldValueTypeString = 1
@@ -97,3 +97,4 @@ type FieldInfo struct {
 	ValueMobile *MobileValue `json:"value_mobile,omitempty"`
 	ValueFile   *FileValue   `json:"value_file,omitempty"`
 }
+

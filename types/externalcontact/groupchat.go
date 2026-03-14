@@ -1,13 +1,13 @@
 package externalcontact
 
-import "github.com/shuaidd/wecom-core/types/common"
+import "github.com/mrseanchow/wecom-core/types/common"
 
 // OwnerFilter 群主过滤
 type OwnerFilter struct {
 	UserIDList []string `json:"userid_list,omitempty"`
 }
 
-// ListGroupChatRequest 获取客户群列表请求
+// ListGroupChatRequest 获取客户群列表请�?
 type ListGroupChatRequest struct {
 	StatusFilter int          `json:"status_filter,omitempty"`
 	OwnerFilter  *OwnerFilter `json:"owner_filter,omitempty"`
@@ -21,25 +21,25 @@ type GroupChatItem struct {
 	Status int    `json:"status"`
 }
 
-// ListGroupChatResponse 获取客户群列表响应
+// ListGroupChatResponse 获取客户群列表响�?
 type ListGroupChatResponse struct {
 	common.Response
 	GroupChatList []GroupChatItem `json:"group_chat_list"`
 	NextCursor    string          `json:"next_cursor,omitempty"`
 }
 
-// GetGroupChatRequest 获取客户群详情请求
+// GetGroupChatRequest 获取客户群详情请�?
 type GetGroupChatRequest struct {
 	ChatID   string `json:"chat_id"`
 	NeedName int    `json:"need_name,omitempty"`
 }
 
-// GroupChatInvitor 邀请者
+// GroupChatInvitor 邀请�?
 type GroupChatInvitor struct {
 	UserID string `json:"userid"`
 }
 
-// GroupChatMember 客户群成员
+// GroupChatMember 客户群成�?
 type GroupChatMember struct {
 	UserID        string            `json:"userid"`
 	Type          int               `json:"type"`
@@ -56,7 +56,7 @@ type GroupChatAdmin struct {
 	UserID string `json:"userid"`
 }
 
-// GroupChat 客户群详情
+// GroupChat 客户群详�?
 type GroupChat struct {
 	ChatID        string            `json:"chat_id"`
 	Name          string            `json:"name"`
@@ -68,7 +68,7 @@ type GroupChat struct {
 	MemberVersion string            `json:"member_version,omitempty"`
 }
 
-// GetGroupChatResponse 获取客户群详情响应
+// GetGroupChatResponse 获取客户群详情响�?
 type GetGroupChatResponse struct {
 	common.Response
 	GroupChat GroupChat `json:"group_chat"`
@@ -103,3 +103,4 @@ type TransferGroupChatResponse struct {
 	common.Response
 	FailedChatList []FailedChat `json:"failed_chat_list,omitempty"`
 }
+

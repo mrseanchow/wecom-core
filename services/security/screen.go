@@ -3,8 +3,8 @@ package security
 import (
 	"context"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/security"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/security"
 )
 
 // GetScreenOperRecord 获取截屏/录屏操作记录
@@ -12,3 +12,4 @@ import (
 func (s *Service) GetScreenOperRecord(ctx context.Context, req *security.GetScreenOperRecordRequest) (*security.GetScreenOperRecordResponse, error) {
 	return client.PostAndUnmarshal[security.GetScreenOperRecordResponse](s.client, ctx, "/cgi-bin/security/get_screen_oper_record", req)
 }
+

@@ -3,8 +3,8 @@ package updown
 import (
 	"context"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/updown"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/updown"
 )
 
 // ImportChainContact 批量导入上下游联系人
@@ -16,3 +16,4 @@ func (s *Service) ImportChainContact(ctx context.Context, req *updown.ImportChai
 	}
 	return result.JobID, nil
 }
+

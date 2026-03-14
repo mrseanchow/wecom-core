@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
-	"github.com/shuaidd/wecom-core"
-	"github.com/shuaidd/wecom-core/types/agent"
+	"github.com/mrseanchow/wecom-core"
+	"github.com/mrseanchow/wecom-core/types/agent"
 )
 
 func TestAgentCreateMenu(t *testing.T) {
@@ -26,3 +26,4 @@ func TestAgentCreateMenu(t *testing.T) {
 		}
 	})
 }
+

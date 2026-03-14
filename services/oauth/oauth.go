@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"net/url"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/oauth"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/oauth"
 )
 
 const (
@@ -26,7 +26,7 @@ func NewService(c *client.Client) *Service {
 	}
 }
 
-// BuildAuthorizeURL 构造网页授权链接
+// BuildAuthorizeURL 构造网页授权链�?
 // 用于在打开的网页里面携带用户的身份信息
 func (s *Service) BuildAuthorizeURL(params oauth.BuildAuthorizeURLParams) (string, error) {
 	// 验证必填参数
@@ -82,7 +82,7 @@ func (s *Service) GetUserInfo(ctx context.Context, code string) (*oauth.GetUserI
 }
 
 // GetUserDetail 获取访问用户敏感信息
-// 通过user_ticket获取成员授权的敏感字段
+// 通过user_ticket获取成员授权的敏感字�?
 func (s *Service) GetUserDetail(ctx context.Context, userTicket string) (*oauth.GetUserDetailResponse, error) {
 	if userTicket == "" {
 		return nil, fmt.Errorf("userTicket is required")
@@ -118,3 +118,4 @@ func (s *Service) GetTFAInfo(ctx context.Context, code string) (*oauth.GetTFAInf
 		req,
 	)
 }
+

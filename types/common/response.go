@@ -20,3 +20,4 @@ type Errcode interface {
 	Code() int
 	Msg() string
 }
+

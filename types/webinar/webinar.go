@@ -1,6 +1,6 @@
 package webinar
 
-import "github.com/shuaidd/wecom-core/types/common"
+import "github.com/mrseanchow/wecom-core/types/common"
 
 type UpdateWebinarRequest struct {
 	MeetingID                string        `json:"meetingid"`
@@ -217,3 +217,4 @@ type GetWebinarResponse struct {
 	WarmUpVideo                string        `json:"warm_up_video,omitempty"`
 	AllowAttendeesInviteOthers bool          `json:"allow_attendees_invite_others,omitempty"`
 }
+

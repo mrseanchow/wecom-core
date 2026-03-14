@@ -3,8 +3,8 @@ package message
 import (
 	"context"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/message"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/message"
 )
 
 // UpdateTemplateCard 更新模板卡片消息
@@ -12,3 +12,4 @@ import (
 func (s *Service) UpdateTemplateCard(ctx context.Context, req *message.UpdateTemplateCardRequest) (*message.UpdateTemplateCardResponse, error) {
 	return client.PostAndUnmarshal[message.UpdateTemplateCardResponse](s.client, ctx, "/cgi-bin/message/update_template_card", req)
 }
+

@@ -3,9 +3,9 @@ package calendar
 import (
 	"context"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/calendar"
-	"github.com/shuaidd/wecom-core/types/common"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/calendar"
+	"github.com/mrseanchow/wecom-core/types/common"
 )
 
 const (
@@ -16,7 +16,7 @@ const (
 )
 
 // CreateCalendar 创建日历
-// 该接口用于通过应用在企业内创建一个日历
+// 该接口用于通过应用在企业内创建一个日�?
 func (s *Service) CreateCalendar(ctx context.Context, req *calendar.CreateCalendarRequest) (*calendar.CreateCalendarResponse, error) {
 	return client.PostAndUnmarshal[calendar.CreateCalendarResponse](s.client, ctx, addCalendarURL, req)
 }
@@ -35,8 +35,9 @@ func (s *Service) UpdateCalendar(ctx context.Context, req *calendar.UpdateCalend
 }
 
 // DeleteCalendar 删除日历
-// 该接口用于删除指定日历
+// 该接口用于删除指定日�?
 func (s *Service) DeleteCalendar(ctx context.Context, req *calendar.DeleteCalendarRequest) error {
 	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, deleteCalendarURL, req)
 	return err
 }
+

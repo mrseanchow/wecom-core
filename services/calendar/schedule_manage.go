@@ -3,9 +3,9 @@ package calendar
 import (
 	"context"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/calendar"
-	"github.com/shuaidd/wecom-core/types/common"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/calendar"
+	"github.com/mrseanchow/wecom-core/types/common"
 )
 
 const (
@@ -19,7 +19,7 @@ const (
 )
 
 // CreateSchedule 创建日程
-// 该接口用于在日历中创建一个日程
+// 该接口用于在日历中创建一个日�?
 func (s *Service) CreateSchedule(ctx context.Context, req *calendar.CreateScheduleRequest) (*calendar.CreateScheduleResponse, error) {
 	return client.PostAndUnmarshal[calendar.CreateScheduleResponse](s.client, ctx, addScheduleURL, req)
 }
@@ -44,16 +44,16 @@ func (s *Service) DeleteSchedule(ctx context.Context, req *calendar.DeleteSchedu
 	return err
 }
 
-// AddAttendees 新增日程参与者
-// 该接口用于在日历中更新指定的日程参与者列表
+// AddAttendees 新增日程参与�?
+// 该接口用于在日历中更新指定的日程参与者列�?
 // 注意，该接口是增量式
 func (s *Service) AddAttendees(ctx context.Context, req *calendar.AddAttendeesRequest) error {
 	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, addAttendeesURL, req)
 	return err
 }
 
-// DeleteAttendees 删除日程参与者
-// 该接口用于在日历中更新指定的日程参与者列表
+// DeleteAttendees 删除日程参与�?
+// 该接口用于在日历中更新指定的日程参与者列�?
 // 注意，该接口是增量式
 func (s *Service) DeleteAttendees(ctx context.Context, req *calendar.DeleteAttendeesRequest) error {
 	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, deleteAttendeesURL, req)
@@ -62,7 +62,8 @@ func (s *Service) DeleteAttendees(ctx context.Context, req *calendar.DeleteAtten
 
 // GetScheduleByCalendar 获取日历下的日程列表
 // 该接口用于获取指定的日历下的日程列表
-// 仅可获取应用自己创建的日历下的日程
+// 仅可获取应用自己创建的日历下的日�?
 func (s *Service) GetScheduleByCalendar(ctx context.Context, req *calendar.GetScheduleByCalendarRequest) (*calendar.GetScheduleByCalendarResponse, error) {
 	return client.PostAndUnmarshal[calendar.GetScheduleByCalendarResponse](s.client, ctx, getScheduleByCalendarURL, req)
 }
+

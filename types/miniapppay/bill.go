@@ -1,6 +1,6 @@
 package miniapppay
 
-import "github.com/shuaidd/wecom-core/types/common"
+import "github.com/mrseanchow/wecom-core/types/common"
 
 // GetBillRequest 交易账单申请请求
 type GetBillRequest struct {
@@ -18,3 +18,4 @@ type GetBillResponse struct {
 	HashValue   string `json:"hash_value"`
 	Auth        string `json:"auth,omitempty"`
 }
+

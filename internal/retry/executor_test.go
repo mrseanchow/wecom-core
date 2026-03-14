@@ -9,8 +9,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	internalErrors "github.com/shuaidd/wecom-core/internal/errors"
-	"github.com/shuaidd/wecom-core/pkg/logger"
+	internalErrors "github.com/mrseanchow/wecom-core/internal/errors"
+	"github.com/mrseanchow/wecom-core/pkg/logger"
 )
 
 func TestExecutor_Do_Success(t *testing.T) {
@@ -118,3 +118,4 @@ func TestExecutor_Do_StandardError(t *testing.T) {
 	assert.Equal(t, expectedErr, err)
 	assert.Equal(t, 1, callCount, "should not retry standard error")
 }
+

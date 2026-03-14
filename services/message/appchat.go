@@ -4,12 +4,12 @@ import (
 	"context"
 	"net/url"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/common"
-	"github.com/shuaidd/wecom-core/types/message"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/common"
+	"github.com/mrseanchow/wecom-core/types/message"
 )
 
-// SendAppChat 应用推送消息
+// SendAppChat 应用推送消�?
 // 文档: https://developer.work.weixin.qq.com/document/path/90248
 func (s *Service) SendAppChat(ctx context.Context, req *message.AppChatSendRequest) (*common.Response, error) {
 	return client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/appchat/send", req)
@@ -35,3 +35,4 @@ func (s *Service) UpdateAppChat(ctx context.Context, req *message.UpdateAppChatR
 func (s *Service) ListSmartsheetGroupChat(ctx context.Context, req *message.ListSmartsheetGroupChatRequest) (*message.ListSmartsheetGroupChatResponse, error) {
 	return client.PostAndUnmarshal[message.ListSmartsheetGroupChatResponse](s.client, ctx, "/cgi-bin/wedoc/smartsheet/groupchat/list", req)
 }
+

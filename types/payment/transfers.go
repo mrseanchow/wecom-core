@@ -66,3 +66,4 @@ type QueryTransferResponse struct {
 	TransferTime   string `xml:"transfer_time,omitempty"`
 	Desc           string `xml:"desc,omitempty"`
 }
+

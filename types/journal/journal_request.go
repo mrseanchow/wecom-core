@@ -27,3 +27,4 @@ type GetStatListRequest struct {
 type GetRecordDetailRequest struct {
 	JournalUUID string `json:"journaluuid"`
 }
+

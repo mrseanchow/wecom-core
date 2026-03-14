@@ -47,3 +47,4 @@ func ParseDeleteSchedule(data []byte) (*DeleteScheduleEvent, error) {
 func ParseRespondSchedule(data []byte) (*RespondScheduleEvent, error) {
 	return Parse[RespondScheduleEvent](data)
 }
+

@@ -6,10 +6,10 @@ import (
 	"log"
 	"time"
 
-	"github.com/shuaidd/wecom-core"
-	"github.com/shuaidd/wecom-core/config"
-	"github.com/shuaidd/wecom-core/pkg/logger"
-	"github.com/shuaidd/wecom-core/types/meeting"
+	"github.com/mrseanchow/wecom-core"
+	"github.com/mrseanchow/wecom-core/config"
+	"github.com/mrseanchow/wecom-core/pkg/logger"
+	"github.com/mrseanchow/wecom-core/types/meeting"
 )
 
 func main() {
@@ -30,7 +30,7 @@ func main() {
 		MeetingStart:    time.Now().Unix() + 3600,
 		MeetingDuration: 3600,
 		Description:     "2.0版本产品评审",
-		Location:        "10楼1005会议室",
+		Location:        "10�?005会议�?,
 		Invitees: &meeting.Invitees{
 			UserID: []string{"lisi", "wangwu"},
 		},
@@ -56,7 +56,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("获取会议详情失败: %v", err)
 	}
-	fmt.Printf("会议标题: %s, 状态: %d\n", info.Title, info.Status)
+	fmt.Printf("会议标题: %s, 状�? %d\n", info.Title, info.Status)
 
 	// 修改会议
 	err = client.Meeting.Update(ctx, &meeting.UpdateMeetingRequest{
@@ -70,7 +70,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("修改会议失败: %v", err)
 	}
-	fmt.Println("会议已修改")
+	fmt.Println("会议已修�?)
 
 	// 获取成员会议列表
 	listResp, err := client.Meeting.GetUserMeetingIDs(ctx, &meeting.GetUserMeetingIDsRequest{
@@ -90,5 +90,6 @@ func main() {
 	if err != nil {
 		log.Fatalf("取消会议失败: %v", err)
 	}
-	fmt.Println("会议已取消")
+	fmt.Println("会议已取�?)
 }
+

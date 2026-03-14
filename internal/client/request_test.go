@@ -102,3 +102,4 @@ func TestRequest_AddQuery_URLEncoding(t *testing.T) {
 	expected.Add("key", "value with spaces")
 	assert.Equal(t, expected, req.Query)
 }
+

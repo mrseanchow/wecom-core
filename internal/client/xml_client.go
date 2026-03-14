@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/shuaidd/wecom-core/pkg/logger"
+	"github.com/mrseanchow/wecom-core/pkg/logger"
 )
 
 type XMLResponse struct {
@@ -122,3 +122,4 @@ func (c *XMLClient) PostXML(ctx context.Context, path string, xmlData []byte) (*
 
 	return &result, nil
 }
+

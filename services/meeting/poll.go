@@ -3,9 +3,9 @@ package meeting
 import (
 	"context"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/common"
-	"github.com/shuaidd/wecom-core/types/meeting"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/common"
+	"github.com/mrseanchow/wecom-core/types/meeting"
 )
 
 // CreatePollTheme 创建会议投票主题
@@ -58,3 +58,4 @@ func (s *Service) GetPollList(ctx context.Context, req *meeting.GetPollListReque
 func (s *Service) StartPoll(ctx context.Context, req *meeting.StartPollRequest) (*meeting.StartPollResponse, error) {
 	return client.PostAndUnmarshal[meeting.StartPollResponse](s.client, ctx, "/cgi-bin/meeting/poll/start", req)
 }
+

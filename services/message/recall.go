@@ -3,9 +3,9 @@ package message
 import (
 	"context"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/common"
-	"github.com/shuaidd/wecom-core/types/message"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/common"
+	"github.com/mrseanchow/wecom-core/types/message"
 )
 
 // Recall 撤回应用消息
@@ -14,3 +14,4 @@ func (s *Service) Recall(ctx context.Context, req *message.RecallMessageRequest)
 	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/message/recall", req)
 	return err
 }
+

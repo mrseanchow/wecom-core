@@ -29,7 +29,7 @@ type CreateFileEvent struct {
 	FileId []string `xml:"FileId"`
 }
 
-// 重命名文件
+// 重命名文�?
 type RenameFileEvent struct {
 	BaseEvent
 	FileId []string `xml:"FileId"`
@@ -88,3 +88,4 @@ func ParseDeleteFile(data []byte) (*DeleteFileEvent, error) {
 func ParseMoveFile(data []byte) (*MoveFileEvent, error) {
 	return Parse[MoveFileEvent](data)
 }
+

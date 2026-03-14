@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/shuaidd/wecom-core/pkg/cache"
+	"github.com/mrseanchow/wecom-core/pkg/cache"
 )
 
 func TestMemoryCache_SetAndGet(t *testing.T) {
@@ -104,3 +104,4 @@ func TestMemoryCache_Concurrent(t *testing.T) {
 		<-done
 	}
 }
+

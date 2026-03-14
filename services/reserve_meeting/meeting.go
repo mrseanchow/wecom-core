@@ -3,9 +3,9 @@ package reserve_meeting
 import (
 	"context"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/common"
-	"github.com/shuaidd/wecom-core/types/reserve_meeting"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/common"
+	"github.com/mrseanchow/wecom-core/types/reserve_meeting"
 )
 
 // Service 预约会议高级管理服务
@@ -61,7 +61,7 @@ func (s *Service) GetInfo(ctx context.Context, meetingID string) (*reserve_meeti
 	return client.PostAndUnmarshal[reserve_meeting.GetMeetingInfoResponse](s.client, ctx, "/cgi-bin/meeting/get_info", req)
 }
 
-// GetInfoByCode 通过会议号获取会议详情
+// GetInfoByCode 通过会议号获取会议详�?
 // 文档: https://developer.work.weixin.qq.com/document/path/93628
 func (s *Service) GetInfoByCode(ctx context.Context, meetingCode string) (*reserve_meeting.GetMeetingInfoResponse, error) {
 	req := &reserve_meeting.GetMeetingInfoRequest{
@@ -92,8 +92,9 @@ func (s *Service) CheckDeviceInMeeting(ctx context.Context, req *reserve_meeting
 	return client.PostAndUnmarshal[reserve_meeting.CheckDeviceInMeetingResponse](s.client, ctx, "/cgi-bin/meeting/check_device_in_meeting", req)
 }
 
-// GetQuality 获取会议健康度
+// GetQuality 获取会议健康�?
 // 文档: https://developer.work.weixin.qq.com/document/path/94060
 func (s *Service) GetQuality(ctx context.Context, req *reserve_meeting.GetQualityRequest) (*reserve_meeting.GetQualityResponse, error) {
 	return client.PostAndUnmarshal[reserve_meeting.GetQualityResponse](s.client, ctx, "/cgi-bin/meeting/get_quality", req)
 }
+

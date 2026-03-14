@@ -120,3 +120,4 @@ func ParseDeleteParty(data []byte) (*DeletePartyEvent, error) {
 func ParseUpdateTag(data []byte) (*UpdateTagEvent, error) {
 	return Parse[UpdateTagEvent](data)
 }
+

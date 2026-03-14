@@ -145,3 +145,4 @@ func TestWithBackoff(t *testing.T) {
 	assert.Equal(t, 2*time.Second, cfg.InitialBackoff)
 	assert.Equal(t, 60*time.Second, cfg.MaxBackoff)
 }
+

@@ -3,8 +3,8 @@ package message
 import (
 	"context"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/message"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/message"
 )
 
 // SendSchoolNotice 发送学校通知
@@ -12,3 +12,4 @@ import (
 func (s *Service) SendSchoolNotice(ctx context.Context, req *message.SendSchoolNoticeRequest) (*message.SendSchoolNoticeResponse, error) {
 	return client.PostAndUnmarshal[message.SendSchoolNoticeResponse](s.client, ctx, "/cgi-bin/externalcontact/message/send", req)
 }
+

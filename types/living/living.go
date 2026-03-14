@@ -1,6 +1,6 @@
 package living
 
-import "github.com/shuaidd/wecom-core/types/common"
+import "github.com/mrseanchow/wecom-core/types/common"
 
 // ActivityDetail 活动直播详情
 type ActivityDetail struct {
@@ -40,7 +40,7 @@ type ModifyRequest struct {
 	RemindTime     int    `json:"remind_time,omitempty"`
 }
 
-// CommonEmptyResponse 仅 errcode/errmsg 的返回
+// CommonEmptyResponse �?errcode/errmsg 的返�?
 type CommonEmptyResponse = common.Response
 
 // DeleteReplayRequest 删除直播回放请求
@@ -160,3 +160,4 @@ type GetLivingShareInfoResponse struct {
 	InvitorUserID         string `json:"invitor_userid,omitempty"`
 	InvitorExternalUserID string `json:"invitor_external_userid,omitempty"`
 }
+

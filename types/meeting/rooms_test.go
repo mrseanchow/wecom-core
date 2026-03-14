@@ -32,7 +32,7 @@ func TestListMeetingRoomsRequest_Marshal(t *testing.T) {
 }
 
 func TestGetRoomInfoResponse_Unmarshal(t *testing.T) {
-	js := `{"errcode":0,"errmsg":"ok","basic_info":{"rooms_id_list":["200115200039985708"],"meeting_room_name":"会议室测试1","city":"广州","building":"大厦","floor":"10","participant_number":3,"device":"ROOMS","desc":"aGVsbG8=","password":"MzMz"},"account_info":{"account_type":0,"valid_period":"-"},"hardware_info":{"ip":"10.10.10.69","mac":"a1:ee:27:c1:8a:1a","rooms_version":"2.7.2.420","health_status":"ERROR","system_type":"10.13.6","meeting_room_status":1,"active_time":"2021-03-23 15:37:34","camera_model":"FaceTime 高清摄像头（内建）","enable_video_mirror":true,"microphone_info":"内建麦克风 ","speaker_info":"内建输出"},"pmi_info":{"pmi_code":"12345678","pmi_pwd":"XXXXXXX"},"monitor_status":0,"is_allow_call":true,"scheduled_status":1}`
+	js := `{"errcode":0,"errmsg":"ok","basic_info":{"rooms_id_list":["200115200039985708"],"meeting_room_name":"会议室测�?","city":"广州","building":"大厦","floor":"10","participant_number":3,"device":"ROOMS","desc":"aGVsbG8=","password":"MzMz"},"account_info":{"account_type":0,"valid_period":"-"},"hardware_info":{"ip":"10.10.10.69","mac":"a1:ee:27:c1:8a:1a","rooms_version":"2.7.2.420","health_status":"ERROR","system_type":"10.13.6","meeting_room_status":1,"active_time":"2021-03-23 15:37:34","camera_model":"FaceTime 高清摄像头（内建�?,"enable_video_mirror":true,"microphone_info":"内建麦克�?","speaker_info":"内建输出"},"pmi_info":{"pmi_code":"12345678","pmi_pwd":"XXXXXXX"},"monitor_status":0,"is_allow_call":true,"scheduled_status":1}`
 
 	var resp GetRoomInfoResponse
 	err := json.Unmarshal([]byte(js), &resp)
@@ -41,7 +41,7 @@ func TestGetRoomInfoResponse_Unmarshal(t *testing.T) {
 	if resp.BasicInfo == nil {
 		t.Fatalf("basic_info is nil")
 	}
-	assert.Equal(t, "会议室测试1", resp.BasicInfo.MeetingRoomName)
+	assert.Equal(t, "会议室测�?", resp.BasicInfo.MeetingRoomName)
 
 	if resp.HardwareInfo == nil {
 		t.Fatalf("hardware_info is nil")
@@ -101,3 +101,4 @@ func TestListMeetingsResponse_Roundtrip(t *testing.T) {
 	assert.Equal(t, orig.MeetingInfoList[0].MeetingID, out.MeetingInfoList[0].MeetingID)
 	assert.Equal(t, orig.NextCursor, out.NextCursor)
 }
+

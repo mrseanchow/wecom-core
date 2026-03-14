@@ -5,14 +5,14 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/shuaidd/wecom-core"
-	"github.com/shuaidd/wecom-core/config"
-	"github.com/shuaidd/wecom-core/pkg/logger"
-	"github.com/shuaidd/wecom-core/types/contact"
+	"github.com/mrseanchow/wecom-core"
+	"github.com/mrseanchow/wecom-core/config"
+	"github.com/mrseanchow/wecom-core/pkg/logger"
+	"github.com/mrseanchow/wecom-core/types/contact"
 )
 
 func main() {
-	// 1. 创建企业微信客户端
+	// 1. 创建企业微信客户�?
 	client, err := wecom.New(
 		config.WithCorpID("your_corp_id"),
 		config.WithLogger(logger.NewStdLogger()),
@@ -77,7 +77,7 @@ func main() {
 	// 6. 创建部门
 	fmt.Println("\n=== 创建部门 ===")
 	deptID, err := client.Contact.CreateDepartment(ctx, &contact.CreateDepartmentRequest{
-		Name:     "研发部",
+		Name:     "研发�?,
 		ParentID: 1,
 		Order:    1,
 	})
@@ -111,3 +111,4 @@ func main() {
 
 	fmt.Println("\n=== 示例完成 ===")
 }
+

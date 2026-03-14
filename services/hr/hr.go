@@ -1,7 +1,7 @@
 package hr
 
 import (
-	"github.com/shuaidd/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/internal/client"
 )
 
 type Service struct {
@@ -13,3 +13,4 @@ func NewService(c *client.Client) *Service {
 		client: c,
 	}
 }
+

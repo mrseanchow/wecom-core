@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/shuaidd/wecom-core"
-	"github.com/shuaidd/wecom-core/config"
-	"github.com/shuaidd/wecom-core/pkg/logger"
-	"github.com/shuaidd/wecom-core/types/meeting"
+	"github.com/mrseanchow/wecom-core"
+	"github.com/mrseanchow/wecom-core/config"
+	"github.com/mrseanchow/wecom-core/pkg/logger"
+	"github.com/mrseanchow/wecom-core/types/meeting"
 )
 
 func main() {
@@ -40,7 +40,7 @@ func main() {
 	}
 	fmt.Printf("布局模板数量: %d\n", len(templates.LayoutTemplateList))
 	for _, tpl := range templates.LayoutTemplateList {
-		fmt.Printf("  模板ID: %s, 缩略图: %s\n", tpl.LayoutTemplateID, tpl.ThumbnailURL)
+		fmt.Printf("  模板ID: %s, 缩略�? %s\n", tpl.LayoutTemplateID, tpl.ThumbnailURL)
 	}
 
 	// 3. 添加会议基础布局
@@ -94,7 +94,7 @@ func main() {
 								UserList: []meeting.GridUser{
 									{
 										UserID:   "zhangsan",
-										NickName: "dGVzdA==", // base64编码的"test"
+										NickName: "dGVzdA==", // base64编码�?test"
 									},
 								},
 							},
@@ -146,7 +146,7 @@ func main() {
 	}
 	fmt.Println("设置默认布局成功")
 
-	// 7. 设置高级布局（应用到会议）
+	// 7. 设置高级布局（应用到会议�?
 	err = client.Meeting.ApplyAdvancedLayout(ctx, &meeting.ApplyAdvancedLayoutRequest{
 		MeetingID: meetingID,
 		LayoutID:  addAdvancedResp.LayoutList[0].LayoutID,
@@ -241,3 +241,4 @@ func main() {
 	}
 	fmt.Println("批量删除背景成功")
 }
+

@@ -4,9 +4,9 @@ import (
 	"context"
 	"net/url"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/approval"
-	"github.com/shuaidd/wecom-core/types/common"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/approval"
+	"github.com/mrseanchow/wecom-core/types/common"
 )
 
 // API endpoints
@@ -87,7 +87,7 @@ func (s *Service) GetApprovalDataOld(ctx context.Context, req *approval.GetAppro
 	return client.PostAndUnmarshal[approval.GetApprovalDataOldResponse](s.client, ctx, oldGetApprovalDataURL, req)
 }
 
-// GetOpenApprovalData 自建应用查询审批单当前状态 (getopenapprovaldata)
+// GetOpenApprovalData 自建应用查询审批单当前状�?(getopenapprovaldata)
 func (s *Service) GetOpenApprovalData(ctx context.Context, req *approval.GetOpenApprovalDataRequest) (*approval.GetOpenApprovalDataResponse, error) {
 	return client.PostAndUnmarshal[approval.GetOpenApprovalDataResponse](s.client, ctx, getOpenApprovalDataURL, req)
 }
@@ -102,3 +102,4 @@ func buildQuery(params map[string]string) url.Values {
 	}
 	return q
 }
+

@@ -3,9 +3,9 @@ package checkin
 import (
 	"context"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/checkin"
-	"github.com/shuaidd/wecom-core/types/common"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/checkin"
+	"github.com/mrseanchow/wecom-core/types/common"
 )
 
 // Service 打卡相关接口服务
@@ -18,20 +18,20 @@ func NewService(c *client.Client) *Service {
 	return &Service{client: c}
 }
 
-// Request / Response types 已移动到 types/checkin 包，服务中仅引用 types。
+// Request / Response types 已移动到 types/checkin 包，服务中仅引用 types�?
 // 详见: types/checkin/checkin.go
 
 //
-// Methods: 调用内部 client 并返回对应类型
+// Methods: 调用内部 client 并返回对应类�?
 //
 
-// SetCheckinScheduleList 为打卡人员排班
+// SetCheckinScheduleList 为打卡人员排�?
 func (s *Service) SetCheckinScheduleList(ctx context.Context, req *checkin.SetCheckinScheduleListRequest) error {
 	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/checkin/setcheckinschedulist", req)
 	return err
 }
 
-// PunchCorrection 为打卡人员补卡
+// PunchCorrection 为打卡人员补�?
 func (s *Service) PunchCorrection(ctx context.Context, req *checkin.PunchCorrectionRequest) error {
 	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/checkin/punch_correction", req)
 	return err
@@ -73,7 +73,7 @@ func (s *Service) DeleteCheckinOption(ctx context.Context, req *checkin.DeleteCh
 	return err
 }
 
-// GetCorpCheckinOption 获取企业所有打卡规则
+// GetCorpCheckinOption 获取企业所有打卡规�?
 func (s *Service) GetCorpCheckinOption(ctx context.Context) (*checkin.GetCorpCheckinOptionResponse, error) {
 	return client.PostAndUnmarshal[checkin.GetCorpCheckinOptionResponse](s.client, ctx, "/cgi-bin/checkin/getcorpcheckinoption", nil)
 }
@@ -107,3 +107,4 @@ func (s *Service) GetCheckinData(ctx context.Context, req *checkin.GetCheckinDat
 func (s *Service) GetHardwareCheckinData(ctx context.Context, req *checkin.GetHardwareCheckinDataRequest) (*checkin.GetHardwareCheckinDataResponse, error) {
 	return client.PostAndUnmarshal[checkin.GetHardwareCheckinDataResponse](s.client, ctx, "/cgi-bin/hardware/get_hardware_checkin_data", req)
 }
+

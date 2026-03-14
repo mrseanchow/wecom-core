@@ -1,6 +1,6 @@
 package journal
 
-import "github.com/shuaidd/wecom-core/types/common"
+import "github.com/mrseanchow/wecom-core/types/common"
 
 type DownloadWedriveFileResponse struct {
 	common.Response
@@ -205,3 +205,4 @@ type Comment struct {
 	Content         string   `json:"content"`
 	CommentTime     uint32   `json:"comment_time"`
 }
+

@@ -3,8 +3,8 @@ package miniapppay
 import (
 	"context"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/miniapppay"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/miniapppay"
 )
 
 func (s *Service) Refund(ctx context.Context, req *miniapppay.RefundRequest) (*miniapppay.RefundResponse, error) {
@@ -14,3 +14,4 @@ func (s *Service) Refund(ctx context.Context, req *miniapppay.RefundRequest) (*m
 func (s *Service) GetRefund(ctx context.Context, req *miniapppay.GetRefundRequest) (*miniapppay.GetRefundResponse, error) {
 	return client.PostAndUnmarshal[miniapppay.GetRefundResponse](s.client, ctx, "/cgi-bin/miniapppay/get_refund_detail", req)
 }
+

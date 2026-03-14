@@ -3,9 +3,9 @@ package miniapppay
 import (
 	"context"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/common"
-	"github.com/shuaidd/wecom-core/types/miniapppay"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/common"
+	"github.com/mrseanchow/wecom-core/types/miniapppay"
 )
 
 func (s *Service) CreateOrder(ctx context.Context, req *miniapppay.CreateOrderRequest) (*miniapppay.CreateOrderResponse, error) {
@@ -20,3 +20,4 @@ func (s *Service) CloseOrder(ctx context.Context, req *miniapppay.CloseOrderRequ
 	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/miniapppay/close_order", req)
 	return err
 }
+

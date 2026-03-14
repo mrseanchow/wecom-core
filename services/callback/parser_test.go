@@ -278,3 +278,4 @@ func TestGenericParse(t *testing.T) {
 		t.Errorf("expected UserID to be 'zhangsan', got '%s'", event.UserID)
 	}
 }
+

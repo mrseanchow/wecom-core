@@ -3,9 +3,9 @@ package meeting
 import (
 	"context"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/common"
-	"github.com/shuaidd/wecom-core/types/meeting"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/common"
+	"github.com/mrseanchow/wecom-core/types/meeting"
 )
 
 // Service 会议服务
@@ -61,3 +61,4 @@ func (s *Service) GetUserMeetingIDs(ctx context.Context, req *meeting.GetUserMee
 func (s *Service) GetStartList(ctx context.Context, req *meeting.GetMeetingStartListRequest) (*meeting.GetMeetingStartListResponse, error) {
 	return client.PostAndUnmarshal[meeting.GetMeetingStartListResponse](s.client, ctx, "/cgi-bin/meeting/statistics/get_start_list", req)
 }
+

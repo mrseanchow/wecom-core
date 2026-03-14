@@ -3,8 +3,8 @@ package externalpay
 import (
 	"context"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/externalpay"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/externalpay"
 )
 
 type Service struct {
@@ -46,3 +46,4 @@ func (s *Service) ApplyMch(ctx context.Context, req *externalpay.ApplyMchRequest
 func (s *Service) GetApplymentStatus(ctx context.Context, req *externalpay.GetApplymentStatusRequest) (*externalpay.GetApplymentStatusResponse, error) {
 	return client.PostAndUnmarshal[externalpay.GetApplymentStatusResponse](s.client, ctx, "/cgi-bin/miniapppay/get_applyment_status", req)
 }
+

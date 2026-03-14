@@ -1,7 +1,7 @@
 package invoice
 
 import (
-	"github.com/shuaidd/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/internal/client"
 )
 
 // Service 电子发票服务
@@ -15,3 +15,4 @@ func NewService(c *client.Client) *Service {
 		client: c,
 	}
 }
+

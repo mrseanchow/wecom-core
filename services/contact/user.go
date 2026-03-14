@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"net/url"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/contact"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/contact"
 )
 
 // CreateUser 创建成员
@@ -171,3 +171,4 @@ func (s *Service) BatchDeleteUsers(ctx context.Context, userIDList []string) err
 	_, err := client.PostAndUnmarshal[contact.BatchDeleteUsersResponse](s.client, ctx, "/cgi-bin/user/batchdelete", req)
 	return err
 }
+

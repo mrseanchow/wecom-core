@@ -1,6 +1,6 @@
 package reserve_meeting
 
-import "github.com/shuaidd/wecom-core/types/common"
+import "github.com/mrseanchow/wecom-core/types/common"
 
 // CreateMeetingRequest 创建预约会议请求
 type CreateMeetingRequest struct {
@@ -116,7 +116,7 @@ type CheckDeviceInMeetingResponse struct {
 	ResultList []CheckDeviceResult `json:"result_list,omitempty"`
 }
 
-// CheckDeviceResult 设备检查结果
+// CheckDeviceResult 设备检查结�?
 type CheckDeviceResult struct {
 	MeetingID  string `json:"meetingid"`
 	InstanceID int32  `json:"instance_id"`
@@ -157,12 +157,12 @@ type Settings struct {
 	RingUsers                 *RingUsers `json:"ring_users,omitempty"`
 }
 
-// Hosts 会议主持人列表
+// Hosts 会议主持人列�?
 type Hosts struct {
 	UserID []string `json:"userid,omitempty"`
 }
 
-// RingUsers 指定响铃的成员列表
+// RingUsers 指定响铃的成员列�?
 type RingUsers struct {
 	UserID []string `json:"userid,omitempty"`
 }
@@ -191,7 +191,7 @@ type SubMeeting struct {
 	RepeatID     string `json:"repeat_id"`
 }
 
-// SubRepeatInfo 周期性会议分段信息
+// SubRepeatInfo 周期性会议分段信�?
 type SubRepeatInfo struct {
 	RepeatID         uint32   `json:"repeat_id"`
 	RepeatType       uint32   `json:"repeat_type"`
@@ -255,3 +255,4 @@ type MeetingSettings struct {
 	CoHosts                   *Hosts     `json:"co_hosts"`
 	RingUsers                 *RingUsers `json:"ring_users"`
 }
+

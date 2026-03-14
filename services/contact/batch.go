@@ -4,8 +4,8 @@ import (
 	"context"
 	"net/url"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/contact"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/contact"
 )
 
 // SyncUsers 增量更新成员
@@ -49,3 +49,4 @@ func (s *Service) GetBatchResult(ctx context.Context, jobID string) (*contact.Ge
 
 	return client.GetAndUnmarshal[contact.GetBatchResultResponse](s.client, ctx, "/cgi-bin/batch/getresult", query)
 }
+

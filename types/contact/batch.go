@@ -1,6 +1,6 @@
 package contact
 
-import "github.com/shuaidd/wecom-core/types/common"
+import "github.com/mrseanchow/wecom-core/types/common"
 
 // Callback 回调信息
 type Callback struct {
@@ -71,3 +71,4 @@ type GetBatchResultResponse struct {
 	Percentage int         `json:"percentage"`
 	Result     interface{} `json:"result,omitempty"`
 }
+

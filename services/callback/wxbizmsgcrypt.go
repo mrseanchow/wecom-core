@@ -313,3 +313,4 @@ func (self *WXBizMsgCrypt) DecryptMsg(msg_signature, timestamp, nonce string, po
 
 	return msg, nil
 }
+

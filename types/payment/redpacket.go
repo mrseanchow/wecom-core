@@ -73,3 +73,4 @@ type QueryRedPackResponse struct {
 	SenderName          string `xml:"sender_name,omitempty"`
 	SenderHeaderMediaID string `xml:"sender_header_media_id,omitempty"`
 }
+

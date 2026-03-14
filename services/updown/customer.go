@@ -3,8 +3,8 @@ package updown
 import (
 	"context"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/updown"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/updown"
 )
 
 // UnionIDToExternalUserID 通过unionid和openid查询external_userid
@@ -36,3 +36,4 @@ func (s *Service) ExternalUserIDToPendingID(ctx context.Context, req *updown.Ext
 	}
 	return result.Result, nil
 }
+

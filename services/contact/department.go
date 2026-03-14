@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"net/url"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/contact"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/contact"
 )
 
 // CreateDepartment 创建部门
@@ -83,3 +83,4 @@ func (s *Service) ListSimpleDepartments(ctx context.Context, id int) ([]contact.
 
 	return result.DepartmentID, nil
 }
+

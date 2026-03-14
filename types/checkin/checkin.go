@@ -3,10 +3,10 @@ package checkin
 import (
 	"encoding/json"
 
-	"github.com/shuaidd/wecom-core/types/common"
+	"github.com/mrseanchow/wecom-core/types/common"
 )
 
-// SetCheckinScheduleListRequest 为打卡人员排班
+// SetCheckinScheduleListRequest 为打卡人员排�?
 type SetCheckinScheduleListRequest struct {
 	GroupID   int64                        `json:"groupid"`
 	Items     []SetCheckinScheduleListItem `json:"items"`
@@ -19,7 +19,7 @@ type SetCheckinScheduleListItem struct {
 	ScheduleID int64  `json:"schedule_id"`
 }
 
-// PunchCorrectionRequest 为打卡人员补卡
+// PunchCorrectionRequest 为打卡人员补�?
 type PunchCorrectionRequest struct {
 	UserID              string `json:"userid"`
 	ScheduleDateTime    int64  `json:"schedule_date_time"`
@@ -54,7 +54,7 @@ type AddCheckinRecordItem struct {
 	WifiMac        string   `json:"wifimac,omitempty"`
 }
 
-// AddCheckinOptionRequest / UpdateCheckinOptionRequest 管理打卡规则（入参较复杂，使用 json.RawMessage 便于上层构造）
+// AddCheckinOptionRequest / UpdateCheckinOptionRequest 管理打卡规则（入参较复杂，使�?json.RawMessage 便于上层构造）
 type AddCheckinOptionRequest struct {
 	EffectiveNow bool            `json:"effective_now,omitempty"`
 	Group        json.RawMessage `json:"group,omitempty"`
@@ -151,3 +151,4 @@ type GetHardwareCheckinDataResponse struct {
 	common.Response
 	CheckinData json.RawMessage `json:"checkindata"`
 }
+

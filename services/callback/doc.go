@@ -110,3 +110,4 @@ func ParseUpdateRecord(data []byte) (*UpdateRecordEvent, error) {
 func ParseDeleteRecord(data []byte) (*DeleteRecordEvent, error) {
 	return Parse[DeleteRecordEvent](data)
 }
+

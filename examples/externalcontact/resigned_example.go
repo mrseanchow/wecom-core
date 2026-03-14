@@ -5,15 +5,15 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/shuaidd/wecom-core"
-	"github.com/shuaidd/wecom-core/config"
-	ext "github.com/shuaidd/wecom-core/types/externalcontact"
+	"github.com/mrseanchow/wecom-core"
+	"github.com/mrseanchow/wecom-core/config"
+	ext "github.com/mrseanchow/wecom-core/types/externalcontact"
 )
 
 func main() {
 	ctx := context.Background()
 
-	// 替换为真实的 CorpID 与 CorpSecret
+	// 替换为真实的 CorpID �?CorpSecret
 	client, err := wecom.New(config.WithCorpID("YOUR_CORP_ID"), config.WithDebug(true))
 	if err != nil {
 		log.Fatalf("create client error: %v", err)
@@ -29,7 +29,7 @@ func main() {
 	}
 	fmt.Printf("GetUnassignedList response: %+v\n", guResp)
 
-	// 2. 分配离职成员的客户
+	// 2. 分配离职成员的客�?
 	tcReq := &ext.TransferCustomerRequest{
 		HandoverUserID:  "old_userid",
 		TakeoverUserID:  "new_userid",
@@ -52,3 +52,4 @@ func main() {
 	}
 	fmt.Printf("TransferGroupChat response: %+v\n", tgResp)
 }
+

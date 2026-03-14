@@ -3,8 +3,8 @@ package updown
 import (
 	"context"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/updown"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/updown"
 )
 
 // AddRule 新增对接规则
@@ -50,3 +50,4 @@ func (s *Service) GetRuleInfo(ctx context.Context, req *updown.GetRuleInfoReques
 	}
 	return result.RuleInfo, nil
 }
+

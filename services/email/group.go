@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"net/url"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/email"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/email"
 )
 
 // CreateGroup 创建邮件群组
@@ -59,3 +59,4 @@ func (s *Service) DeleteGroup(ctx context.Context, groupID string) (*email.Delet
 	}
 	return client.PostAndUnmarshal[email.DeleteGroupResponse](s.client, ctx, "/cgi-bin/exmail/group/delete", req)
 }
+

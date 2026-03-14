@@ -1,6 +1,6 @@
 package hr
 
-import "github.com/shuaidd/wecom-core/types/common"
+import "github.com/mrseanchow/wecom-core/types/common"
 
 type GetStaffInfoRequest struct {
 	UserID   string           `json:"userid"`
@@ -69,3 +69,4 @@ type InsertResult struct {
 	Idx       int `json:"idx"`
 	Result    int `json:"result"`
 }
+

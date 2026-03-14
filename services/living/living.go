@@ -4,9 +4,9 @@ import (
 	"context"
 	"net/url"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/common"
-	"github.com/shuaidd/wecom-core/types/living"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/common"
+	"github.com/mrseanchow/wecom-core/types/living"
 )
 const (
 	IvingCancelURL = "/cgi-bin/living/cancel"
@@ -58,7 +58,7 @@ func (s *Service) DeleteReplay(ctx context.Context, req *living.DeleteReplayRequ
 }
 
 // GetLivingCode 获取微信观看直播凭证
-// 文档: docs/在微信中观看直播或直播回放.md
+// 文档: docs/在微信中观看直播或直播回�?md
 func (s *Service) GetLivingCode(ctx context.Context, req *living.GetLivingCodeRequest) (*living.GetLivingCodeResponse, error) {
 	return client.PostAndUnmarshal[living.GetLivingCodeResponse](s.client, ctx, IvingGetLivingCodeURL, req)
 }
@@ -75,7 +75,7 @@ func (s *Service) GetWatchStat(ctx context.Context, req *living.GetWatchStatRequ
 	return client.PostAndUnmarshal[living.GetWatchStatResponse](s.client, ctx, IvingGetWatchStatURL, req)
 }
 
-// GetLivingInfo 获取直播详情（GET 接口，使用 query 参数）
+// GetLivingInfo 获取直播详情（GET 接口，使�?query 参数�?
 // 文档: docs/获取直播详情.md
 func (s *Service) GetLivingInfo(ctx context.Context, livingID string) (*living.GetLivingInfoResponse, error) {
 	q := url.Values{}
@@ -88,3 +88,4 @@ func (s *Service) GetLivingInfo(ctx context.Context, livingID string) (*living.G
 func (s *Service) GetLivingShareInfo(ctx context.Context, req *living.GetLivingShareInfoRequest) (*living.GetLivingShareInfoResponse, error) {
 	return client.PostAndUnmarshal[living.GetLivingShareInfoResponse](s.client, ctx, IvingGetLivingShareInfoURL, req)
 }
+

@@ -3,8 +3,8 @@ package updown
 import (
 	"context"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/updown"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/updown"
 )
 
 // ListAppShareInfo 获取应用共享信息
@@ -12,3 +12,4 @@ import (
 func (s *Service) ListAppShareInfo(ctx context.Context, req *updown.ListAppShareInfoRequest) (*updown.ListAppShareInfoResponse, error) {
 	return client.PostAndUnmarshal[updown.ListAppShareInfoResponse](s.client, ctx, "/cgi-bin/corpgroup/corp/list_app_share_info", req)
 }
+

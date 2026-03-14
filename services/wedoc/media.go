@@ -3,8 +3,8 @@ package wedoc
 import (
 	"context"
 
-	"github.com/shuaidd/wecom-core/internal/client"
-	"github.com/shuaidd/wecom-core/types/wedoc"
+	"github.com/mrseanchow/wecom-core/internal/client"
+	"github.com/mrseanchow/wecom-core/types/wedoc"
 )
 
 const (
@@ -12,7 +12,8 @@ const (
 )
 
 // ImageUpload 上传文档图片
-// 该接口用于上传图片
+// 该接口用于上传图�?
 func (s *Service) ImageUpload(ctx context.Context, req *wedoc.ImageUploadRequest) (*wedoc.ImageUploadResponse, error) {
 	return client.PostAndUnmarshal[wedoc.ImageUploadResponse](s.client, ctx, imageUploadURL, req)
 }
+

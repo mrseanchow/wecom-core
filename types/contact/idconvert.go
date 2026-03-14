@@ -1,6 +1,6 @@
 package contact
 
-import "github.com/shuaidd/wecom-core/types/common"
+import "github.com/mrseanchow/wecom-core/types/common"
 
 // ConvertTmpExternalUserIDRequest tmp_external_userid转换请求
 type ConvertTmpExternalUserIDRequest struct {
@@ -23,3 +23,4 @@ type ConvertTmpExternalUserIDResponse struct {
 	Results                      []ConvertResult `json:"results,omitempty"`
 	InvalidTmpExternalUserIDList []string        `json:"invalid_tmp_external_userid_list,omitempty"`
 }
+

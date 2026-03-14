@@ -1,8 +1,8 @@
 package miniapppay
 
-import "github.com/shuaidd/wecom-core/types/common"
+import "github.com/mrseanchow/wecom-core/types/common"
 
-// RefundRequest 申请退款请求
+// RefundRequest 申请退款请�?
 type RefundRequest struct {
 	MchID        string        `json:"mchid"`
 	AppID        string        `json:"appid"`
@@ -13,14 +13,14 @@ type RefundRequest struct {
 	Amount       *RefundAmount `json:"amount"`
 }
 
-// RefundAmount 退款金额信息
+// RefundAmount 退款金额信�?
 type RefundAmount struct {
 	Refund   int    `json:"refund"`
 	Total    int    `json:"total"`
 	Currency string `json:"currency"`
 }
 
-// RefundResponse 申请退款响应
+// RefundResponse 申请退款响�?
 type RefundResponse struct {
 	common.Response
 	OutRefundNo     string                `json:"out_refund_no"`
@@ -28,7 +28,7 @@ type RefundResponse struct {
 	PromotionDetail []*PromotionDetail    `json:"promotion_detail,omitempty"`
 }
 
-// RefundResponseAmount 退款响应金额信息
+// RefundResponseAmount 退款响应金额信�?
 type RefundResponseAmount struct {
 	Refund         int    `json:"refund"`
 	PayerRefund    int    `json:"payer_refund"`
@@ -36,13 +36,13 @@ type RefundResponseAmount struct {
 	Currency       string `json:"currency,omitempty"`
 }
 
-// GetRefundRequest 查询退款请求
+// GetRefundRequest 查询退款请�?
 type GetRefundRequest struct {
 	MchID       string `json:"mchid"`
 	OutRefundNo string `json:"out_refund_no"`
 }
 
-// GetRefundResponse 查询退款响应
+// GetRefundResponse 查询退款响�?
 type GetRefundResponse struct {
 	common.Response
 	RefundID            string                `json:"refund_id,omitempty"`
@@ -77,3 +77,4 @@ type RefundNotificationAmount struct {
 	PayerTotal  int `json:"payer_total"`
 	PayerRefund int `json:"payer_refund"`
 }
+

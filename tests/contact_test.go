@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/shuaidd/wecom-core"
-	"github.com/shuaidd/wecom-core/types/contact"
+	"github.com/mrseanchow/wecom-core"
+	"github.com/mrseanchow/wecom-core/types/contact"
 )
 
 func TestContactCreateUser(t *testing.T) {
@@ -148,7 +148,7 @@ func TestContactListUserIDs(t *testing.T) {
 		}
 		ctx := wecom.WithAgentName(context.Background(), "address-book")
 		resp, err := cli.Contact.ListUserIDs(ctx, &contact.ListUserIDsRequest{})
-		fmt.Printf("响应：%+v 错误：%+v", resp, err)
+		fmt.Printf("响应�?+v 错误�?+v", resp, err)
 	})
 }
 
@@ -247,3 +247,4 @@ func TestContactBatchDeleteUsers(t *testing.T) {
 		}
 	})
 }
+

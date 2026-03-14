@@ -7,10 +7,10 @@ import (
 )
 
 var (
-	// ErrCacheNotFound 缓存未找到
+	// ErrCacheNotFound 缓存未找�?
 	ErrCacheNotFound = errors.New("cache not found")
 
-	// ErrCacheExpired 缓存已过期
+	// ErrCacheExpired 缓存已过�?
 	ErrCacheExpired = errors.New("cache expired")
 )
 
@@ -26,3 +26,4 @@ type Cache interface {
 	// Delete 删除缓存的token
 	Delete(ctx context.Context, key string) error
 }
+

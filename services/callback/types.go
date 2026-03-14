@@ -153,3 +153,4 @@ func FormatXML(data []byte) string {
 	buf.WriteString("\n```")
 	return buf.String()
 }
+

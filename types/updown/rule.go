@@ -1,6 +1,6 @@
 package updown
 
-import "github.com/shuaidd/wecom-core/types/common"
+import "github.com/mrseanchow/wecom-core/types/common"
 
 // OwnerCorpRange 上游企业的对接人规则
 type OwnerCorpRange struct {
@@ -77,3 +77,4 @@ type GetRuleInfoResponse struct {
 	common.Response
 	RuleInfo *RuleInfo `json:"rule_info"` // 上下游关系规则的详情
 }
+

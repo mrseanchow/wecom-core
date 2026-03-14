@@ -1,6 +1,6 @@
 package meeting
 
-import "github.com/shuaidd/wecom-core/types/common"
+import "github.com/mrseanchow/wecom-core/types/common"
 
 // UpdateSharingConfigRequest 修改会议录制共享设置请求
 type UpdateSharingConfigRequest struct {
@@ -296,3 +296,4 @@ type GetVIPListResponse struct {
 	NextCursor string   `json:"next_cursor,omitempty"`
 	UserIDList []string `json:"userid_list,omitempty"`
 }
+

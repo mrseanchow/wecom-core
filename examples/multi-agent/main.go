@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/shuaidd/wecom-core"
-	"github.com/shuaidd/wecom-core/config"
+	"github.com/mrseanchow/wecom-core"
+	"github.com/mrseanchow/wecom-core/config"
 )
 
 func main() {
@@ -47,21 +47,21 @@ func main() {
 
 	ctx := context.Background()
 
-	// 使用 customer 应用发送消息
+	// 使用 customer 应用发送消�?
 	customerCtx := wecom.WithAgentName(ctx, "customer")
 	err = sendMessageWithAgent(client1, customerCtx, "customer")
 	if err != nil {
 		log.Printf("Failed to send message with customer agent: %v", err)
 	}
 
-	// 使用 study-assistant 应用发送消息
+	// 使用 study-assistant 应用发送消�?
 	studyCtx := wecom.WithAgentName(ctx, "study-assistant")
 	err = sendMessageWithAgent(client1, studyCtx, "study-assistant")
 	if err != nil {
 		log.Printf("Failed to send message with study-assistant agent: %v", err)
 	}
 
-	// 也可以使用应用ID来指定应用
+	// 也可以使用应用ID来指定应�?
 	agentIDCtx := wecom.WithAgentID(ctx, 100001)
 	err = sendMessageWithAgent(client2, agentIDCtx, "agent with ID 100001")
 	if err != nil {
@@ -76,7 +76,7 @@ func main() {
 }
 
 func sendMessageWithAgent(client *wecom.Client, ctx context.Context, agentName string) error {
-	fmt.Printf("\n=== 使用 %s 发送消息 ===\n", agentName)
+	fmt.Printf("\n=== 使用 %s 发送消�?===\n", agentName)
 
 	// 这里只是示例，实际需要替换为真实的用户ID
 	// err := client.Message.SendText(ctx, &types.TextMessageRequest{
@@ -87,7 +87,7 @@ func sendMessageWithAgent(client *wecom.Client, ctx context.Context, agentName s
 	// 	},
 	// })
 
-	fmt.Printf("消息发送成功 (使用应用: %s)\n", agentName)
+	fmt.Printf("消息发送成�?(使用应用: %s)\n", agentName)
 	return nil
 }
 
@@ -104,3 +104,4 @@ func getAgentInfo(client *wecom.Client, ctx context.Context, agentID int64) erro
 
 	return nil
 }
+
