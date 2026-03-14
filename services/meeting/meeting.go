@@ -7,14 +7,6 @@ import (
 	"github.com/shuaidd/wecom-core/types/common"
 	"github.com/shuaidd/wecom-core/types/meeting"
 )
-const (
-	EetingCancelURL = "/cgi-bin/meeting/cancel"
-	EetingCreateURL = "/cgi-bin/meeting/create"
-	EetingGetInfoURL = "/cgi-bin/meeting/get_info"
-	EetingGetUserMeetingidURL = "/cgi-bin/meeting/get_user_meetingid"
-	EetingStatisticsGetStartListURL = "/cgi-bin/meeting/statistics/get_start_list"
-	EetingUpdateURL = "/cgi-bin/meeting/update"
-)
 
 // Service 会议服务
 type Service struct {
@@ -29,13 +21,13 @@ func NewService(c *client.Client) *Service {
 // Create 创建预约会议
 // 文档: https://developer.work.weixin.qq.com/document/path/93624
 func (s *Service) Create(ctx context.Context, req *meeting.CreateMeetingRequest) (*meeting.CreateMeetingResponse, error) {
-	return client.PostAndUnmarshal[meeting.CreateMeetingResponse](s.client, ctx, EetingCreateURL, req)
+	return client.PostAndUnmarshal[meeting.CreateMeetingResponse](s.client, ctx, "/cgi-bin/meeting/create", req)
 }
 
 // Update 修改预约会议
 // 文档: https://developer.work.weixin.qq.com/document/path/93625
 func (s *Service) Update(ctx context.Context, req *meeting.UpdateMeetingRequest) error {
-	_, err := client.PostAndUnmarshal[meeting.UpdateMeetingResponse](s.client, ctx, EetingUpdateURL, req)
+	_, err := client.PostAndUnmarshal[meeting.UpdateMeetingResponse](s.client, ctx, "/cgi-bin/meeting/update", req)
 	return err
 }
 
@@ -45,7 +37,7 @@ func (s *Service) Cancel(ctx context.Context, meetingID string) error {
 	req := &meeting.CancelMeetingRequest{
 		MeetingID: meetingID,
 	}
-	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, EetingCancelURL, req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/meeting/cancel", req)
 	return err
 }
 
@@ -55,17 +47,17 @@ func (s *Service) GetInfo(ctx context.Context, meetingID string) (*meeting.GetMe
 	req := &meeting.GetMeetingInfoRequest{
 		MeetingID: meetingID,
 	}
-	return client.PostAndUnmarshal[meeting.GetMeetingInfoResponse](s.client, ctx, EetingGetInfoURL, req)
+	return client.PostAndUnmarshal[meeting.GetMeetingInfoResponse](s.client, ctx, "/cgi-bin/meeting/get_info", req)
 }
 
 // GetUserMeetingIDs 获取成员会议ID列表
 // 文档: https://developer.work.weixin.qq.com/document/path/93854
 func (s *Service) GetUserMeetingIDs(ctx context.Context, req *meeting.GetUserMeetingIDsRequest) (*meeting.GetUserMeetingIDsResponse, error) {
-	return client.PostAndUnmarshal[meeting.GetUserMeetingIDsResponse](s.client, ctx, EetingGetUserMeetingidURL, req)
+	return client.PostAndUnmarshal[meeting.GetUserMeetingIDsResponse](s.client, ctx, "/cgi-bin/meeting/get_user_meetingid", req)
 }
 
 // GetStartList 获取会议发起记录
 // 文档: https://developer.work.weixin.qq.com/document/path/96191
 func (s *Service) GetStartList(ctx context.Context, req *meeting.GetMeetingStartListRequest) (*meeting.GetMeetingStartListResponse, error) {
-	return client.PostAndUnmarshal[meeting.GetMeetingStartListResponse](s.client, ctx, EetingStatisticsGetStartListURL, req)
+	return client.PostAndUnmarshal[meeting.GetMeetingStartListResponse](s.client, ctx, "/cgi-bin/meeting/statistics/get_start_list", req)
 }

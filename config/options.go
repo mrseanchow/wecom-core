@@ -154,3 +154,10 @@ func WithToken(with bool) Option {
 		c.WithToken = with
 	}
 }
+
+// WithProxy 设置HTTP代理服务器URL
+func WithProxy(proxyURL string) Option {
+	return func(c *Config) {
+		c.ProxyURL = proxyURL
+	}
+}

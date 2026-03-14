@@ -108,11 +108,26 @@ type Client struct {
 }
 
 // New 创建HTTP客户端
-func New(baseURL string, timeout time.Duration, log logger.Logger, tm *auth.TokenManager, re *retry.Executor) *Client {
+func New(baseURL string, timeout time.Duration, log logger.Logger, tm *auth.TokenManager, re *retry.Executor, proxyURL ...string) *Client {
+	// 创建HTTP客户端配置
+	client := &http.Client{
+		Timeout: timeout,
+	}
+
+	// 如果配置了代理URL，则设置代理
+	if len(proxyURL) > 0 && proxyURL[0] != "" {
+		proxy, err := url.Parse(proxyURL[0])
+		if err == nil {
+			client.Transport = &http.Transport{
+				Proxy: http.ProxyURL(proxy),
+			}
+		} else {
+			log.Warn("Invalid proxy URL, using default transport", logger.F("proxy_url", proxyURL[0]), logger.F("error", err))
+		}
+	}
+
 	return &Client{
-		httpClient: &http.Client{
-			Timeout: timeout,
-		},
+		httpClient:    client,
 		baseURL:       baseURL,
 		logger:        log,
 		tokenManager:  tm,

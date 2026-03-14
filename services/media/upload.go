@@ -13,10 +13,6 @@ import (
 	"github.com/shuaidd/wecom-core/internal/client"
 	"github.com/shuaidd/wecom-core/types/media"
 )
-const (
-	EdiaGetUploadByUrlResultURL = "/cgi-bin/media/get_upload_by_url_result"
-	EdiaUploadByUrlURL = "/cgi-bin/media/upload_by_url"
-)
 
 // UploadImage 上传图片
 // 上传图片得到图片URL，该URL永久有效
@@ -132,7 +128,7 @@ func (s *Service) GetJSSDKMedia(ctx context.Context, mediaID string) ([]byte, er
 // 生成异步上传任务，支持最高200M的大文件
 // 文档: https://developer.work.weixin.qq.com/document/path/96219
 func (s *Service) UploadByURL(ctx context.Context, req *media.UploadByURLRequest) (*media.UploadByURLResponse, error) {
-	return client.PostAndUnmarshal[media.UploadByURLResponse](s.client, ctx, EdiaUploadByUrlURL, req)
+	return client.PostAndUnmarshal[media.UploadByURLResponse](s.client, ctx, "/cgi-bin/media/upload_by_url", req)
 }
 
 // GetUploadByURLResult 查询异步上传任务结果
@@ -141,5 +137,5 @@ func (s *Service) GetUploadByURLResult(ctx context.Context, jobID string) (*medi
 	req := &media.GetUploadByURLResultRequest{
 		JobID: jobID,
 	}
-	return client.PostAndUnmarshal[media.GetUploadByURLResultResponse](s.client, ctx, EdiaGetUploadByUrlResultURL, req)
+	return client.PostAndUnmarshal[media.GetUploadByURLResultResponse](s.client, ctx, "/cgi-bin/media/get_upload_by_url_result", req)
 }

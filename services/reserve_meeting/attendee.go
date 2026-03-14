@@ -7,18 +7,6 @@ import (
 	"github.com/shuaidd/wecom-core/types/common"
 	"github.com/shuaidd/wecom-core/types/reserve_meeting"
 )
-const (
-	EetingCreateCustomerShortUrlURL = "/cgi-bin/meeting/create_customer_short_url"
-	EetingGetAttendeeListURL = "/cgi-bin/meeting/get_attendee_list"
-	EetingGetCustomerShortUrlURL = "/cgi-bin/meeting/get_customer_short_url"
-	EetingGetGuestsURL = "/cgi-bin/meeting/get_guests"
-	EetingGetInviteesURL = "/cgi-bin/meeting/get_invitees"
-	EetingGetRealtimeAttendeeListURL = "/cgi-bin/meeting/get_realtime_attendee_list"
-	EetingSetGuestsURL = "/cgi-bin/meeting/set_guests"
-	EetingSetInviteesURL = "/cgi-bin/meeting/set_invitees"
-	EetingWaitingroomGetCurrentUserListURL = "/cgi-bin/meeting/waitingroom/get_current_user_list"
-	EetingWaitingroomGetUserListURL = "/cgi-bin/meeting/waitingroom/get_user_list"
-)
 
 // GetInvitees 获取会议受邀成员列表
 // 文档: https://developer.work.weixin.qq.com/document/path/94051
@@ -26,7 +14,7 @@ func (s *Service) GetInvitees(ctx context.Context, meetingID string) (*reserve_m
 	req := &reserve_meeting.GetInviteesRequest{
 		MeetingID: meetingID,
 	}
-	return client.PostAndUnmarshal[reserve_meeting.GetInviteesResponse](s.client, ctx, EetingGetInviteesURL, req)
+	return client.PostAndUnmarshal[reserve_meeting.GetInviteesResponse](s.client, ctx, "/cgi-bin/meeting/get_invitees", req)
 }
 
 // GetInviteesWithCursor 分页获取会议受邀成员列表
@@ -36,13 +24,13 @@ func (s *Service) GetInviteesWithCursor(ctx context.Context, meetingID, cursor s
 		MeetingID: meetingID,
 		Cursor:    cursor,
 	}
-	return client.PostAndUnmarshal[reserve_meeting.GetInviteesResponse](s.client, ctx, EetingGetInviteesURL, req)
+	return client.PostAndUnmarshal[reserve_meeting.GetInviteesResponse](s.client, ctx, "/cgi-bin/meeting/get_invitees", req)
 }
 
 // SetInvitees 更新会议受邀成员列表
 // 文档: https://developer.work.weixin.qq.com/document/path/94050
 func (s *Service) SetInvitees(ctx context.Context, req *reserve_meeting.SetInviteesRequest) error {
-	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, EetingSetInviteesURL, req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/meeting/set_invitees", req)
 	return err
 }
 
@@ -52,13 +40,13 @@ func (s *Service) GetGuests(ctx context.Context, meetingID string) (*reserve_mee
 	req := &reserve_meeting.GetGuestsRequest{
 		MeetingID: meetingID,
 	}
-	return client.PostAndUnmarshal[reserve_meeting.GetGuestsResponse](s.client, ctx, EetingGetGuestsURL, req)
+	return client.PostAndUnmarshal[reserve_meeting.GetGuestsResponse](s.client, ctx, "/cgi-bin/meeting/get_guests", req)
 }
 
 // SetGuests 更新会议嘉宾列表
 // 文档: https://developer.work.weixin.qq.com/document/path/94137
 func (s *Service) SetGuests(ctx context.Context, req *reserve_meeting.SetGuestsRequest) error {
-	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, EetingSetGuestsURL, req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/meeting/set_guests", req)
 	return err
 }
 
@@ -68,13 +56,13 @@ func (s *Service) GetRealtimeAttendeeList(ctx context.Context, meetingID string)
 	req := &reserve_meeting.GetRealtimeAttendeeListRequest{
 		MeetingID: meetingID,
 	}
-	return client.PostAndUnmarshal[reserve_meeting.GetRealtimeAttendeeListResponse](s.client, ctx, EetingGetRealtimeAttendeeListURL, req)
+	return client.PostAndUnmarshal[reserve_meeting.GetRealtimeAttendeeListResponse](s.client, ctx, "/cgi-bin/meeting/get_realtime_attendee_list", req)
 }
 
 // GetRealtimeAttendeeListWithCursor 分页获取实时会中成员列表
 // 文档: https://developer.work.weixin.qq.com/document/path/93627
 func (s *Service) GetRealtimeAttendeeListWithCursor(ctx context.Context, req *reserve_meeting.GetRealtimeAttendeeListRequest) (*reserve_meeting.GetRealtimeAttendeeListResponse, error) {
-	return client.PostAndUnmarshal[reserve_meeting.GetRealtimeAttendeeListResponse](s.client, ctx, EetingGetRealtimeAttendeeListURL, req)
+	return client.PostAndUnmarshal[reserve_meeting.GetRealtimeAttendeeListResponse](s.client, ctx, "/cgi-bin/meeting/get_realtime_attendee_list", req)
 }
 
 // GetAttendeeList 获取已参会成员列表
@@ -83,13 +71,13 @@ func (s *Service) GetAttendeeList(ctx context.Context, meetingID string) (*reser
 	req := &reserve_meeting.GetAttendeeListRequest{
 		MeetingID: meetingID,
 	}
-	return client.PostAndUnmarshal[reserve_meeting.GetAttendeeListResponse](s.client, ctx, EetingGetAttendeeListURL, req)
+	return client.PostAndUnmarshal[reserve_meeting.GetAttendeeListResponse](s.client, ctx, "/cgi-bin/meeting/get_attendee_list", req)
 }
 
 // GetAttendeeListWithCursor 分页获取已参会成员列表
 // 文档: https://developer.work.weixin.qq.com/document/path/93736
 func (s *Service) GetAttendeeListWithCursor(ctx context.Context, req *reserve_meeting.GetAttendeeListRequest) (*reserve_meeting.GetAttendeeListResponse, error) {
-	return client.PostAndUnmarshal[reserve_meeting.GetAttendeeListResponse](s.client, ctx, EetingGetAttendeeListURL, req)
+	return client.PostAndUnmarshal[reserve_meeting.GetAttendeeListResponse](s.client, ctx, "/cgi-bin/meeting/get_attendee_list", req)
 }
 
 // WaitingRoomGetCurrentUserList 获取实时等候室成员列表
@@ -98,7 +86,7 @@ func (s *Service) WaitingRoomGetCurrentUserList(ctx context.Context, meetingID s
 	req := &reserve_meeting.WaitingRoomGetCurrentUserListRequest{
 		MeetingID: meetingID,
 	}
-	return client.PostAndUnmarshal[reserve_meeting.WaitingRoomGetCurrentUserListResponse](s.client, ctx, EetingWaitingroomGetCurrentUserListURL, req)
+	return client.PostAndUnmarshal[reserve_meeting.WaitingRoomGetCurrentUserListResponse](s.client, ctx, "/cgi-bin/meeting/waitingroom/get_current_user_list", req)
 }
 
 // WaitingRoomGetCurrentUserListWithCursor 分页获取实时等候室成员列表
@@ -109,7 +97,7 @@ func (s *Service) WaitingRoomGetCurrentUserListWithCursor(ctx context.Context, m
 		Limit:     limit,
 		Cursor:    cursor,
 	}
-	return client.PostAndUnmarshal[reserve_meeting.WaitingRoomGetCurrentUserListResponse](s.client, ctx, EetingWaitingroomGetCurrentUserListURL, req)
+	return client.PostAndUnmarshal[reserve_meeting.WaitingRoomGetCurrentUserListResponse](s.client, ctx, "/cgi-bin/meeting/waitingroom/get_current_user_list", req)
 }
 
 // WaitingRoomGetUserList 获取等候室成员记录
@@ -118,7 +106,7 @@ func (s *Service) WaitingRoomGetUserList(ctx context.Context, meetingID string) 
 	req := &reserve_meeting.WaitingRoomGetUserListRequest{
 		MeetingID: meetingID,
 	}
-	return client.PostAndUnmarshal[reserve_meeting.WaitingRoomGetUserListResponse](s.client, ctx, EetingWaitingroomGetUserListURL, req)
+	return client.PostAndUnmarshal[reserve_meeting.WaitingRoomGetUserListResponse](s.client, ctx, "/cgi-bin/meeting/waitingroom/get_user_list", req)
 }
 
 // WaitingRoomGetUserListWithCursor 分页获取等候室成员记录
@@ -129,13 +117,13 @@ func (s *Service) WaitingRoomGetUserListWithCursor(ctx context.Context, meetingI
 		Limit:     limit,
 		Cursor:    cursor,
 	}
-	return client.PostAndUnmarshal[reserve_meeting.WaitingRoomGetUserListResponse](s.client, ctx, EetingWaitingroomGetUserListURL, req)
+	return client.PostAndUnmarshal[reserve_meeting.WaitingRoomGetUserListResponse](s.client, ctx, "/cgi-bin/meeting/waitingroom/get_user_list", req)
 }
 
 // CreateCustomerShortURL 创建用户专属参会链接
 // 文档: https://developer.work.weixin.qq.com/document/path/93994
 func (s *Service) CreateCustomerShortURL(ctx context.Context, req *reserve_meeting.CreateCustomerShortURLRequest) (*reserve_meeting.CreateCustomerShortURLResponse, error) {
-	return client.PostAndUnmarshal[reserve_meeting.CreateCustomerShortURLResponse](s.client, ctx, EetingCreateCustomerShortUrlURL, req)
+	return client.PostAndUnmarshal[reserve_meeting.CreateCustomerShortURLResponse](s.client, ctx, "/cgi-bin/meeting/create_customer_short_url", req)
 }
 
 // GetCustomerShortURL 获取用户专属参会链接
@@ -144,5 +132,5 @@ func (s *Service) GetCustomerShortURL(ctx context.Context, meetingID string) (*r
 	req := &reserve_meeting.GetCustomerShortURLRequest{
 		MeetingID: meetingID,
 	}
-	return client.PostAndUnmarshal[reserve_meeting.GetCustomerShortURLResponse](s.client, ctx, EetingGetCustomerShortUrlURL, req)
+	return client.PostAndUnmarshal[reserve_meeting.GetCustomerShortURLResponse](s.client, ctx, "/cgi-bin/meeting/get_customer_short_url", req)
 }

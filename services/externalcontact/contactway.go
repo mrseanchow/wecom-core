@@ -7,20 +7,12 @@ import (
 	"github.com/shuaidd/wecom-core/types/common"
 	"github.com/shuaidd/wecom-core/types/externalcontact"
 )
-const (
-	XternalcontactAddContactWayURL = "/cgi-bin/externalcontact/add_contact_way"
-	XternalcontactCloseTempChatURL = "/cgi-bin/externalcontact/close_temp_chat"
-	XternalcontactDelContactWayURL = "/cgi-bin/externalcontact/del_contact_way"
-	XternalcontactGetContactWayURL = "/cgi-bin/externalcontact/get_contact_way"
-	XternalcontactListContactWayURL = "/cgi-bin/externalcontact/list_contact_way"
-	XternalcontactUpdateContactWayURL = "/cgi-bin/externalcontact/update_contact_way"
-)
 
 // AddContactWay 配置客户联系「联系我」方式
 // 企业可通过此接口为具有客户联系功能的成员生成专属的「联系我」二维码或者「联系我」按钮
 // 文档: https://developer.work.weixin.qq.com/document/path/92572
 func (s *Service) AddContactWay(ctx context.Context, req *externalcontact.AddContactWayRequest) (*externalcontact.AddContactWayResponse, error) {
-	return client.PostAndUnmarshal[externalcontact.AddContactWayResponse](s.client, ctx, XternalcontactAddContactWayURL, req)
+	return client.PostAndUnmarshal[externalcontact.AddContactWayResponse](s.client, ctx, "/cgi-bin/externalcontact/add_contact_way", req)
 }
 
 // GetContactWay 获取企业已配置的「联系我」方式
@@ -30,7 +22,7 @@ func (s *Service) GetContactWay(ctx context.Context, configID string) (*external
 	req := &externalcontact.GetContactWayRequest{
 		ConfigID: configID,
 	}
-	return client.PostAndUnmarshal[externalcontact.GetContactWayResponse](s.client, ctx, XternalcontactGetContactWayURL, req)
+	return client.PostAndUnmarshal[externalcontact.GetContactWayResponse](s.client, ctx, "/cgi-bin/externalcontact/get_contact_way", req)
 }
 
 // ListContactWay 获取企业已配置的「联系我」列表
@@ -38,14 +30,14 @@ func (s *Service) GetContactWay(ctx context.Context, configID string) (*external
 // 注意：该接口仅可获取2021年7月10日以后创建的「联系我」
 // 文档: https://developer.work.weixin.qq.com/document/path/92572
 func (s *Service) ListContactWay(ctx context.Context, req *externalcontact.ListContactWayRequest) (*externalcontact.ListContactWayResponse, error) {
-	return client.PostAndUnmarshal[externalcontact.ListContactWayResponse](s.client, ctx, XternalcontactListContactWayURL, req)
+	return client.PostAndUnmarshal[externalcontact.ListContactWayResponse](s.client, ctx, "/cgi-bin/externalcontact/list_contact_way", req)
 }
 
 // UpdateContactWay 更新企业已配置的「联系我」方式
 // 更新企业配置的「联系我」二维码和「联系我」小程序按钮中的信息，如使用人员和备注等
 // 文档: https://developer.work.weixin.qq.com/document/path/92572
 func (s *Service) UpdateContactWay(ctx context.Context, req *externalcontact.UpdateContactWayRequest) error {
-	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, XternalcontactUpdateContactWayURL, req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/update_contact_way", req)
 	return err
 }
 
@@ -56,7 +48,7 @@ func (s *Service) DeleteContactWay(ctx context.Context, configID string) error {
 	req := &externalcontact.DeleteContactWayRequest{
 		ConfigID: configID,
 	}
-	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, XternalcontactDelContactWayURL, req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/del_contact_way", req)
 	return err
 }
 
@@ -68,6 +60,6 @@ func (s *Service) CloseTempChat(ctx context.Context, userID, externalUserID stri
 		UserID:         userID,
 		ExternalUserID: externalUserID,
 	}
-	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, XternalcontactCloseTempChatURL, req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/externalcontact/close_temp_chat", req)
 	return err
 }

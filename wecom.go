@@ -173,6 +173,7 @@ func New(opts ...config.Option) (*Client, error) {
 		cfg.Logger,
 		tokenManager,
 		retryExecutor,
+		cfg.ProxyURL,
 	)
 
 	if cfg.Debug {

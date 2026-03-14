@@ -7,21 +7,16 @@ import (
 	"github.com/shuaidd/wecom-core/types/common"
 	"github.com/shuaidd/wecom-core/types/miniapppay"
 )
-const (
-	IniapppayCloseOrderURL = "/cgi-bin/miniapppay/close_order"
-	IniapppayCreateOrderURL = "/cgi-bin/miniapppay/create_order"
-	IniapppayGetOrderURL = "/cgi-bin/miniapppay/get_order"
-)
 
 func (s *Service) CreateOrder(ctx context.Context, req *miniapppay.CreateOrderRequest) (*miniapppay.CreateOrderResponse, error) {
-	return client.PostAndUnmarshal[miniapppay.CreateOrderResponse](s.client, ctx, IniapppayCreateOrderURL, req)
+	return client.PostAndUnmarshal[miniapppay.CreateOrderResponse](s.client, ctx, "/cgi-bin/miniapppay/create_order", req)
 }
 
 func (s *Service) GetOrder(ctx context.Context, req *miniapppay.GetOrderRequest) (*miniapppay.GetOrderResponse, error) {
-	return client.PostAndUnmarshal[miniapppay.GetOrderResponse](s.client, ctx, IniapppayGetOrderURL, req)
+	return client.PostAndUnmarshal[miniapppay.GetOrderResponse](s.client, ctx, "/cgi-bin/miniapppay/get_order", req)
 }
 
 func (s *Service) CloseOrder(ctx context.Context, req *miniapppay.CloseOrderRequest) error {
-	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, IniapppayCloseOrderURL, req)
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/miniapppay/close_order", req)
 	return err
 }

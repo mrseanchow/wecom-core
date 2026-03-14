@@ -36,6 +36,9 @@ type AgentConfig struct {
 
 // Config 企业微信SDK配置
 type Config struct {
+	// ProxyURL 代理服务器URL（可选），如 "http://127.0.0.1:8080" 或 "https://proxy.example.com:443"
+	ProxyURL string
+
 	// CorpID 企业ID
 	CorpID string
 
