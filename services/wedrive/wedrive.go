@@ -142,14 +142,15 @@ func (s *Service) SetSpaceSetting(ctx context.Context, req *wedrive.SpaceSetting
 }
 
 // AddSpaceMembers 在空间中新增成员/部门
-func (s *Service) AddSpaceMembers(ctx context.Context, req *wedrive.SpaceCreateRequest) (*wedrive.SpaceCreateResponse, error) {
-	// space_acl_add shares the same request structure as space create's auth_info
-	return client.PostAndUnmarshal[wedrive.SpaceCreateResponse](s.client, ctx, "/cgi-bin/wedrive/space_acl_add", req)
+// 请求体为 {spaceid, auth_info[]}，与新建空间（space_create）结构不同，不能复用 SpaceCreateRequest
+func (s *Service) AddSpaceMembers(ctx context.Context, req *wedrive.SpaceACLAddRequest) error {
+	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/wedrive/space_acl_add", req)
+	return err
 }
 
 // RemoveSpaceMembers 在空间中移除成员/部门
-func (s *Service) RemoveSpaceMembers(ctx context.Context, req *wedrive.SpaceInfoRequest) error {
-	// use space_acl_del endpoint payload; here using a generic request type from types if needed
+// 请求体为 {spaceid, auth_info[]}，其中 auth_info 为官方必填字段
+func (s *Service) RemoveSpaceMembers(ctx context.Context, req *wedrive.SpaceACLDelRequest) error {
 	_, err := client.PostAndUnmarshal[common.Response](s.client, ctx, "/cgi-bin/wedrive/space_acl_del", req)
 	return err
 }
